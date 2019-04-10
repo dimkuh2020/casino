@@ -73,7 +73,7 @@
                                 <div class="nav-link" >cash: {{Auth::user()->cash}} $</div>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="btn btn-primary btn-sm" style="width: 160px; font-size: 12pt;">Top up balance</a>
+                                <a href="{{route('balance.edit', Auth::user()->id)}}" class="btn btn-primary btn-sm" style="width: 160px; font-size: 12pt;">Top up balance</a>
                             </li>
                         @endguest
                     </ul>
