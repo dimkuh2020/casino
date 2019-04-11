@@ -11,7 +11,7 @@
                     <hr>
                     <div class="row" id="nav" style="text-align: center">
                         <div class="col-md-4">
-                            <a href="">
+                            <a href="{{ route('blackjack') }}">
                                 <img src="{{ asset('img/bj.png')}}" width="80%">
                             </a>
                             <h4>Black Jack</h4>

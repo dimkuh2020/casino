@@ -73,24 +73,15 @@ class BalanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $student = Student::find($id);
+        $user = User::find($id);       
 
-       $sname=$request->sname;
-       $student->sname=$sname;
+       $cash=$request->cash;
+       $user->cash=$cash;
 
-       $age=$request->age;
-       $student->age=$age;
-
-       $rate=$request->rate;
-       $student->rate=$rate;
-
-       $group_id=$request->group_id;
-       $student->group_id=$group_id;
-
-       $student->save();
+       $user->save();
        
-       return redirect()->route('students.index');
-    }
+       return redirect()->route('home');
+   }
 
     /**
      * Remove the specified resource from storage.
