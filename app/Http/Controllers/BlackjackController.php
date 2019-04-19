@@ -11,12 +11,11 @@ class BlackjackController extends Controller
     {
 
     	$bj = new Blackjack();
-    	$data = ['message' => $bj->message];
+    	$data = ['cards' => $bj->cards];  
 
-    	
+    	   	
 
-
-    	return view('blackjack', $data);
+    	return view('blackjack', ['data' => $data]);
     }
 
 
