@@ -8,10 +8,7 @@
                 <h2 class="panel-heading" style="margin: 10; text-align: center;">BLACK JACK</h2>
                 <hr>
                 <div id="app">
-                	Start here
-                	<br>
-                	{{$message}}
-                </div> 
+                	<blackjack-component :data="{{json_encode($data)}}"></blackjack-component>                   
             </div>
         </div>
     </div>
