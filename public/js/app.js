@@ -49317,15 +49317,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: {
-        visible: true
+    data: function data() {
+        return { visible: true };
     },
+
 
     props: ['data'],
 
-    change: function change() {
-        visible: false;
+    methods: {
+        change: function change() {
+            this.visible = false;
+            alert("fuuuu");
+        }
     },
+
     mounted: function mounted() {
         console.log('Component mounted.');
     }
@@ -49341,64 +49346,101 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
-      _c(
-        "div",
-        { staticClass: "col-md-8" },
-        [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _vm.visible ? [_vm._m(1)] : _vm._e(),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          !_vm.visible ? [_vm._m(2)] : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              on: {
-                click: function($event) {
-                  _vm.visible = !_vm.visible
-                }
+      _c("div", { staticClass: "col-md-8" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.visible,
+                expression: "visible"
               }
-            },
-            [_vm._v("fuuu")]
-          ),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _vm._m(3),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(" "),
-          _c("table", { staticClass: "table" }, [
-            _c(
-              "tbody",
-              _vm._l(_vm.data.cards, function(dat) {
-                return _c("tr", [
-                  _c("td", [_vm._v(_vm._s(dat.title))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(dat.url))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(dat.numb))])
-                ])
-              }),
-              0
-            )
-          ])
-        ],
-        2
-      )
+            ],
+            staticClass: "container"
+          },
+          [_vm._m(1)]
+        ),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.visible,
+                expression: "visible"
+              }
+            ],
+            staticClass: "container"
+          },
+          [_vm._m(2)]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                _vm.visible = !_vm.visible
+              }
+            }
+          },
+          [_vm._v(_vm._s(_vm.visible ? "Скрыть" : "Отобразить"))]
+        ),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.visible,
+                expression: "visible"
+              }
+            ],
+            staticClass: "container"
+          },
+          [_vm._m(3)]
+        ),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("table", { staticClass: "table" }, [
+          _c(
+            "tbody",
+            _vm._l(_vm.data.cards, function(dat) {
+              return _c("tr", [
+                _c("td", [_vm._v(_vm._s(dat.title))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(dat.url))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(dat.numb))])
+              ])
+            }),
+            0
+          )
+        ])
+      ])
     ])
   ])
 }
@@ -49419,23 +49461,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", [
-          _c("p", [_vm._v("Make your bet:")]),
-          _vm._v(" "),
-          _c("input", {
-            staticStyle: { width: "100px" },
-            attrs: { type: "number", name: "bet" }
-          }),
-          _c("br"),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "btn btn-danger",
-            staticStyle: { width: "100px", "margin-top": "10px" },
-            attrs: { type: "button", name: "go", value: "GO" }
-          })
-        ])
+    return _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", [
+        _c("p", [_vm._v("Make your bet:")]),
+        _vm._v(" "),
+        _c("input", {
+          staticStyle: { width: "100px" },
+          attrs: { type: "number", name: "bet" }
+        }),
+        _c("br"),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "btn btn-danger",
+          staticStyle: { width: "100px", "margin-top": "10px" },
+          attrs: { type: "button", name: "go", value: "GO" }
+        })
       ])
     ])
   },
@@ -49443,75 +49483,71 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c(
-        "div",
-        {
-          staticClass: "row justify-content-center",
-          staticStyle: { "padding-left": "8%" }
-        },
-        [
-          _c("div", { staticClass: "col-sm" }, [
-            _c("input", {
-              staticClass: "btn btn-danger",
-              staticStyle: { width: "100px" },
-              attrs: { type: "button", name: "hit", value: "hit" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm" }, [
-            _c("input", {
-              staticClass: "btn btn-danger",
-              staticStyle: { width: "100px" },
-              attrs: { type: "button", name: "stop", value: "stop" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm" }, [
-            _c("input", {
-              staticClass: "btn btn-danger",
-              staticStyle: { width: "100px" },
-              attrs: { type: "button", name: "double", value: "double" }
-            })
-          ])
-        ]
-      )
-    ])
+    return _c(
+      "div",
+      {
+        staticClass: "row justify-content-center",
+        staticStyle: { "padding-left": "8%" }
+      },
+      [
+        _c("div", { staticClass: "col-sm" }, [
+          _c("input", {
+            staticClass: "btn btn-danger",
+            staticStyle: { width: "100px" },
+            attrs: { type: "button", name: "hit", value: "hit" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm" }, [
+          _c("input", {
+            staticClass: "btn btn-danger",
+            staticStyle: { width: "100px" },
+            attrs: { type: "button", name: "stop", value: "stop" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm" }, [
+          _c("input", {
+            staticClass: "btn btn-danger",
+            staticStyle: { width: "100px" },
+            attrs: { type: "button", name: "double", value: "double" }
+          })
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c(
-        "div",
-        {
-          staticClass: "row justify-content-center",
-          staticStyle: {
-            "padding-left": "10%",
-            "padding-right": "10%",
-            "margin-left": "10%"
-          }
-        },
-        [
-          _c("div", { staticClass: "col" }, [
-            _c("input", {
-              staticClass: "btn btn-danger",
-              staticStyle: { width: "100px" },
-              attrs: { type: "button", name: "hit", value: "hit" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col" }, [
-            _c("input", {
-              staticClass: "btn btn-danger",
-              staticStyle: { width: "100px" },
-              attrs: { type: "button", name: "stop", value: "stop" }
-            })
-          ])
-        ]
-      )
-    ])
+    return _c(
+      "div",
+      {
+        staticClass: "row justify-content-center",
+        staticStyle: {
+          "padding-left": "10%",
+          "padding-right": "10%",
+          "margin-left": "10%"
+        }
+      },
+      [
+        _c("div", { staticClass: "col" }, [
+          _c("input", {
+            staticClass: "btn btn-danger",
+            staticStyle: { width: "100px" },
+            attrs: { type: "button", name: "hit", value: "hit" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col" }, [
+          _c("input", {
+            staticClass: "btn btn-danger",
+            staticStyle: { width: "100px" },
+            attrs: { type: "button", name: "stop", value: "stop" }
+          })
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true

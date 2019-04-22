@@ -10,8 +10,8 @@
                 </div>
                     <br>
                     <br>
-            <template v-if="visible">
-                <div class="container">
+            
+                <div class="container" v-show="visible">
                     <div class="row justify-content-center">
                         <div>
                             <p>Make your bet:</p>
@@ -20,13 +20,13 @@
                         </div>
                     </div>
                 </div>
-            </template>
+            
             
             
                     <br>
                     <br>
-            <template v-if="!visible">
-                <div class="container" >
+            
+                <div class="container" v-show="visible" >
                     <div class="row justify-content-center" style="padding-left: 8%;">
                         <div class="col-sm">
                             <input type="button" class="btn btn-danger" name="hit" value="hit" style="width: 100px;">
@@ -39,14 +39,14 @@
                         </div>
                     </div>
                 </div>
-            </template>
+            
 
-                <button v-on:click="visible=!visible">fuuu</button>
+                <button @click="visible=!visible">{{visible?'Скрыть':'Отобразить'}}</button>
             
                     <br>
                     <br>
 
-                <div class="container">
+                <div class="container" v-show="visible">
                     <div class="row justify-content-center" style="padding-left: 10%; padding-right: 10%; margin-left:10%">
                         <div class="col">
                             <input type="button" class="btn btn-danger" name="hit" value="hit" style="width: 100px;">
@@ -75,20 +75,20 @@
 
 <script>
     export default {
-        data: {
-            visible: true
-        } ,   
-
+        data() {
+            return {visible: true}
+        }, 
 
         props: [
             'data'
         ],
 
-        change() {
-            visible: false
-        },
-
-        
+        methods: {
+            change() {
+                this.visible=false;
+                alert("fuuuu");
+            }
+        },        
         
        
 
