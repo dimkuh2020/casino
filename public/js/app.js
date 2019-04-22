@@ -49308,17 +49308,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return { visible: true };
+        return {
+            visible1: true,
+            visible2: true
+        };
     },
 
 
@@ -49326,7 +49322,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         change: function change() {
-            this.visible = false;
             alert("fuuuu");
         }
     },
@@ -49360,14 +49355,39 @@ var render = function() {
               {
                 name: "show",
                 rawName: "v-show",
-                value: _vm.visible,
-                expression: "visible"
+                value: _vm.visible1,
+                expression: "visible1"
               }
             ],
             staticClass: "container"
           },
-          [_vm._m(1)]
+          [
+            _c("div", { staticClass: "row justify-content-center" }, [
+              _c("div", [
+                _c("p", [_vm._v("Make your bet:")]),
+                _vm._v(" "),
+                _c("input", {
+                  staticStyle: { width: "100px" },
+                  attrs: { type: "number", name: "bet" }
+                }),
+                _c("br"),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "btn btn-danger",
+                  staticStyle: { width: "100px", "margin-top": "10px" },
+                  attrs: { type: "button", name: "go", value: "GO" },
+                  on: {
+                    click: function($event) {
+                      _vm.visible1 = !_vm.visible1
+                    }
+                  }
+                })
+              ])
+            ])
+          ]
         ),
+        _vm._v(" "),
+        _c("br"),
         _vm._v(" "),
         _c("br"),
         _vm._v(" "),
@@ -49380,45 +49400,96 @@ var render = function() {
               {
                 name: "show",
                 rawName: "v-show",
-                value: _vm.visible,
-                expression: "visible"
+                value: !_vm.visible1,
+                expression: "!visible1"
               }
-            ],
-            staticClass: "container"
+            ]
           },
-          [_vm._m(2)]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                _vm.visible = !_vm.visible
-              }
-            }
-          },
-          [_vm._v(_vm._s(_vm.visible ? "Скрыть" : "Отобразить"))]
-        ),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            directives: [
+          [
+            _c(
+              "div",
               {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.visible,
-                expression: "visible"
-              }
-            ],
-            staticClass: "container"
-          },
-          [_vm._m(3)]
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.visible2,
+                    expression: "visible2"
+                  }
+                ],
+                staticClass: "container"
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "row justify-content-center",
+                    staticStyle: { "padding-left": "8%" }
+                  },
+                  [
+                    _c("div", { staticClass: "col-sm" }, [
+                      _c("input", {
+                        staticClass: "btn btn-danger",
+                        staticStyle: { width: "100px" },
+                        attrs: { type: "button", name: "hit", value: "hit" },
+                        on: {
+                          click: function($event) {
+                            _vm.visible2 = !_vm.visible2
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm" }, [
+                      _c("input", {
+                        staticClass: "btn btn-danger",
+                        staticStyle: { width: "100px" },
+                        attrs: { type: "button", name: "stop", value: "stop" },
+                        on: {
+                          click: function($event) {
+                            _vm.visible2 = !_vm.visible2
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm" }, [
+                      _c("input", {
+                        staticClass: "btn btn-danger",
+                        staticStyle: { width: "100px" },
+                        attrs: {
+                          type: "button",
+                          name: "double",
+                          value: "double"
+                        },
+                        on: {
+                          click: function($event) {
+                            _vm.visible2 = !_vm.visible2
+                          }
+                        }
+                      })
+                    ])
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: !_vm.visible2,
+                    expression: "!visible2"
+                  }
+                ],
+                staticClass: "container"
+              },
+              [_vm._m(1)]
+            )
+          ]
         ),
         _vm._v(" "),
         _c("br"),
@@ -49449,69 +49520,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _vm._v(
-          "\n                    Тут будет стол\n                                            \n                "
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", [
-        _c("p", [_vm._v("Make your bet:")]),
-        _vm._v(" "),
-        _c("input", {
-          staticStyle: { width: "100px" },
-          attrs: { type: "number", name: "bet" }
-        }),
-        _c("br"),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "btn btn-danger",
-          staticStyle: { width: "100px", "margin-top": "10px" },
-          attrs: { type: "button", name: "go", value: "GO" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c(
       "div",
-      {
-        staticClass: "row justify-content-center",
-        staticStyle: { "padding-left": "8%" }
-      },
+      { staticClass: "container", staticStyle: { height: "222px" } },
       [
-        _c("div", { staticClass: "col-sm" }, [
-          _c("input", {
-            staticClass: "btn btn-danger",
-            staticStyle: { width: "100px" },
-            attrs: { type: "button", name: "hit", value: "hit" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm" }, [
-          _c("input", {
-            staticClass: "btn btn-danger",
-            staticStyle: { width: "100px" },
-            attrs: { type: "button", name: "stop", value: "stop" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm" }, [
-          _c("input", {
-            staticClass: "btn btn-danger",
-            staticStyle: { width: "100px" },
-            attrs: { type: "button", name: "double", value: "double" }
-          })
+        _c("div", { staticClass: "row justify-content-center" }, [
+          _vm._v(
+            "\n                    Тут будет стол\n                                            \n                "
+          )
         ])
       ]
     )
