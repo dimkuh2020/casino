@@ -3,11 +3,21 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="container" style="height: 222px;">
-                    <div class="row justify-content-center">
-                        Тут будет стол
-                                                
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <h5>dealer</h5>
+
+
+                        </div>                        
                     </div>
-                </div>
+                    <div class="container" style="padding-top: 200px;">
+                        <div class="row justify-content-center">
+                            <h5>{{user}}</h5>                            
+
+
+                        </div>                        
+                    </div>                       
+                </div>                
                     <br>
                     <br>
             
@@ -54,13 +64,14 @@
                     <br>                
                 <table class="table">
                     <tbody>
-                        <tr v-for="dat in data.cards">                            
-                            <td>{{dat.title}}</td>
-                            <td>{{dat.url}}</td>
-                            <td>{{dat.numb}}</td>
+                        <tr v-for="card in data.cards">                            
+                            <td>{{card.title}}</td>
+                            <td>{{card.url}}</td>
+                            <td>{{card.numb}}</td>
                         </tr>
                     </tbody>
-                </table>                               
+                </table>
+
             </div>
         </div>
     </div>
@@ -77,7 +88,8 @@
         }, 
 
         props: [
-            'data'
+            'data',
+            'user'
         ],
 
         methods: {

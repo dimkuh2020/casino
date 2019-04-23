@@ -49308,6 +49308,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -49318,7 +49329,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    props: ['data'],
+    props: ['data', 'user'],
 
     methods: {
         change: function change() {
@@ -49342,7 +49353,26 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-8" }, [
-        _vm._m(0),
+        _c(
+          "div",
+          { staticClass: "container", staticStyle: { height: "222px" } },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "container",
+                staticStyle: { "padding-top": "200px" }
+              },
+              [
+                _c("div", { staticClass: "row justify-content-center" }, [
+                  _c("h5", [_vm._v(_vm._s(_vm.user))])
+                ])
+              ]
+            )
+          ]
+        ),
         _vm._v(" "),
         _c("br"),
         _vm._v(" "),
@@ -49499,13 +49529,13 @@ var render = function() {
         _c("table", { staticClass: "table" }, [
           _c(
             "tbody",
-            _vm._l(_vm.data.cards, function(dat) {
+            _vm._l(_vm.data.cards, function(card) {
               return _c("tr", [
-                _c("td", [_vm._v(_vm._s(dat.title))]),
+                _c("td", [_vm._v(_vm._s(card.title))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(dat.url))]),
+                _c("td", [_vm._v(_vm._s(card.url))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(dat.numb))])
+                _c("td", [_vm._v(_vm._s(card.numb))])
               ])
             }),
             0
@@ -49520,17 +49550,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "container", staticStyle: { height: "222px" } },
-      [
-        _c("div", { staticClass: "row justify-content-center" }, [
-          _vm._v(
-            "\n                    Тут будет стол\n                                            \n                "
-          )
-        ])
-      ]
-    )
+    return _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row justify-content-center" }, [
+        _c("h5", [_vm._v("dealer")])
+      ])
+    ])
   },
   function() {
     var _vm = this

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Blackjack extends Model
 {	
 	public $cards = [
@@ -20,5 +21,6 @@ class Blackjack extends Model
 		)
 	];
 
-    public $message = 1;
+    public $message = "Fuuuu";
+    
 }
