@@ -49329,7 +49329,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    props: ['data', 'user'],
+    props: ['cards', 'user'],
 
     methods: {
         change: function change() {
@@ -49529,13 +49529,18 @@ var render = function() {
         _c("table", { staticClass: "table" }, [
           _c(
             "tbody",
-            _vm._l(_vm.data.cards, function(card) {
+            _vm._l(_vm.cards, function(card) {
               return _c("tr", [
                 _c("td", [_vm._v(_vm._s(card.title))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(card.url))]),
+                _c("td", [
+                  _c("img", {
+                    staticStyle: { height: "80px", width: "66px" },
+                    attrs: { src: card.url }
+                  })
+                ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(card.numb))])
+                _c("td", [_vm._v(_vm._s(card.value))])
               ])
             }),
             0

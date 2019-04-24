@@ -64,10 +64,10 @@
                     <br>                
                 <table class="table">
                     <tbody>
-                        <tr v-for="card in data.cards">                            
+                        <tr v-for="card in cards">                            
                             <td>{{card.title}}</td>
-                            <td>{{card.url}}</td>
-                            <td>{{card.numb}}</td>
+                            <td><img style="height: 80px; width:66px" v-bind:src="card.url"></td>
+                            <td>{{card.value}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -88,7 +88,7 @@
         }, 
 
         props: [
-            'data',
+            'cards',
             'user'
         ],
 
