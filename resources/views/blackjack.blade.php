@@ -8,7 +8,7 @@
                 <h2 class="panel-heading" style="margin: 10; text-align: center;">BLACK JACK</h2>
                 <hr>
                 <div id="app">
-                	<blackjack-component :data="{{json_encode($data)}}" :user="{{json_encode($user)}}"></blackjack-component>                   
+                	<blackjack-component :cards="{{json_encode($cards)}}" :user="{{json_encode($user)}}"></blackjack-component>                   
             </div>
         </div>
     </div>

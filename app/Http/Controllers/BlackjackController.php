@@ -13,11 +13,12 @@ class BlackjackController extends Controller
     {
 
     	$bj = new Blackjack();
-    	$data = ['cards' => $bj->cards];    	
-
+    	$cards = $bj->cards;
     	$user = Auth::user()->name; // авторизированый пользователь через фасад
+
+    	dd($bj->tempplayer=rand(5,15)); 
     	
-    	return view('blackjack',['data' => $data], ['user' => $user]);
+    	return view('blackjack',['cards' => $cards], ['user' => $user]);
     }
 
 
