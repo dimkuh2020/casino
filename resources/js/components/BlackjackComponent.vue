@@ -12,6 +12,9 @@
                     </div>
                     <div class="container" style="padding-top: 200px;">
                         <div class="row justify-content-center">
+                            <div v-for="usercard in usercards">
+                                <img style="height: 80px; width:66px" v-bind:src="usercard.url">
+                            </div>
                             <h5>{{user}}</h5>                            
 
 
@@ -89,7 +92,9 @@
 
         props: [
             'cards',
-            'user'
+            'user',
+            'usercards',
+            'dealercards'
         ],
 
         methods: {

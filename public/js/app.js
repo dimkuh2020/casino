@@ -49319,6 +49319,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -49329,7 +49332,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    props: ['cards', 'user'],
+    props: ['cards', 'user', 'usercards', 'dealercards'],
 
     methods: {
         change: function change() {
@@ -49366,9 +49369,23 @@ var render = function() {
                 staticStyle: { "padding-top": "200px" }
               },
               [
-                _c("div", { staticClass: "row justify-content-center" }, [
-                  _c("h5", [_vm._v(_vm._s(_vm.user))])
-                ])
+                _c(
+                  "div",
+                  { staticClass: "row justify-content-center" },
+                  [
+                    _vm._l(_vm.usercards, function(usercard) {
+                      return _c("div", [
+                        _c("img", {
+                          staticStyle: { height: "80px", width: "66px" },
+                          attrs: { src: usercard.url }
+                        })
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("h5", [_vm._v(_vm._s(_vm.user))])
+                  ],
+                  2
+                )
               ]
             )
           ]
