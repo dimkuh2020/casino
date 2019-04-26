@@ -14,11 +14,8 @@ class Blackjack extends Model
 	public $usercards = []; //пустой массив игрока для заполнения картиами
 	public $dealercards = []; //пустой массив дилера для заполнения картами
 
-	public $tempplayer = null;//для записи рандомного индекса
-	public $tempdealer = null;
-
-
-
+	public $tempindex = null;//для записи рандомного индекса
+	
 
 	public $cards = [
 		//чирва

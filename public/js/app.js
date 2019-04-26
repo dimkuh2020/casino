@@ -49322,6 +49322,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -49358,33 +49363,73 @@ var render = function() {
       _c("div", { staticClass: "col-md-8" }, [
         _c(
           "div",
-          { staticClass: "container", staticStyle: { height: "222px" } },
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: !_vm.visible1,
+                expression: "!visible1"
+              }
+            ],
+            staticClass: "container",
+            staticStyle: { height: "222px" }
+          },
           [
-            _vm._m(0),
+            _c("div", { staticClass: "container" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "row justify-content-center" },
+                _vm._l(_vm.dealercards, function(dealercard) {
+                  return _c("div", [
+                    _c("img", {
+                      staticStyle: {
+                        height: "80px",
+                        width: "66px",
+                        "margin-left": "5px"
+                      },
+                      attrs: { src: dealercard.url }
+                    })
+                  ])
+                }),
+                0
+              )
+            ]),
             _vm._v(" "),
             _c(
               "div",
               {
                 staticClass: "container",
-                staticStyle: { "padding-top": "200px" }
+                staticStyle: { "padding-top": "100px" }
               },
               [
                 _c(
                   "div",
                   { staticClass: "row justify-content-center" },
-                  [
-                    _vm._l(_vm.usercards, function(usercard) {
-                      return _c("div", [
-                        _c("img", {
-                          staticStyle: { height: "80px", width: "66px" },
-                          attrs: { src: usercard.url }
-                        })
-                      ])
-                    }),
-                    _vm._v(" "),
-                    _c("h5", [_vm._v(_vm._s(_vm.user))])
-                  ],
-                  2
+                  _vm._l(_vm.usercards, function(usercard) {
+                    return _c("div", [
+                      _c("img", {
+                        staticStyle: {
+                          height: "80px",
+                          width: "66px",
+                          "margin-left": "5px"
+                        },
+                        attrs: { src: usercard.url }
+                      })
+                    ])
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "row justify-content-center",
+                    staticStyle: { "padding-top": "10px" }
+                  },
+                  [_c("h4", [_vm._v(_vm._s(_vm.user) + " (21)")])]
                 )
               ]
             )
@@ -49572,10 +49617,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("h5", [_vm._v("dealer")])
-      ])
+    return _c("div", { staticClass: "row justify-content-center" }, [
+      _c("h4", [_vm._v("dealer (21)")])
     ])
   },
   function() {

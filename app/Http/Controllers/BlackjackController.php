@@ -25,19 +25,16 @@ class BlackjackController extends Controller
     	array_push($usercards, $cards[$tempindex]); //...запись второй карты
     	array_splice($cards, $tempindex, 1);    //...удаление из колоды
     	
-    	//добавление по 2 карты дилеру из колоды
+    	//добавление по 1 картe дилеру из колоды
     	$tempindex = rand(0,count($cards)-1); 	
-    	$dealercards = array($cards[$tempindex]); 
+    	$dealercards = array($cards[$tempindex]);     	
     	array_splice($cards, $tempindex, 1);    
-		$tempindex = rand(0,count($cards)-1);     	
-    	array_push($dealercards, $cards[$tempindex]); 
-    	array_splice($cards, $tempindex, 1);    
-    	$tempindex = null;                      //обнуление временной переменной                    
+    	$tempindex = null;                      //обнуление временной переменной                   
 
 		
     	
     	
-    	return view('blackjack',['cards' => $cards], ['user' => $user], ['usercards' => $usercards], ['dealercards' => $dealercards]);
+    	return view('blackjack',['cards' => $cards, 'user' => $user, 'usercards' => $usercards, 'dealercards' => $dealercards]);
     }
 
 
