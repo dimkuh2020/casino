@@ -2,23 +2,28 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="container" style="height: 222px;">
+                <div class="container" v-show="!visible1" style="height: 222px;">
                     <div class="container">
                         <div class="row justify-content-center">
-                            <h5>dealer</h5>
+                            <h4>dealer (21)</h4>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div v-for="dealercard in dealercards">
+                                <img style="height: 80px; width:66px; margin-left: 5px;" v-bind:src="dealercard.url">
+                            </div>
+                        </div> 
 
 
-                        </div>                        
                     </div>
-                    <div class="container" style="padding-top: 200px;">
+                    <div class="container" style="padding-top: 100px;">
                         <div class="row justify-content-center">
                             <div v-for="usercard in usercards">
-                                <img style="height: 80px; width:66px" v-bind:src="usercard.url">
+                                <img style="height: 80px; width:66px; margin-left: 5px;" v-bind:src="usercard.url">
                             </div>
-                            <h5>{{user}}</h5>                            
-
-
-                        </div>                        
+                        </div>
+                        <div <div class="row justify-content-center" style="padding-top: 10px;">
+                            <h4>{{user}} (21)</h4>                                                       
+                        </div>                                              
                     </div>                       
                 </div>                
                     <br>
