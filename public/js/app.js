@@ -49306,28 +49306,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -49358,9 +49336,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.cards.splice(this.tempindex, 1); // удаление из общей колоды
 
             if (this.usercount > 21) {
-                //результат с задержкой 50мсек для очерёдности событий
+                var count = this.usercount; //результат с задержкой 50мсек для очерёдности событий
                 setTimeout(function () {
-                    alert("You loose!");
+                    Swal.fire({
+                        title: 'You loose',
+                        text: "Your count is: " + count,
+                        confirmButtonColor: '#3490dc'
+
+                    }).then(function (result) {
+                        if (result.value) {
+                            Swal.fire( //........тут будет привязка к странице + кошелёк
+                            'ну ок', 'success');
+                        }
+                    });
                 }, 50);
             }
 
@@ -49389,321 +49377,279 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-8" }, [
-        _c("button", { on: { click: _vm.test } }, [_vm._v("TEST")]),
-        _vm._v(" "),
-        _c(
-          "div",
+    _c("button", { on: { click: _vm.test } }, [_vm._v("TEST")]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
           {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: !_vm.visible1,
-                expression: "!visible1"
-              }
-            ],
-            staticClass: "container",
-            staticStyle: { height: "222px" }
-          },
-          [
-            _c("div", { staticClass: "container" }, [
-              _c("div", { staticClass: "row justify-content-center" }, [
-                _c("h4", [_vm._v("dealer (" + _vm._s(_vm.dealercount) + ")")])
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "row justify-content-center" },
-                _vm._l(_vm.dealercards, function(dealercard) {
-                  return _c("div", [
-                    _c("img", {
-                      staticStyle: {
-                        height: "80px",
-                        width: "66px",
-                        "margin-left": "5px"
-                      },
-                      attrs: { src: dealercard.url },
-                      model: {
-                        value: _vm.dealercards,
-                        callback: function($$v) {
-                          _vm.dealercards = $$v
-                        },
-                        expression: "dealercards"
-                      }
-                    })
-                  ])
-                }),
-                0
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "container",
-                staticStyle: { "padding-top": "100px" }
-              },
-              [
-                _c(
-                  "div",
-                  { staticClass: "row justify-content-center" },
-                  _vm._l(_vm.usercards, function(usercard) {
-                    return _c("div", [
-                      _c("img", {
-                        staticStyle: {
-                          height: "80px",
-                          width: "66px",
-                          "margin-left": "5px"
-                        },
-                        attrs: { src: usercard.url },
-                        model: {
-                          value: _vm.usercards,
-                          callback: function($$v) {
-                            _vm.usercards = $$v
-                          },
-                          expression: "usercards"
-                        }
-                      })
-                    ])
-                  }),
-                  0
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "row justify-content-center",
-                    staticStyle: { "padding-top": "10px" }
+            name: "show",
+            rawName: "v-show",
+            value: !_vm.visible1,
+            expression: "!visible1"
+          }
+        ],
+        staticClass: "container",
+        staticStyle: { height: "222px", "margin-top": "5%" }
+      },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row justify-content-center" }, [
+            _c("h4", [_vm._v("dealer (" + _vm._s(_vm.dealercount) + ")")])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row justify-content-center" },
+            _vm._l(_vm.dealercards, function(dealercard) {
+              return _c("div", [
+                _c("img", {
+                  staticStyle: {
+                    height: "80px",
+                    width: "66px",
+                    "margin-left": "5px"
                   },
-                  [
-                    _c("h4", [
-                      _vm._v(
-                        _vm._s(_vm.user) + " (" + _vm._s(_vm.usercount) + ")"
-                      )
-                    ])
-                  ]
-                )
-              ]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.visible1,
-                expression: "visible1"
-              }
-            ],
-            staticClass: "container"
-          },
-          [
-            _c("div", { staticClass: "row justify-content-center" }, [
-              _c("div", [
-                _c("p", [_vm._v("Make your bet:")]),
-                _vm._v(" "),
-                _c("input", {
-                  staticStyle: { width: "100px" },
-                  attrs: { type: "number", name: "bet" }
-                }),
-                _c("br"),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "btn btn-danger",
-                  staticStyle: { width: "100px", "margin-top": "10px" },
-                  attrs: { type: "button", name: "go", value: "GO" },
-                  on: {
-                    click: function($event) {
-                      _vm.visible1 = !_vm.visible1
-                    }
+                  attrs: { src: dealercard.url },
+                  model: {
+                    value: _vm.dealercards,
+                    callback: function($$v) {
+                      _vm.dealercards = $$v
+                    },
+                    expression: "dealercards"
                   }
                 })
               ])
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("br"),
+            }),
+            0
+          )
+        ]),
         _vm._v(" "),
         _c(
           "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: !_vm.visible1,
-                expression: "!visible1"
-              }
-            ]
-          },
+          { staticClass: "container", staticStyle: { "padding-top": "100px" } },
           [
             _c(
               "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.visible2,
-                    expression: "visible2"
-                  }
-                ],
-                staticClass: "container"
-              },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass: "row justify-content-center",
-                    staticStyle: { "padding-left": "8%" }
-                  },
-                  [
-                    _c("div", { staticClass: "col-sm" }, [
-                      _c("input", {
-                        staticClass: "btn btn-danger",
-                        staticStyle: { width: "100px" },
-                        attrs: { type: "button", name: "hit", value: "hit" },
-                        on: {
-                          click: function($event) {
-                            ;(_vm.visible2 = !_vm.visible2), _vm.addusercard()
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-sm" }, [
-                      _c("input", {
-                        staticClass: "btn btn-danger",
-                        staticStyle: { width: "100px" },
-                        attrs: { type: "button", name: "stop", value: "stop" },
-                        on: {
-                          click: function($event) {
-                            ;(_vm.visible2 = !_vm.visible2), _vm.adddealercard()
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-sm" }, [
-                      _c("input", {
-                        staticClass: "btn btn-danger",
-                        staticStyle: { width: "100px" },
-                        attrs: {
-                          type: "button",
-                          name: "double",
-                          value: "double"
-                        },
-                        on: {
-                          click: function($event) {
-                            ;(_vm.visible2 = !_vm.visible2),
-                              _vm.addusercard(),
-                              _vm.double()
-                          }
-                        }
-                      })
-                    ])
-                  ]
-                )
-              ]
+              { staticClass: "row justify-content-center" },
+              _vm._l(_vm.usercards, function(usercard) {
+                return _c("div", [
+                  _c("img", {
+                    staticStyle: {
+                      height: "80px",
+                      width: "66px",
+                      "margin-left": "5px"
+                    },
+                    attrs: { src: usercard.url },
+                    model: {
+                      value: _vm.usercards,
+                      callback: function($$v) {
+                        _vm.usercards = $$v
+                      },
+                      expression: "usercards"
+                    }
+                  })
+                ])
+              }),
+              0
             ),
             _vm._v(" "),
             _c(
               "div",
               {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: !_vm.visible2,
-                    expression: "!visible2"
-                  }
-                ],
-                staticClass: "container"
+                staticClass: "row justify-content-center",
+                staticStyle: { "padding-top": "10px" }
               },
               [
-                _c(
-                  "div",
-                  {
-                    staticClass: "row justify-content-center",
-                    staticStyle: {
-                      "padding-left": "10%",
-                      "padding-right": "10%",
-                      "margin-left": "10%"
-                    }
-                  },
-                  [
-                    _c("div", { staticClass: "col" }, [
-                      _c("input", {
-                        staticClass: "btn btn-danger",
-                        staticStyle: { width: "100px" },
-                        attrs: { type: "button", name: "hit", value: "hit" },
-                        on: {
-                          click: function($event) {
-                            return _vm.addusercard()
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col" }, [
-                      _c("input", {
-                        staticClass: "btn btn-danger",
-                        staticStyle: { width: "100px" },
-                        attrs: { type: "button", name: "stop", value: "stop" },
-                        on: {
-                          click: function($event) {
-                            return _vm.adddealercard()
-                          }
-                        }
-                      })
-                    ])
-                  ]
-                )
+                _c("h4", [
+                  _vm._v(_vm._s(_vm.user) + " (" + _vm._s(_vm.usercount) + ")")
+                ])
               ]
             )
           ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.visible1,
+            expression: "visible1"
+          }
+        ],
+        staticClass: "container",
+        staticStyle: { "margin-top": "8%" }
+      },
+      [
+        _c("div", { staticClass: "row justify-content-center" }, [
+          _c("div", [
+            _c("p", [_vm._v("Make your bet:")]),
+            _vm._v(" "),
+            _c("input", {
+              staticStyle: { width: "100px" },
+              attrs: { type: "number", name: "bet" }
+            }),
+            _c("br"),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "btn btn-success",
+              staticStyle: { width: "100px", "margin-top": "10px" },
+              attrs: { type: "button", name: "go", value: "GO" },
+              on: {
+                click: function($event) {
+                  _vm.visible1 = !_vm.visible1
+                }
+              }
+            })
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: !_vm.visible1,
+            expression: "!visible1"
+          }
+        ]
+      },
+      [
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.visible2,
+                expression: "visible2"
+              }
+            ],
+            staticClass: "container",
+            staticStyle: { "text-align": "center", "margin-top": "5%" }
+          },
+          [
+            _c("input", {
+              staticClass: "btn btn-success",
+              staticStyle: { width: "100px" },
+              attrs: { type: "button", name: "hit", value: "hit" },
+              on: {
+                click: function($event) {
+                  ;(_vm.visible2 = !_vm.visible2), _vm.addusercard()
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "btn btn-success",
+              staticStyle: { width: "100px", "margin-left": "5%" },
+              attrs: { type: "button", name: "double", value: "double" },
+              on: {
+                click: function($event) {
+                  ;(_vm.visible2 = !_vm.visible2),
+                    _vm.addusercard(),
+                    _vm.double()
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "btn btn-danger",
+              staticStyle: { width: "100px", "margin-left": "5%" },
+              attrs: { type: "button", name: "stop", value: "stop" },
+              on: {
+                click: function($event) {
+                  ;(_vm.visible2 = !_vm.visible2), _vm.adddealercard()
+                }
+              }
+            })
+          ]
         ),
         _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("table", { staticClass: "table" }, [
-          _c(
-            "tbody",
-            _vm._l(_vm.cards, function(card) {
-              return _c("tr", [
-                _c("td", [_vm._v(_vm._s(card.title))]),
-                _vm._v(" "),
-                _c("td", [
-                  _c("img", {
-                    staticStyle: { height: "80px", width: "66px" },
-                    attrs: { src: card.url }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(card.value))])
-              ])
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: !_vm.visible2,
+                expression: "!visible2"
+              }
+            ],
+            staticClass: "container",
+            staticStyle: { "text-align": "center", "margin-top": "5%" }
+          },
+          [
+            _c("input", {
+              staticClass: "btn btn-success",
+              staticStyle: { width: "100px" },
+              attrs: { type: "button", name: "hit", value: "hit" },
+              on: {
+                click: function($event) {
+                  return _vm.addusercard()
+                }
+              }
             }),
-            0
-          )
-        ])
-      ])
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "btn btn-danger",
+              staticStyle: { width: "100px", "margin-left": "5%" },
+              attrs: { type: "button", name: "stop", value: "stop" },
+              on: {
+                click: function($event) {
+                  return _vm.adddealercard()
+                }
+              }
+            })
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("table", { staticClass: "table" }, [
+      _c(
+        "tbody",
+        _vm._l(_vm.cards, function(card) {
+          return _c("tr", [
+            _c("td", [_vm._v(_vm._s(card.title))]),
+            _vm._v(" "),
+            _c("td", [
+              _c("img", {
+                staticStyle: { height: "80px", width: "66px" },
+                attrs: { src: card.url }
+              })
+            ]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(card.value))])
+          ])
+        }),
+        0
+      )
     ])
   ])
 }

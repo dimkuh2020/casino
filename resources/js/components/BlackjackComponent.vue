@@ -1,88 +1,66 @@
 <template>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <button @click="test">TEST</button>
-                <div class="container" v-show="!visible1" style="height: 222px;">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <h4>dealer ({{dealercount}})</h4>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div v-for="dealercard in dealercards">
-                                <img style="height: 80px; width:66px; margin-left: 5px;" v-bind:src="dealercard.url" v-model="dealercards">
-                            </div>
-                        </div> 
-
-
-                    </div>
-                    <div class="container" style="padding-top: 100px;">
-                        <div class="row justify-content-center">
-                            <div v-for="usercard in usercards">
-                                <img style="height: 80px; width:66px; margin-left: 5px;" v-bind:src="usercard.url" v-model="usercards">
-                            </div>
-                        </div>
-                        <div <div class="row justify-content-center" style="padding-top: 10px;">
-                            <h4>{{user}} ({{usercount}})</h4>                                                       
-                        </div>                                              
-                    </div>                       
-                </div>                
-                    <br>
-                    <br>
-            
-                <div class="container" v-show="visible1">
-                    <div class="row justify-content-center">
-                        <div>
-                            <p>Make your bet:</p>
-                            <input type="number" name="bet" style="width:100px;"><br>
-                            <input type="button" @click="visible1=!visible1" class="btn btn-danger" name="go" value="GO" style="width: 100px; margin-top: 10px;">
-                        </div>
-                    </div>
-                </div>  
-                    <br>
-                    <br>
-                    <br>
-
-            <!-- Контейнер для вывода второй партии кнопок-->       
-                <div v-show="!visible1">  
-                    <div class="container" v-show="visible2" >
-                        <div class="row justify-content-center" style="padding-left: 8%;">
-                            <div class="col-sm">
-                                <input type="button" @click="visible2=!visible2, addusercard()" class="btn btn-danger" name="hit" value="hit" style="width: 100px;">
-                            </div>
-                            <div class="col-sm">
-                                <input type="button" @click="visible2=!visible2, adddealercard()" class="btn btn-danger" name="stop" value="stop" style="width: 100px;" >
-                            </div>
-                            <div class="col-sm">
-                                <input type="button" @click="visible2=!visible2, addusercard(), double()" class="btn btn-danger" name="double" value="double" style="width: 100px;">
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="container" v-show="!visible2">
-                        <div class="row justify-content-center" style="padding-left: 10%; padding-right: 10%; margin-left:10%">
-                            <div class="col">
-                                <input type="button" @click="addusercard()" class="btn btn-danger" name="hit" value="hit" style="width: 100px;">
-                            </div>
-                            <div class="col">
-                                <input type="button" @click="adddealercard()" class="btn btn-danger" name="stop" value="stop" style="width: 100px;" >
-                            </div>                        
-                        </div>
+        <button @click="test">TEST</button>
+        <div class="container" v-show="!visible1" style="height: 222px; margin-top:5%">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <h4>dealer ({{dealercount}})</h4>
+                </div>
+                <div class="row justify-content-center">
+                    <div v-for="dealercard in dealercards">
+                        <img style="height: 80px; width:66px; margin-left: 5px;" v-bind:src="dealercard.url" v-model="dealercards">
                     </div>
                 </div>
-                    <br>
-                    <br>                
-                <table class="table">
-                    <tbody>
-                        <tr v-for="card in cards">                            
-                            <td>{{card.title}}</td>
-                            <td><img style="height: 80px; width:66px" v-bind:src="card.url"></td>
-                            <td>{{card.value}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+            </div>
+            <div class="container" style="padding-top: 100px;">
+                <div class="row justify-content-center">
+                    <div v-for="usercard in usercards">
+                        <img style="height: 80px; width:66px; margin-left: 5px;" v-bind:src="usercard.url" v-model="usercards">
+                    </div>
+                </div>
+                <div <div class="row justify-content-center" style="padding-top: 10px;">
+                    <h4>{{user}} ({{usercount}})</h4>                                                       
+                </div>                                              
+            </div>                       
+        </div>                
+            <br>
+            <br>            
+        <div class="container" v-show="visible1" style="margin-top:8%">
+            <div class="row justify-content-center">
+                <div>
+                    <p>Make your bet:</p>
+                    <input type="number" name="bet" style="width:100px;"><br>
+                    <input type="button" @click="visible1=!visible1" class="btn btn-success" name="go" value="GO" style="width: 100px; margin-top: 10px;">
+                </div>
+            </div>
+        </div>  
+            <br>
+            <br>
+            <br>
 
+    <!-- Контейнер для вывода второй партии кнопок-->       
+        <div v-show="!visible1">  
+            <div class="container" style="text-align: center; margin-top:5%" v-show="visible2">
+                <input type="button" @click="visible2=!visible2, addusercard()" class="btn btn-success" name="hit" value="hit" style="width: 100px;">
+                <input type="button" @click="visible2=!visible2, addusercard(), double()" class="btn btn-success" name="double" value="double" style="width: 100px; margin-left:5%">
+                <input type="button" @click="visible2=!visible2, adddealercard()" class="btn btn-danger" name="stop" value="stop" style="width: 100px; margin-left:5%">
+            </div> 
+            <div class="container" style="text-align: center; margin-top:5%" v-show="!visible2">
+                <input type="button" @click="addusercard()" class="btn btn-success" name="hit" value="hit" style="width: 100px;">
+                <input type="button" @click="adddealercard()" class="btn btn-danger" name="stop" value="stop" style="width: 100px; margin-left:5%">                           
             </div>
         </div>
+            <br>
+            <br>                
+        <table class="table">
+            <tbody>
+                <tr v-for="card in cards">                            
+                    <td>{{card.title}}</td>
+                    <td><img style="height: 80px; width:66px" v-bind:src="card.url"></td>
+                    <td>{{card.value}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 
@@ -121,9 +99,23 @@
                 this.usercount+= this.cards[this.tempindex].value;                 // очки игрока после добавления карты
                 this.cards.splice(this.tempindex, 1);                              // удаление из общей колоды
 
-                if(this.usercount > 21){                           //результат с задержкой 50мсек для очерёдности событий
+                if(this.usercount > 21){
+                    var count = this.usercount;                           //результат с задержкой 50мсек для очерёдности событий
                     setTimeout( function(){
-                       alert("You loose!");                                      
+                        Swal.fire({
+                          title: 'You loose',
+                          text: "Your count is: " + count,                                                  
+                          confirmButtonColor: '#3490dc',                                               
+                          
+                        }).then((result) => {
+                              if (result.value) {
+                                Swal.fire(               //........тут будет привязка к странице + кошелёк
+                                  'ну ок',
+                                  'success'
+                                )
+                            }
+                })
+                                                             
                    }, 50);
                 }  
                                  

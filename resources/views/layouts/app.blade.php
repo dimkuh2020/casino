@@ -18,6 +18,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!--Sweetalert-->
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    
+
 </head>
 <body>
     <div id="app">
