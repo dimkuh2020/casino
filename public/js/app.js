@@ -49306,6 +49306,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -49314,20 +49317,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             visible2: true,
             dealercount: this.dealercards[0].value, //изначальные очки дилера
             usercount: this.usercards[0].value + this.usercards[1].value, //изначальные очки игрока
-            tempindex: null //для временного индекса массива
+            tempindex: null, //для временного индекса массива
+            bet: null //ставка null
+
+
         };
     },
 
 
-    props: ['cards', 'user', 'usercards', 'dealercards'],
+    props: ['cards', 'user', 'cash', 'id', 'usercards', 'dealercards'],
 
     methods: {
         test: function test() {
             //для тестов
-
-            alert(Math.floor(Math.random() * 5) + 1);
-            console.log(this.cards.length);
-            console.log(this.cards);
+            this.cash = 13;
+            alert(this.cash);
+            var request = { cash: this.cash };
+            axios.get('/public/updatecash', request).then(function (response) {
+                request = response.data;
+            });
+        },
+        getbet: function getbet() {
+            if (this.bet <= 0) {
+                Swal.fire({
+                    title: 'Make your bet!',
+                    confirmButtonColor: '#3490dc'
+                });
+            } else if (this.bet > this.cash) {
+                Swal.fire({
+                    title: 'Not enough cash!',
+                    confirmButtonColor: '#3490dc'
+                });
+            } else {
+                this.visible1 = false; //прячем GO и идём дальше по сценарию
+                //this.cash=10;
+            }
         },
         addusercard: function addusercard() {
             this.tempindex = Math.floor(Math.random() * this.cards.length - 1) + 1; // рандомное число из cards[]
@@ -49340,13 +49364,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 setTimeout(function () {
                     Swal.fire({
                         title: 'You loose',
+                        position: 'top',
                         text: "Your count is: " + count,
-                        confirmButtonColor: '#3490dc'
+                        confirmButtonColor: '#3490dc',
+                        allowOutsideClick: false
 
                     }).then(function (result) {
                         if (result.value) {
-                            Swal.fire( //........тут будет привязка к странице + кошелёк
-                            'ну ок', 'success');
+                            location.reload();
                         }
                     });
                 }, 50);
@@ -49465,7 +49490,11 @@ var render = function() {
                   _vm._v(_vm._s(_vm.user) + " (" + _vm._s(_vm.usercount) + ")")
                 ])
               ]
-            )
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "row justify-content-center" }, [
+              _c("h5", [_vm._v("Your bet is: " + _vm._s(_vm.bet) + " $")])
+            ])
           ]
         )
       ]
@@ -49495,8 +49524,25 @@ var render = function() {
             _c("p", [_vm._v("Make your bet:")]),
             _vm._v(" "),
             _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.bet,
+                  expression: "bet"
+                }
+              ],
               staticStyle: { width: "100px" },
-              attrs: { type: "number", name: "bet" }
+              attrs: { type: "number", name: "bet" },
+              domProps: { value: _vm.bet },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.bet = $event.target.value
+                }
+              }
             }),
             _c("br"),
             _vm._v(" "),
@@ -49506,7 +49552,7 @@ var render = function() {
               attrs: { type: "button", name: "go", value: "GO" },
               on: {
                 click: function($event) {
-                  _vm.visible1 = !_vm.visible1
+                  return _vm.getbet()
                 }
               }
             })
@@ -49629,28 +49675,7 @@ var render = function() {
     _vm._v(" "),
     _c("br"),
     _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("table", { staticClass: "table" }, [
-      _c(
-        "tbody",
-        _vm._l(_vm.cards, function(card) {
-          return _c("tr", [
-            _c("td", [_vm._v(_vm._s(card.title))]),
-            _vm._v(" "),
-            _c("td", [
-              _c("img", {
-                staticStyle: { height: "80px", width: "66px" },
-                attrs: { src: card.url }
-              })
-            ]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(card.value))])
-          ])
-        }),
-        0
-      )
-    ])
+    _c("br")
   ])
 }
 var staticRenderFns = []
