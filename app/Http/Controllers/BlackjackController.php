@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Blackjack;
 use Auth; // фасад для пользователя
+use App\User;
+use DB;
 
 
 class BlackjackController extends Controller
@@ -15,6 +17,8 @@ class BlackjackController extends Controller
     	$bj = new Blackjack();
     	$cards = $bj->cards; // получение всеё колоды
     	$user = Auth::user()->name; // авторизированый пользователь через фасад
+    	$cash = Auth::user()->cash; //денюжки
+    	$id = Auth::user()->id;
 
 
     	//добавление по 2 карты игроку из колоды
@@ -33,7 +37,23 @@ class BlackjackController extends Controller
     	$tempindex = null;                      //обнуление временной переменной 
     	
     	
-    	return view('blackjack',['cards' => $cards, 'user' => $user, 'usercards' => $usercards, 'dealercards' => $dealercards]);
+    	return view('blackjack',['cards' => $cards, 'user' => $user, 'cash' => $cash, 'id' => $id, 'usercards' => $usercards, 'dealercards' => $dealercards]);
+    }
+
+    public function updatecash(Request $request)
+    {
+    	$user = User::find(Auth::id()); //получить сразу іd игрока
+
+    	$cash=$request->cash;
+       	$user->cash=$cash;
+
+       	dd($cash);
+       	$user->save();
+
+    	return redirect()->route('blackjack');
+
+
+
     }
 
 

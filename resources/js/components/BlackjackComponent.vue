@@ -20,7 +20,10 @@
                 </div>
                 <div <div class="row justify-content-center" style="padding-top: 10px;">
                     <h4>{{user}} ({{usercount}})</h4>                                                       
-                </div>                                              
+                </div>
+                <div <div class="row justify-content-center">
+                    <h5>Your bet is: {{bet}} $</h5>                                                       
+                </div> 
             </div>                       
         </div>                
             <br>
@@ -29,8 +32,8 @@
             <div class="row justify-content-center">
                 <div>
                     <p>Make your bet:</p>
-                    <input type="number" name="bet" style="width:100px;"><br>
-                    <input type="button" @click="visible1=!visible1" class="btn btn-success" name="go" value="GO" style="width: 100px; margin-top: 10px;">
+                    <input type="number" name="bet" v-model="bet" style="width:100px;"><br>
+                    <input type="button" @click="getbet()" class="btn btn-success" name="go" value="GO" style="width: 100px; margin-top: 10px;">
                 </div>
             </div>
         </div>  
@@ -52,7 +55,7 @@
         </div>
             <br>
             <br>                
-        <table class="table">
+        <!--<table class="table">
             <tbody>
                 <tr v-for="card in cards">                            
                     <td>{{card.title}}</td>
@@ -60,7 +63,7 @@
                     <td>{{card.value}}</td>
                 </tr>
             </tbody>
-        </table>
+        </table>-->
     </div>
 </template>
 
@@ -73,24 +76,55 @@
                 visible2: true,
                 dealercount: this.dealercards[0].value,                          //изначальные очки дилера
                 usercount: this.usercards[0].value + this.usercards[1].value,    //изначальные очки игрока
-                tempindex : null                                                 //для временного индекса массива
-            }            
+                tempindex : null,                                                //для временного индекса массива
+                bet: null,                                                       //ставка null
+                
+
+            }
         }, 
 
         props: [
             'cards',
             'user',
+            'cash',
+            'id',
             'usercards',
-            'dealercards'
+            'dealercards',
+            
+
         ],
 
         methods: {
             test() {   //для тестов
+                this.cash = 13;
+                alert(this.cash);
+                var request = {cash: this.cash};
+                axios.get('/public/updatecash',request).then((response)=>{
+                    request=response.data;
+
+                });
                 
-                alert(Math.floor(Math.random()*5)+1);
-                console.log(this.cards.length);
-                console.log(this.cards);
                 
+            },
+
+            getbet(){
+                if(this.bet <= 0){
+                    Swal.fire({
+                          title: 'Make your bet!',                        
+                          confirmButtonColor: '#3490dc' 
+                    })                        
+                }
+                else if(this.bet > this.cash){
+                    Swal.fire({
+                          title: 'Not enough cash!',                        
+                          confirmButtonColor: '#3490dc' 
+                    })
+                }
+                else {
+                    this.visible1=false;                //прячем GO и идём дальше по сценарию
+                    //this.cash=10;
+                                                               
+                } 
             },
 
             addusercard() {
@@ -104,15 +138,14 @@
                     setTimeout( function(){
                         Swal.fire({
                           title: 'You loose',
+                          position: 'top',
                           text: "Your count is: " + count,                                                  
-                          confirmButtonColor: '#3490dc',                                               
+                          confirmButtonColor: '#3490dc',
+                          allowOutsideClick: false                                               
                           
                         }).then((result) => {
                               if (result.value) {
-                                Swal.fire(               //........тут будет привязка к странице + кошелёк
-                                  'ну ок',
-                                  'success'
-                                )
+                                location.reload();
                             }
                 })
                                                              
