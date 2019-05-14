@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/blackjack','BlackjackController@index')->name('blackjack');
-Route::get('/updatecash','BlackjackController@updatecash');
+Route::put('/updatecash','BlackjackController@updatecash');
 
 
 Route::resource('balance', 'BalanceController');
