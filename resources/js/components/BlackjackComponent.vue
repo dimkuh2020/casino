@@ -96,22 +96,16 @@
 
         methods: {
             test() {   //для тестов
-                this.cash = 13;
-                alert(this.cash);
-                var request = {cash: this.cash};
-                axios.get('/public/updatecash',request).then((response)=>{
-                    request=response.data;
-
-                });
                 
+                alert(this.cash);
                 
             },
 
             getbet(){
                 if(this.bet <= 0){
                     Swal.fire({
-                          title: 'Make your bet!',                        
-                          confirmButtonColor: '#3490dc' 
+                      title: 'Make your bet!',                        
+                      confirmButtonColor: '#3490dc' 
                     })                        
                 }
                 else if(this.bet > this.cash){
@@ -120,10 +114,16 @@
                           confirmButtonColor: '#3490dc' 
                     })
                 }
-                else {
-                    this.visible1=false;                //прячем GO и идём дальше по сценарию
-                    //this.cash=10;
-                                                               
+                else {                    
+                    this.visible1=false;                //прячем GO и идём дальше по сценарию 
+                    var newcash = this.cash - this.bet;                     
+                    var data = {cash: newcash};
+
+                    axios.put('/public/updatecash',data).then((response)=>{   //простенький axios для изменения баланса после ставки
+                       console.log(response.data);
+                   }).catch((error)=>{
+                       console.log(error);
+                   });                                        
                 } 
             },
 
@@ -146,14 +146,10 @@
                         }).then((result) => {
                               if (result.value) {
                                 location.reload();
-                            }
-                })
-                                                             
+                                }
+                            })                             
                    }, 50);
-                }  
-                                 
-               console.log(this.usercards);
-               console.log(this.cards);
+                } 
             },
 
             adddealercard() {

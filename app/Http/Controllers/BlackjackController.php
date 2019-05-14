@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Blackjack;
-use Auth; // фасад для пользователя
-use App\User;
+use Auth; 						// фасад для пользователя
+use App\User;						
 use DB;
 
 
@@ -45,15 +45,10 @@ class BlackjackController extends Controller
     	$user = User::find(Auth::id()); //получить сразу іd игрока
 
     	$cash=$request->cash;
-       	$user->cash=$cash;
+    	$user->cash=$cash;
+    	$user->save();
 
-       	dd($cash);
-       	$user->save();
-
-    	return redirect()->route('blackjack');
-
-
-
+    	return ['cash' => $user->cash]; //просто прверить cash на сервере
     }
 
 

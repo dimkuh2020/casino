@@ -49330,12 +49330,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         test: function test() {
             //для тестов
-            this.cash = 13;
+
             alert(this.cash);
-            var request = { cash: this.cash };
-            axios.get('/public/updatecash', request).then(function (response) {
-                request = response.data;
-            });
         },
         getbet: function getbet() {
             if (this.bet <= 0) {
@@ -49349,8 +49345,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     confirmButtonColor: '#3490dc'
                 });
             } else {
-                this.visible1 = false; //прячем GO и идём дальше по сценарию
-                //this.cash=10;
+                this.visible1 = false; //прячем GO и идём дальше по сценарию 
+                var newcash = this.cash - this.bet;
+                var data = { cash: newcash };
+
+                axios.put('/public/updatecash', data).then(function (response) {
+                    //простенький axios для изменения баланса после ставки
+                    console.log(response.data);
+                }).catch(function (error) {
+                    console.log(error);
+                });
             }
         },
         addusercard: function addusercard() {
@@ -49376,9 +49380,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     });
                 }, 50);
             }
-
-            console.log(this.usercards);
-            console.log(this.cards);
         },
         adddealercard: function adddealercard() {
             console.log(this.dealercards[0]);
