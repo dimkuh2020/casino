@@ -15,13 +15,13 @@ class BlackjackController extends Controller
     {
 
     	$bj = new Blackjack();
-    	$cards = $bj->cards; // получение всеё колоды
+    	$cards = $bj->cards; // получение всей колоды
     	$user = Auth::user()->name; // авторизированый пользователь через фасад
     	$cash = Auth::user()->cash; //денюжки
     	$id = Auth::user()->id;
 
 
-    	//добавление по 2 карты игроку из колоды
+    	/*//добавление по 2 карты игроку из колоды
     	$tempindex = rand(1,count($cards)-1); 	//получение индекса первой карты из колоды во временную переменную c заменой 
     	$usercards = array($cards[$tempindex]); // запись первой карты из колоды
     	array_splice($cards, $tempindex, 1);    //удаление из колоды использованые карты
@@ -34,10 +34,10 @@ class BlackjackController extends Controller
     	$dealercards = array($cards[$tempindex], $cards[0]);     // 1 карта + рубашка	
     	array_splice($cards, $tempindex, 1);    //удалить добавленную карту
     	array_splice($cards, 0, 1);             //удалить рубашку
-    	$tempindex = null;                      //обнуление временной переменной 
+    	$tempindex = null;                      //обнуление временной переменной */
     	
     	
-    	return view('blackjack',['cards' => $cards, 'user' => $user, 'cash' => $cash, 'id' => $id, 'usercards' => $usercards, 'dealercards' => $dealercards]);
+    	return view('blackjack',['cards' => $cards, 'user' => $user, 'cash' => $cash, 'id' => $id]);
     }
 
     public function updatecash(Request $request)

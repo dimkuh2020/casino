@@ -49315,23 +49315,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             visible1: true,
             visible2: true,
-            dealercount: this.dealercards[0].value, //изначальные очки дилера
-            usercount: this.usercards[0].value + this.usercards[1].value, //изначальные очки игрока
+            dealercount: null, //this.dealercards[0].value,                          //изначальные очки дилера
+            usercount: null, //this.usercards[0].value + this.usercards[1].value,    //изначальные очки игрока
             tempindex: null, //для временного индекса массива
-            bet: null //ставка null
-
+            bet: null, //ставка null 
+            usercards: [], //пустые карты игрока
+            dealercards: [] //пустые карты диллера         
 
         };
     },
 
 
-    props: ['cards', 'user', 'cash', 'id', 'usercards', 'dealercards'],
+    props: ['cards', 'user', 'cash', 'id'],
 
     methods: {
         test: function test() {
             //для тестов
 
-            alert(this.cash);
+            alert("bet:" + this.bet + "/" + "cash:" + this.cash);
         },
         getbet: function getbet() {
             if (this.bet <= 0) {
@@ -49346,19 +49347,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             } else {
                 this.visible1 = false; //прячем GO и идём дальше по сценарию 
-                var newcash = this.cash - this.bet;
-                var data = { cash: newcash };
 
-                axios.put('/public/updatecash', data).then(function (response) {
-                    //простенький axios для изменения баланса после ставки
-                    console.log(response.data);
-                }).catch(function (error) {
-                    console.log(error);
-                });
+                this.tempindex = Math.floor(Math.random() * this.cards.length) + 1; // рандомное число из cards[] от 1 до length                   
+                this.dealercards.push(this.cards[this.tempindex]); // 1 карта для дилера
+                this.dealercount += this.cards[this.tempindex].value; //очки    
+                this.dealercards.push(this.cards[0]); // рубашка для дилера
+                this.cards.splice(this.tempindex, 1); //удаление 1й карты из колоды
+                this.cards.splice(0, 1); //удаление рубашки из коллоды
+                //2
+                this.addusercard();
+                this.addusercard();
+
+                if (this.usercount == 21) {
+                    //если 21 сразу то победа
+                    var count = this.usercount;
+                    var wincash = this.bet * 2.5;
+                    Swal.fire({
+                        title: 'BLACKJACK!!!',
+                        position: 'top',
+                        text: "Your count is: " + count,
+                        confirmButtonColor: '#3490dc',
+                        allowOutsideClick: false
+                    }).then(function (result) {
+                        if (result.value) {
+                            newcash += wincash;
+                            var data = { cash: newcash };
+                            axios.put('/public/updatecash', data).then(function (response) {
+                                //2 простенький axios для изменения баланса после ставки
+                                console.log(response.data);
+                            }).catch(function (error) {
+                                console.log(error);
+                            });
+                            Swal.fire({
+                                title: "You won: " + wincash + "$",
+                                animation: false,
+                                allowOutsideClick: false,
+                                customClass: {
+                                    popup: 'animated tada'
+                                }
+                            }).then(function (result) {
+                                if (result.value) {
+                                    location.reload();
+                                }
+                            });
+                        }
+                    });
+                }
             }
         },
         addusercard: function addusercard() {
-            this.tempindex = Math.floor(Math.random() * this.cards.length - 1) + 1; // рандомное число из cards[]
+            this.tempindex = Math.floor(Math.random() * this.cards.length + 1); // рандомное число из cards[] от 0 до length
             this.usercards.push(this.cards[this.tempindex]); // добавление в карты к игроку
             this.usercount += this.cards[this.tempindex].value; // очки игрока после добавления карты
             this.cards.splice(this.tempindex, 1); // удаление из общей колоды
@@ -49382,10 +49420,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         adddealercard: function adddealercard() {
-            console.log(this.dealercards[0]);
+            //this.dealercards.pop();                                           //удалить рубаху       
+            this.tempindex = Math.floor(Math.random() * this.cards.length + 1); // рандомное число из cards[] от 0 до length
+            this.dealercards.push(this.cards[this.tempindex]); // добавление в карты к игроку
+            this.dealercount += this.cards[this.tempindex].value; // очки игрока после добавления карты
+            this.cards.splice(this.tempindex, 1);
         },
         double: function double() {
-            alert("doubleee!!!");
+            this.bet *= 2;
+            /*var newcash = this.cash - this.bet;                     
+            var data = {cash: newcash};
+             axios.put('/public/updatecash',data).then((response)=>{   //простенький axios для изменения баланса после ставки
+               console.log(response.data);
+            }).catch((error)=>{
+               console.log(error);
+            });*/
+
+            this.adddealercard();
         }
     },
 
@@ -49599,7 +49650,7 @@ var render = function() {
             _c("input", {
               staticClass: "btn btn-success",
               staticStyle: { width: "100px" },
-              attrs: { type: "button", name: "hit", value: "hit" },
+              attrs: { type: "button", name: "hit", value: "Hit" },
               on: {
                 click: function($event) {
                   ;(_vm.visible2 = !_vm.visible2), _vm.addusercard()
@@ -49610,7 +49661,7 @@ var render = function() {
             _c("input", {
               staticClass: "btn btn-success",
               staticStyle: { width: "100px", "margin-left": "5%" },
-              attrs: { type: "button", name: "double", value: "double" },
+              attrs: { type: "button", name: "double", value: "Double" },
               on: {
                 click: function($event) {
                   ;(_vm.visible2 = !_vm.visible2),
@@ -49623,7 +49674,7 @@ var render = function() {
             _c("input", {
               staticClass: "btn btn-danger",
               staticStyle: { width: "100px", "margin-left": "5%" },
-              attrs: { type: "button", name: "stop", value: "stop" },
+              attrs: { type: "button", name: "stand", value: "Stand" },
               on: {
                 click: function($event) {
                   ;(_vm.visible2 = !_vm.visible2), _vm.adddealercard()
@@ -49651,7 +49702,7 @@ var render = function() {
             _c("input", {
               staticClass: "btn btn-success",
               staticStyle: { width: "100px" },
-              attrs: { type: "button", name: "hit", value: "hit" },
+              attrs: { type: "button", name: "hit", value: "Hit" },
               on: {
                 click: function($event) {
                   return _vm.addusercard()
@@ -49662,7 +49713,7 @@ var render = function() {
             _c("input", {
               staticClass: "btn btn-danger",
               staticStyle: { width: "100px", "margin-left": "5%" },
-              attrs: { type: "button", name: "stop", value: "stop" },
+              attrs: { type: "button", name: "stand", value: "Stand" },
               on: {
                 click: function($event) {
                   return _vm.adddealercard()
@@ -49676,7 +49727,28 @@ var render = function() {
     _vm._v(" "),
     _c("br"),
     _vm._v(" "),
-    _c("br")
+    _c("br"),
+    _vm._v(" "),
+    _c("table", { staticClass: "table" }, [
+      _c(
+        "tbody",
+        _vm._l(_vm.cards, function(card) {
+          return _c("tr", [
+            _c("td", [_vm._v(_vm._s(card.title))]),
+            _vm._v(" "),
+            _c("td", [
+              _c("img", {
+                staticStyle: { height: "80px", width: "66px" },
+                attrs: { src: card.url }
+              })
+            ]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(card.value))])
+          ])
+        }),
+        0
+      )
+    ])
   ])
 }
 var staticRenderFns = []

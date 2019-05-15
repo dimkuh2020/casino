@@ -44,18 +44,18 @@
     <!-- Контейнер для вывода второй партии кнопок-->       
         <div v-show="!visible1">  
             <div class="container" style="text-align: center; margin-top:5%" v-show="visible2">
-                <input type="button" @click="visible2=!visible2, addusercard()" class="btn btn-success" name="hit" value="hit" style="width: 100px;">
-                <input type="button" @click="visible2=!visible2, addusercard(), double()" class="btn btn-success" name="double" value="double" style="width: 100px; margin-left:5%">
-                <input type="button" @click="visible2=!visible2, adddealercard()" class="btn btn-danger" name="stop" value="stop" style="width: 100px; margin-left:5%">
+                <input type="button" @click="visible2=!visible2, addusercard()" class="btn btn-success" name="hit" value="Hit" style="width: 100px;">
+                <input type="button" @click="visible2=!visible2, addusercard(), double()" class="btn btn-success" name="double" value="Double" style="width: 100px; margin-left:5%">
+                <input type="button" @click="visible2=!visible2, adddealercard()" class="btn btn-danger" name="stand" value="Stand" style="width: 100px; margin-left:5%">
             </div> 
             <div class="container" style="text-align: center; margin-top:5%" v-show="!visible2">
-                <input type="button" @click="addusercard()" class="btn btn-success" name="hit" value="hit" style="width: 100px;">
-                <input type="button" @click="adddealercard()" class="btn btn-danger" name="stop" value="stop" style="width: 100px; margin-left:5%">                           
+                <input type="button" @click="addusercard()" class="btn btn-success" name="hit" value="Hit" style="width: 100px;">
+                <input type="button" @click="adddealercard()" class="btn btn-danger" name="stand" value="Stand" style="width: 100px; margin-left:5%">                           
             </div>
         </div>
             <br>
             <br>                
-        <!--<table class="table">
+        <table class="table">
             <tbody>
                 <tr v-for="card in cards">                            
                     <td>{{card.title}}</td>
@@ -63,7 +63,7 @@
                     <td>{{card.value}}</td>
                 </tr>
             </tbody>
-        </table>-->
+        </table>
     </div>
 </template>
 
@@ -74,11 +74,12 @@
             return {
                 visible1: true,
                 visible2: true,
-                dealercount: this.dealercards[0].value,                          //изначальные очки дилера
-                usercount: this.usercards[0].value + this.usercards[1].value,    //изначальные очки игрока
-                tempindex : null,                                                //для временного индекса массива
-                bet: null,                                                       //ставка null
-                
+                dealercount: null,   //this.dealercards[0].value,                          //изначальные очки дилера
+                usercount: null,    //this.usercards[0].value + this.usercards[1].value,    //изначальные очки игрока
+                tempindex : null,   //для временного индекса массива
+                bet: null,          //ставка null 
+                usercards: [],      //пустые карты игрока
+                dealercards: []     //пустые карты диллера         
 
             }
         }, 
@@ -88,17 +89,15 @@
             'user',
             'cash',
             'id',
-            'usercards',
-            'dealercards',
-            
+            //'usercards',
+            //'dealercards',           
 
         ],
 
         methods: {
             test() {   //для тестов
                 
-                alert(this.cash);
-                
+                alert("bet:" + this.bet + "/"+ "cash:" + this.cash);
             },
 
             getbet(){
@@ -115,22 +114,58 @@
                     })
                 }
                 else {                    
-                    this.visible1=false;                //прячем GO и идём дальше по сценарию 
-                    var newcash = this.cash - this.bet;                     
-                    var data = {cash: newcash};
+                   this.visible1=false;                //прячем GO и идём дальше по сценарию 
+                    
+                   this.tempindex = Math.floor(Math.random()*this.cards.length)+1;  // рандомное число из cards[] от 1 до length                   
+                   this.dealercards.push(this.cards[this.tempindex]);                 // 1 карта для дилера
+                   this.dealercount += this.cards[this.tempindex].value;                //очки    
+                   this.dealercards.push(this.cards[0]);                            // рубашка для дилера
+                   this.cards.splice(this.tempindex, 1);                            //удаление 1й карты из колоды
+                   this.cards.splice(0, 1);                                        //удаление рубашки из коллоды
+                   //2
+                   this.addusercard();
+                   this.addusercard();                   
 
-                    axios.put('/public/updatecash',data).then((response)=>{   //простенький axios для изменения баланса после ставки
-                       console.log(response.data);
-                   }).catch((error)=>{
-                       console.log(error);
-                   });                                        
+                   if(this.usercount == 21){                                //если 21 сразу то победа
+                        var count = this.usercount;
+                        var wincash = this.bet*2.5;
+                        Swal.fire({
+                          title: 'BLACKJACK!!!',
+                          position: 'top',
+                          text: "Your count is: " + count,                                                  
+                          confirmButtonColor: '#3490dc',
+                          allowOutsideClick: false 
+                        }).then((result) => {
+                              if (result.value) {
+                                newcash += wincash;
+                                var data = {cash: newcash};
+                                axios.put('/public/updatecash',data).then((response)=>{   //2 простенький axios для изменения баланса после ставки
+                                   console.log(response.data);
+                                }).catch((error)=>{
+                                   console.log(error);
+                                }); 
+                                Swal.fire({
+                                  title: "You won: " + wincash + "$",
+                                  animation: false,
+                                  allowOutsideClick: false,
+                                  customClass: {
+                                    popup: 'animated tada'
+                                  }
+                                }).then((result) => {
+                                      if (result.value) {                                        
+                                        location.reload();                                        
+                                      }
+                                    })
+                                }
+                            })
+                   }
                 } 
             },
 
             addusercard() {
-                this.tempindex = Math.floor(Math.random()*this.cards.length-1)+1;  // рандомное число из cards[]
+                this.tempindex = Math.floor(Math.random()*this.cards.length+1);  // рандомное число из cards[] от 0 до length
                 this.usercards.push(this.cards[this.tempindex]);                   // добавление в карты к игроку
-                this.usercount+= this.cards[this.tempindex].value;                 // очки игрока после добавления карты
+                this.usercount += this.cards[this.tempindex].value;                 // очки игрока после добавления карты
                 this.cards.splice(this.tempindex, 1);                              // удаление из общей колоды
 
                 if(this.usercount > 21){
@@ -153,11 +188,26 @@
             },
 
             adddealercard() {
-                console.log(this.dealercards[0]);
+                //this.dealercards.pop();                                           //удалить рубаху       
+                this.tempindex = Math.floor(Math.random()*this.cards.length+1);  // рандомное число из cards[] от 0 до length
+                this.dealercards.push(this.cards[this.tempindex]);                   // добавление в карты к игроку
+                this.dealercount += this.cards[this.tempindex].value;                 // очки игрока после добавления карты
+                this.cards.splice(this.tempindex, 1);
             },
 
             double() {
-                alert("doubleee!!!");
+                this.bet*=2;
+                /*var newcash = this.cash - this.bet;                     
+                var data = {cash: newcash};
+
+                axios.put('/public/updatecash',data).then((response)=>{   //простенький axios для изменения баланса после ставки
+                   console.log(response.data);
+                }).catch((error)=>{
+                   console.log(error);
+                });*/
+
+                this.adddealercard();
+                
             }
 
         },  
