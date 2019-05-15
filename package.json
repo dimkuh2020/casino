@@ -20,6 +20,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "animate.css": "^3.7.0",
         "sweetalert2": "^8.10.1",
         "vue-sweetalert2": "^1.6.4"
     }
