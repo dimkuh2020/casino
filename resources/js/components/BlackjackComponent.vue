@@ -44,9 +44,9 @@
     <!-- Контейнер для вывода второй партии кнопок-->       
         <div v-show="!visible1">  
             <div class="container" style="text-align: center; margin-top:5%" v-show="visible2">
-                <input type="button" @click="visible2=!visible2, addusercard()" class="btn btn-success" name="hit" value="Hit" style="width: 100px;">
-                <input type="button" @click="visible2=!visible2, addusercard(), double()" class="btn btn-success" name="double" value="Double" style="width: 100px; margin-left:5%">
-                <input type="button" @click="visible2=!visible2, adddealercard()" class="btn btn-danger" name="stand" value="Stand" style="width: 100px; margin-left:5%">
+                <input type="button" @click="visible2=!visible2, popshirt(), addusercard()" class="btn btn-success" name="hit" value="Hit" style="width: 100px;">
+                <input type="button" @click="visible2=!visible2, popshirt(), addusercard(), double()" class="btn btn-success" name="double" value="Double" style="width: 100px; margin-left:5%">
+                <input type="button" @click="visible2=!visible2, popshirt(), adddealercard()" class="btn btn-danger" name="stand" value="Stand" style="width: 100px; margin-left:5%">
             </div> 
             <div class="container" style="text-align: center; margin-top:5%" v-show="!visible2">
                 <input type="button" @click="addusercard()" class="btn btn-success" name="hit" value="Hit" style="width: 100px;">
@@ -95,9 +95,8 @@
         ],
 
         methods: {
-            test() {   //для тестов
-                
-                alert("bet:" + this.bet + "/"+ "cash:" + this.cash);
+            test() {   //для тестов                
+                alert(this.dealercards);
             },
 
             getbet(){
@@ -122,30 +121,30 @@
                    this.dealercards.push(this.cards[0]);                            // рубашка для дилера
                    this.cards.splice(this.tempindex, 1);                            //удаление 1й карты из колоды
                    this.cards.splice(0, 1);                                        //удаление рубашки из коллоды
-                   //2
+                   //2                   
                    this.addusercard();
                    this.addusercard();                   
 
-                   if(this.usercount == 21){                                //если 21 сразу то победа
-                        var count = this.usercount;
-                        var wincash = this.bet*2.5;
+                   if(this.usercount == 21){                              //если 21 сразу то победа                        
+                        this.bet *= 2.5;                                    // ставка 2.5
+                        this.cash += this.bet;                              // баланс + ставка
+                        
                         Swal.fire({
                           title: 'BLACKJACK!!!',
                           position: 'top',
-                          text: "Your count is: " + count,                                                  
+                          text: "Your count is: " + this.usercount,                                                  
                           confirmButtonColor: '#3490dc',
                           allowOutsideClick: false 
                         }).then((result) => {
-                              if (result.value) {
-                                newcash += wincash;
-                                var data = {cash: newcash};
-                                axios.put('/public/updatecash',data).then((response)=>{   //2 простенький axios для изменения баланса после ставки
+                              if (result.value) {                               
+                                var data = {cash: this.cash};
+                                axios.put('/public/updatecash',data).then((response)=>{   //2 простенький axios для изменения баланса после ставки на 2.5
                                    console.log(response.data);
                                 }).catch((error)=>{
                                    console.log(error);
                                 }); 
                                 Swal.fire({
-                                  title: "You won: " + wincash + "$",
+                                  title: "You won: " + this.bet + "$",
                                   animation: false,
                                   allowOutsideClick: false,
                                   customClass: {
@@ -162,33 +161,51 @@
                 } 
             },
 
+            popshirt(){
+                this.dealercards.pop();                                           //удалить рубаху       
+            },
+
             addusercard() {
                 this.tempindex = Math.floor(Math.random()*this.cards.length+1);  // рандомное число из cards[] от 0 до length
                 this.usercards.push(this.cards[this.tempindex]);                   // добавление в карты к игроку
                 this.usercount += this.cards[this.tempindex].value;                 // очки игрока после добавления карты
                 this.cards.splice(this.tempindex, 1);                              // удаление из общей колоды
 
-                if(this.usercount > 21){
-                    var count = this.usercount;                           //результат с задержкой 50мсек для очерёдности событий
-                    setTimeout( function(){
+                if(this.usercount > 21){                                                        
+                    this.cash -= this.bet;                              // баланс - ставка
+                        
                         Swal.fire({
-                          title: 'You loose',
+                          title: 'You loose!',
                           position: 'top',
-                          text: "Your count is: " + count,                                                  
+                          text: "Your count is: " + this.usercount,                                                  
                           confirmButtonColor: '#3490dc',
-                          allowOutsideClick: false                                               
-                          
+                          allowOutsideClick: false 
                         }).then((result) => {
-                              if (result.value) {
-                                location.reload();
+                              if (result.value) {                               
+                                var data = {cash: this.cash};
+                                axios.put('/public/updatecash',data).then((response)=>{   //2 простенький axios для изменения баланса после ставки на 2.5
+                                   console.log(response.data);
+                                }).catch((error)=>{
+                                   console.log(error);
+                                }); 
+                                Swal.fire({
+                                  title: "You lost: " + this.bet + "$",
+                                  animation: false,
+                                  allowOutsideClick: false,
+                                  customClass: {
+                                    popup: 'animated tada'
+                                  }
+                                }).then((result) => {
+                                      if (result.value) {                                        
+                                        location.reload();                                        
+                                      }
+                                    })
                                 }
-                            })                             
-                   }, 50);
-                } 
-            },
+                            })
+                   }
+            },            
 
-            adddealercard() {
-                //this.dealercards.pop();                                           //удалить рубаху       
+            adddealercard() {                
                 this.tempindex = Math.floor(Math.random()*this.cards.length+1);  // рандомное число из cards[] от 0 до length
                 this.dealercards.push(this.cards[this.tempindex]);                   // добавление в карты к игроку
                 this.dealercount += this.cards[this.tempindex].value;                 // очки игрока после добавления карты
@@ -196,18 +213,8 @@
             },
 
             double() {
-                this.bet*=2;
-                /*var newcash = this.cash - this.bet;                     
-                var data = {cash: newcash};
-
-                axios.put('/public/updatecash',data).then((response)=>{   //простенький axios для изменения баланса после ставки
-                   console.log(response.data);
-                }).catch((error)=>{
-                   console.log(error);
-                });*/
-
-                this.adddealercard();
-                
+                this.bet*=2; 
+                this.adddealercard();                
             }
 
         },  
