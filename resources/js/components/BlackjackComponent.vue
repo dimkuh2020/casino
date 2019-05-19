@@ -45,7 +45,7 @@
         <div v-show="!visible1">  
             <div class="container" style="text-align: center; margin-top:5%" v-show="visible2">
                 <input type="button" @click="visible2=!visible2, addusercard()" class="btn btn-success" name="hit" value="Hit" style="width: 100px;">
-                <input type="button" @click="visible2=!visible2, popshirt(), addusercard(), double()" class="btn btn-success" name="double" value="Double" style="width: 100px; margin-left:5%">
+                <input type="button" @click="visible2=!visible2, double()" class="btn btn-success" name="double" value="Double" style="width: 100px; margin-left:5%">
                 <input type="button" @click="visible2=!visible2, popshirt(), adddealercard()" class="btn btn-danger" name="stand" value="Stand" style="width: 100px; margin-left:5%">
             </div> 
             <div class="container" style="text-align: center; margin-top:5%" v-show="!visible2">
@@ -287,7 +287,42 @@
 
             double() {
                 this.bet*=2;
-                this.adddealercard(); 
+                this.addusercard();
+
+                if(this.usercount > 21){                                            
+                        Swal.fire({
+                          title: 'You loose!',
+                          position: 'top',
+                          text: "Your count is: " + this.usercount,                                                  
+                          confirmButtonColor: '#3490dc',
+                          allowOutsideClick: false 
+                        }).then((result) => {
+                              if (result.value) {
+                              this.cash -= this.bet;                               
+                                var data = {cash: this.cash};
+                                axios.put('/public/updatecash',data).then((response)=>{   
+                                   console.log(response.data);
+                                }).catch((error)=>{
+                                   console.log(error);
+                                }); 
+                                Swal.fire({
+                                  title: "You lost: " + this.bet + "$",
+                                  animation: false,
+                                  allowOutsideClick: false,
+                                  customClass: {
+                                    popup: 'animated tada'
+                                  }
+                                }).then((result) => {
+                                      if (result.value) {                                        
+                                        location.reload();                                        
+                                      }
+                                    })
+                                }
+                            })
+                   }else{
+                    this.popshirt();
+                    this.adddealercard();
+                   }                
             }
         },  
 
