@@ -49526,8 +49526,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     double: function double() {
+      var _this4 = this;
+
       this.bet *= 2;
-      this.adddealercard();
+      this.addusercard();
+
+      if (this.usercount > 21) {
+        Swal.fire({
+          title: 'You loose!',
+          position: 'top',
+          text: "Your count is: " + this.usercount,
+          confirmButtonColor: '#3490dc',
+          allowOutsideClick: false
+        }).then(function (result) {
+          if (result.value) {
+            _this4.cash -= _this4.bet;
+            var data = { cash: _this4.cash };
+            axios.put('/public/updatecash', data).then(function (response) {
+              console.log(response.data);
+            }).catch(function (error) {
+              console.log(error);
+            });
+            Swal.fire({
+              title: "You lost: " + _this4.bet + "$",
+              animation: false,
+              allowOutsideClick: false,
+              customClass: {
+                popup: 'animated tada'
+              }
+            }).then(function (result) {
+              if (result.value) {
+                location.reload();
+              }
+            });
+          }
+        });
+      } else {
+        this.popshirt();
+        this.adddealercard();
+      }
     }
   },
 
@@ -49755,10 +49792,7 @@ var render = function() {
               attrs: { type: "button", name: "double", value: "Double" },
               on: {
                 click: function($event) {
-                  ;(_vm.visible2 = !_vm.visible2),
-                    _vm.popshirt(),
-                    _vm.addusercard(),
-                    _vm.double()
+                  ;(_vm.visible2 = !_vm.visible2), _vm.double()
                 }
               }
             }),
