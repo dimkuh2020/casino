@@ -5,8 +5,10 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <h4>dealer ({{dealercount}})</h4>
-                </div>
-                <div class="row justify-content-center">
+                     <input type="image" name="shirt" id="shirt" class="up" src="img/cards/shirt.png"/> <!--для анимации-->
+                </div>               
+
+                <div class="row justify-content-center">                    
                     <div v-for="dealercard in dealercards">
                         <img style="height: 80px; width:66px; margin-left: 5px;" v-bind:src="dealercard.url" v-model="dealercards">
                     </div>
@@ -67,6 +69,16 @@
     </div>
 </template>
 
+<style type="text/css">
+    #shirt{
+        height: 80px;
+        width:66px;
+        z-index:1;
+        position: fixed; 
+    }
+   
+</style>
+
 <script>
     export default {
         
@@ -79,7 +91,8 @@
                 tempindex : null,   //для временного индекса массива
                 bet: null,          //ставка null     
                 usercards: [],      //пустые карты игрока
-                dealercards: []     //пустые карты диллера  
+                dealercards: [],     //пустые карты диллера
+                shirt: null  
             }
         }, 
 
@@ -92,7 +105,7 @@
 
         methods: {
             test() {    //для тестов                
-                alert(this.dealercards);
+                this.getcard();
             },
 
             getbet(){                                 //задать ставку
@@ -115,10 +128,14 @@
                    this.dealercount += this.cards[this.tempindex].value;              //очки    
                    this.dealercards.push(this.cards[0]);                              //рубашка для дилера
                    this.cards.splice(this.tempindex, 1);                              //удаление 1й карты из колоды
-                   this.cards.splice(0, 1);                                           //удаление рубашки из коллоды
-                                      
+                   this.cards.splice(0, 1);                                           //удаление рубашки из коллоды 
+
                    this.addusercard();
-                   this.addusercard();                   
+                   this.addusercard();
+
+                   if ((this.usercards[0].value == 11) && (this.usercards[1].value == 11)){ //если 2 туза
+                    this.usercount = 12;
+                   }                  
 
                    if(this.usercount == 21){                                          //если 21 сразу то победа                        
                         this.bet *= 2.5;                                              // ставка 2.5
@@ -324,7 +341,12 @@
                     this.adddealercard();
                    }                
             }
-        },  
+        },
+
+        getcard(){                                                                  //лёгкая анимация при получении карты
+            this.shirt = document.getElementById('shirt').style.display='none';
+
+        }, 
 
         mounted() {
             console.log('Component mounted.')
