@@ -1,36 +1,40 @@
 <template>
-    <div class="container">
-        <button @click="test">TEST</button>
-        <div class="container" v-show="!visible1" style="height: 222px; margin-top:5%">
+    <div class="container">        
+        <div class="container" v-show="!visible1">
             <div class="container">
-                <div class="row justify-content-center">
-                    <h4>dealer ({{dealercount}})</h4>
-                     <input type="image" name="shirt" id="shirt" class="up" src="img/cards/shirt.png"/> <!--для анимации-->
-                </div>               
-
+                <div class="row justify-content-center">                    
+                    <input type="image" name="dface" src="img/dface.jpg" style="width: 100px; height: 100px; border-radius: 45px;">
+                    <input type="image" name="shirt" id="shirt" src="img/cards/shirt.png"/> <!--для анимации-->                                      
+                </div>  
+                <div class="row justify-content-center">                    
+                    <h4>dealer ({{dealercount}})</h4>                      
+                </div>  
                 <div class="row justify-content-center">                    
                     <div v-for="dealercard in dealercards">
                         <img style="height: 80px; width:66px; margin-left: 5px;" v-bind:src="dealercard.url" v-model="dealercards">
                     </div>
                 </div>
-            </div>
-            <div class="container" style="padding-top: 100px;">
+                <br>
+                <br>
+                <br>
+                <br> 
                 <div class="row justify-content-center">
                     <div v-for="usercard in usercards">
                         <img style="height: 80px; width:66px; margin-left: 5px;" v-bind:src="usercard.url" v-model="usercards">
                     </div>
                 </div>
                 <div <div class="row justify-content-center" style="padding-top: 10px;">
+                     <input type="image" name="uface" src="img/uface.png" style="width: 100px; height: 100px; border-radius: 45px;">
+                </div>
+                <div <div class="row justify-content-center" style="padding-top: 10px;">
                     <h4>{{user}} ({{usercount}})</h4>                                                       
                 </div>
                 <div <div class="row justify-content-center">
-                    <h5>Your bet is: {{bet}} $</h5>                                                       
+                    <h5>Your bet is: {{bet}} $</h5>                                                                           
                 </div> 
             </div>                       
-        </div>                
-            <br>
-            <br>            
-        <div class="container" v-show="visible1" style="margin-top:8%">
+        </div>      
+        <div class="container" v-show="visible1" style="margin-top:18%">
             <div class="row justify-content-center">
                 <div>
                     <p>Make your bet:</p>
@@ -39,24 +43,22 @@
                 </div>
             </div>
         </div>  
-            <br>
-            <br>
-            <br>
-
+            
     <!-- Контейнер для вывода второй партии кнопок-->       
         <div v-show="!visible1">  
-            <div class="container" style="text-align: center; margin-top:5%" v-show="visible2">
+            <div class="container" style="text-align: center;" v-show="visible2">
                 <input type="button" @click="visible2=!visible2, addusercard()" class="btn btn-success" name="hit" value="Hit" style="width: 100px;">
                 <input type="button" @click="visible2=!visible2, double()" class="btn btn-success" name="double" value="Double" style="width: 100px; margin-left:5%">
                 <input type="button" @click="visible2=!visible2, popshirt(), adddealercard()" class="btn btn-danger" name="stand" value="Stand" style="width: 100px; margin-left:5%">
             </div> 
-            <div class="container" style="text-align: center; margin-top:5%" v-show="!visible2">
+            <div class="container" style="text-align: center;" v-show="!visible2">
                 <input type="button" @click="addusercard()" class="btn btn-success" name="hit" value="Hit" style="width: 100px;">
                 <input type="button" @click="popshirt(), adddealercard()" class="btn btn-danger" name="stand" value="Stand" style="width: 100px; margin-left:5%">
             </div>
         </div>
             <br>
-            <br>                
+            <br>
+            <button @click="test">TEST</button>                
         <!--<table class="table">
             <tbody>
                 <tr v-for="card in cards">                            
@@ -70,11 +72,13 @@
 </template>
 
 <style type="text/css">
-    #shirt{
+    #shirt{                             
         height: 80px;
         width:66px;
         z-index:1;
-        position: fixed; 
+        position: absolute;                
+        transition: transform .2s;
+        display: none; 
     }
    
 </style>
@@ -92,7 +96,7 @@
                 bet: null,          //ставка null     
                 usercards: [],      //пустые карты игрока
                 dealercards: [],     //пустые карты диллера
-                shirt: null  
+                 
             }
         }, 
 
@@ -104,10 +108,31 @@
         ],
 
         methods: {
-            test() {    //для тестов                
-                this.getcard();
+            test() {    //для тестов
+                this.getcardfordealer();
             },
 
+            getcardforuser(){
+                document.getElementById('shirt').style.display="block";                                    //лёгкая анимация при получении карты игрока 
+                setTimeout( function(){                    
+                    document.getElementById('shirt').style.transform="translate3d(0px, 310px, 0px)";
+                }, 1);
+                setTimeout( function(){                    
+                    document.getElementById('shirt').style.display="none";
+                }, 220);            
+            },
+
+            getcardfordealer(){
+                document.getElementById('shirt').style.display="block";                                   //лёгкая анимация при получении карты дилера
+                setTimeout( function(){                    
+                    document.getElementById('shirt').style.transform="translate3d(0px, 130px, 0px)";
+                }, 1);
+                setTimeout( function(){                    
+                    document.getElementById('shirt').style.display="none";
+                }, 200);             
+            },
+
+           
             getbet(){                                 //задать ставку
                 if(this.bet <= 0){
                     Swal.fire({
@@ -340,13 +365,11 @@
                     this.popshirt();
                     this.adddealercard();
                    }                
-            }
+            },
+            
         },
 
-        getcard(){                                                                  //лёгкая анимация при получении карты
-            this.shirt = document.getElementById('shirt').style.display='none';
-
-        }, 
+        
 
         mounted() {
             console.log('Component mounted.')

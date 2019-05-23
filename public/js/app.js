@@ -49273,7 +49273,7 @@ exports = module.exports = __webpack_require__(47)(false);
 
 
 // module
-exports.push([module.i, "\n#shirt{\n    height: 80px;\n    width:66px;\n    z-index:1;\n    position: fixed;\n}\n\n", ""]);
+exports.push([module.i, "\n#shirt{                             \n    height: 80px;\n    width:66px;\n    z-index:1;\n    position: absolute;                \n    -webkit-transition: -webkit-transform .2s;                \n    transition: -webkit-transform .2s;                \n    transition: transform .2s;                \n    transition: transform .2s, -webkit-transform .2s;\n    display: none;\n}\n\n", ""]);
 
 // exports
 
@@ -49708,6 +49708,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -49719,8 +49723,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       tempindex: null, //для временного индекса массива
       bet: null, //ставка null     
       usercards: [], //пустые карты игрока
-      dealercards: [], //пустые карты диллера
-      shirt: null
+      dealercards: [] //пустые карты диллера
+
     };
   },
 
@@ -49729,8 +49733,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     test: function test() {
-      //для тестов                
-      this.getcard();
+      //для тестов
+      this.getcardfordealer();
+    },
+    getcardforuser: function getcardforuser() {
+      document.getElementById('shirt').style.display = "block"; //лёгкая анимация при получении карты игрока 
+      setTimeout(function () {
+        document.getElementById('shirt').style.transform = "translate3d(0px, 310px, 0px)";
+      }, 1);
+      setTimeout(function () {
+        document.getElementById('shirt').style.display = "none";
+      }, 220);
+    },
+    getcardfordealer: function getcardfordealer() {
+      document.getElementById('shirt').style.display = "block"; //лёгкая анимация при получении карты дилера
+      setTimeout(function () {
+        document.getElementById('shirt').style.transform = "translate3d(0px, 130px, 0px)";
+      }, 1);
+      setTimeout(function () {
+        document.getElementById('shirt').style.display = "none";
+      }, 200);
     },
     getbet: function getbet() {
       var _this = this;
@@ -49973,10 +49995,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
 
-  getcard: function getcard() {
-    //лёгкая анимация при получении карты
-    this.shirt = document.getElementById('shirt').style.display = 'none';
-  },
   mounted: function mounted() {
     console.log('Component mounted.');
   }
@@ -49991,8 +50009,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("button", { on: { click: _vm.test } }, [_vm._v("TEST")]),
-    _vm._v(" "),
     _c(
       "div",
       {
@@ -50004,23 +50020,14 @@ var render = function() {
             expression: "!visible1"
           }
         ],
-        staticClass: "container",
-        staticStyle: { height: "222px", "margin-top": "5%" }
+        staticClass: "container"
       },
       [
         _c("div", { staticClass: "container" }, [
+          _vm._m(0),
+          _vm._v(" "),
           _c("div", { staticClass: "row justify-content-center" }, [
-            _c("h4", [_vm._v("dealer (" + _vm._s(_vm.dealercount) + ")")]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "up",
-              attrs: {
-                type: "image",
-                name: "shirt",
-                id: "shirt",
-                src: "img/cards/shirt.png"
-              }
-            })
+            _c("h4", [_vm._v("dealer (" + _vm._s(_vm.dealercount) + ")")])
           ]),
           _vm._v(" "),
           _c(
@@ -50046,62 +50053,62 @@ var render = function() {
               ])
             }),
             0
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "container", staticStyle: { "padding-top": "100px" } },
-          [
-            _c(
-              "div",
-              { staticClass: "row justify-content-center" },
-              _vm._l(_vm.usercards, function(usercard) {
-                return _c("div", [
-                  _c("img", {
-                    staticStyle: {
-                      height: "80px",
-                      width: "66px",
-                      "margin-left": "5px"
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row justify-content-center" },
+            _vm._l(_vm.usercards, function(usercard) {
+              return _c("div", [
+                _c("img", {
+                  staticStyle: {
+                    height: "80px",
+                    width: "66px",
+                    "margin-left": "5px"
+                  },
+                  attrs: { src: usercard.url },
+                  model: {
+                    value: _vm.usercards,
+                    callback: function($$v) {
+                      _vm.usercards = $$v
                     },
-                    attrs: { src: usercard.url },
-                    model: {
-                      value: _vm.usercards,
-                      callback: function($$v) {
-                        _vm.usercards = $$v
-                      },
-                      expression: "usercards"
-                    }
-                  })
-                ])
-              }),
-              0
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "row justify-content-center",
-                staticStyle: { "padding-top": "10px" }
-              },
-              [
-                _c("h4", [
-                  _vm._v(_vm._s(_vm.user) + " (" + _vm._s(_vm.usercount) + ")")
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "row justify-content-center" }, [
-              _c("h5", [_vm._v("Your bet is: " + _vm._s(_vm.bet) + " $")])
-            ])
-          ]
-        )
+                    expression: "usercards"
+                  }
+                })
+              ])
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "row justify-content-center",
+              staticStyle: { "padding-top": "10px" }
+            },
+            [
+              _c("h4", [
+                _vm._v(_vm._s(_vm.user) + " (" + _vm._s(_vm.usercount) + ")")
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "row justify-content-center" }, [
+            _c("h5", [_vm._v("Your bet is: " + _vm._s(_vm.bet) + " $")])
+          ])
+        ])
       ]
     ),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("br"),
     _vm._v(" "),
     _c(
       "div",
@@ -50115,7 +50122,7 @@ var render = function() {
           }
         ],
         staticClass: "container",
-        staticStyle: { "margin-top": "8%" }
+        staticStyle: { "margin-top": "18%" }
       },
       [
         _c("div", { staticClass: "row justify-content-center" }, [
@@ -50160,12 +50167,6 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
-    _c("br"),
-    _vm._v(" "),
     _c(
       "div",
       {
@@ -50191,7 +50192,7 @@ var render = function() {
               }
             ],
             staticClass: "container",
-            staticStyle: { "text-align": "center", "margin-top": "5%" }
+            staticStyle: { "text-align": "center" }
           },
           [
             _c("input", {
@@ -50243,7 +50244,7 @@ var render = function() {
               }
             ],
             staticClass: "container",
-            staticStyle: { "text-align": "center", "margin-top": "5%" }
+            staticStyle: { "text-align": "center" }
           },
           [
             _c("input", {
@@ -50274,10 +50275,59 @@ var render = function() {
     _vm._v(" "),
     _c("br"),
     _vm._v(" "),
-    _c("br")
+    _c("br"),
+    _vm._v(" "),
+    _c("button", { on: { click: _vm.test } }, [_vm._v("TEST")])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row justify-content-center" }, [
+      _c("input", {
+        staticStyle: {
+          width: "100px",
+          height: "100px",
+          "border-radius": "45px"
+        },
+        attrs: { type: "image", name: "dface", src: "img/dface.jpg" }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        attrs: {
+          type: "image",
+          name: "shirt",
+          id: "shirt",
+          src: "img/cards/shirt.png"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "row justify-content-center",
+        staticStyle: { "padding-top": "10px" }
+      },
+      [
+        _c("input", {
+          staticStyle: {
+            width: "100px",
+            height: "100px",
+            "border-radius": "45px"
+          },
+          attrs: { type: "image", name: "uface", src: "img/uface.png" }
+        })
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
