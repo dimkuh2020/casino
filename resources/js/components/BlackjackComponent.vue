@@ -42,17 +42,16 @@
                     <input type="button" @click="getbet()" class="btn btn-success" name="go" value="GO" style="width: 100px; margin-top: 10px;">
                 </div>
             </div>
-        </div>  
-            
+        </div>             
     <!-- Контейнер для вывода второй партии кнопок-->       
         <div v-show="!visible1">  
             <div class="container" style="text-align: center;" v-show="visible2">
-                <input type="button" @click="visible2=!visible2, addusercard()" class="btn btn-success" name="hit" value="Hit" style="width: 100px;">
-                <input type="button" @click="visible2=!visible2, double()" class="btn btn-success" name="double" value="Double" style="width: 100px; margin-left:5%">
+                <input type="button" @click="visible2=!visible2, getcardforuser(), addusercard()" class="btn btn-success" name="hit" value="Hit" style="width: 100px;">
+                <input type="button" @click="visible2=!visible2, getcardforuser(), double()" class="btn btn-success" name="double" value="Double" style="width: 100px; margin-left:5%">
                 <input type="button" @click="visible2=!visible2, popshirt(), adddealercard()" class="btn btn-danger" name="stand" value="Stand" style="width: 100px; margin-left:5%">
             </div> 
             <div class="container" style="text-align: center;" v-show="!visible2">
-                <input type="button" @click="addusercard()" class="btn btn-success" name="hit" value="Hit" style="width: 100px;">
+                <input type="button" @click="getcardforuser1(), addusercard()" class="btn btn-success" name="hit" value="Hit" style="width: 100px;">
                 <input type="button" @click="popshirt(), adddealercard()" class="btn btn-danger" name="stand" value="Stand" style="width: 100px; margin-left:5%">
             </div>
         </div>
@@ -109,17 +108,42 @@
 
         methods: {
             test() {    //для тестов
-                this.getcardfordealer();
+
+             
+              this.getcardforuser();
+                 
+
+                
             },
 
             getcardforuser(){
                 document.getElementById('shirt').style.display="block";                                    //лёгкая анимация при получении карты игрока 
                 setTimeout( function(){                    
-                    document.getElementById('shirt').style.transform="translate3d(0px, 310px, 0px)";
+                    document.getElementById('shirt').style.transform="translate3d(77px, 310px, 0px)";
                 }, 1);
                 setTimeout( function(){                    
                     document.getElementById('shirt').style.display="none";
-                }, 220);            
+                }, 220);
+                 setTimeout( function(){                    
+                    document.getElementById('shirt').style.transform="translate3d(0px, 0px, 0px)"; //возврат назад
+                }, 221);
+                             
+
+            },
+
+            getcardforuser1(){
+                document.getElementById('shirt').style.display="block";                                    //лёгкая анимация при получении карты игрока 
+                setTimeout( function(){                    
+                    document.getElementById('shirt').style.transform="translate3d(110px, 310px, 0px)";
+                }, 1);
+                setTimeout( function(){                    
+                    document.getElementById('shirt').style.display="none";
+                }, 220);
+                 setTimeout( function(){                    
+                    document.getElementById('shirt').style.transform="translate3d(0px, 0px, 0px)"; //возврат назад
+                }, 221);
+                             
+
             },
 
             getcardfordealer(){
@@ -146,8 +170,8 @@
                           confirmButtonColor: '#3490dc' 
                     })
                 }
-                else {                    
-                   this.visible1 = false;                                             //прячем GO и идём дальше по сценарию                     
+                else {                  
+                                                                //прячем GO и идём дальше по сценарию                     
                    this.tempindex = Math.floor(Math.random()*this.cards.length)+1;    //рандомное число из cards[] от 1 до length                   
                    this.dealercards.push(this.cards[this.tempindex]);                 // 1 карта для дилера
                    this.dealercount += this.cards[this.tempindex].value;              //очки    
@@ -157,6 +181,7 @@
 
                    this.addusercard();
                    this.addusercard();
+                   this.visible1 = false;
 
                    if ((this.usercards[0].value == 11) && (this.usercards[1].value == 11)){ //если 2 туза
                     this.usercount = 12;
@@ -202,7 +227,8 @@
                 this.dealercards.pop();                                              //удалить рубаху       
             },
 
-            addusercard() {
+            addusercard() { 
+
                 this.tempindex = Math.floor(Math.random()*this.cards.length+1);     // рандомное число из cards[] от 0 до length
                 this.usercards.push(this.cards[this.tempindex]);                    // добавление в карты к игроку
                 this.usercount += this.cards[this.tempindex].value;                 // очки игрока после добавления карты

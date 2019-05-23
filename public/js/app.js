@@ -49711,7 +49711,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -49734,16 +49733,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     test: function test() {
       //для тестов
-      this.getcardfordealer();
+
+
+      this.getcardforuser();
     },
     getcardforuser: function getcardforuser() {
       document.getElementById('shirt').style.display = "block"; //лёгкая анимация при получении карты игрока 
       setTimeout(function () {
-        document.getElementById('shirt').style.transform = "translate3d(0px, 310px, 0px)";
+        document.getElementById('shirt').style.transform = "translate3d(77px, 310px, 0px)";
       }, 1);
       setTimeout(function () {
         document.getElementById('shirt').style.display = "none";
       }, 220);
+      setTimeout(function () {
+        document.getElementById('shirt').style.transform = "translate3d(0px, 0px, 0px)"; //возврат назад
+      }, 221);
+    },
+    getcardforuser1: function getcardforuser1() {
+      document.getElementById('shirt').style.display = "block"; //лёгкая анимация при получении карты игрока 
+      setTimeout(function () {
+        document.getElementById('shirt').style.transform = "translate3d(110px, 310px, 0px)";
+      }, 1);
+      setTimeout(function () {
+        document.getElementById('shirt').style.display = "none";
+      }, 220);
+      setTimeout(function () {
+        document.getElementById('shirt').style.transform = "translate3d(0px, 0px, 0px)"; //возврат назад
+      }, 221);
     },
     getcardfordealer: function getcardfordealer() {
       document.getElementById('shirt').style.display = "block"; //лёгкая анимация при получении карты дилера
@@ -49769,7 +49785,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           confirmButtonColor: '#3490dc'
         });
       } else {
-        this.visible1 = false; //прячем GO и идём дальше по сценарию                     
+        //прячем GO и идём дальше по сценарию                     
         this.tempindex = Math.floor(Math.random() * this.cards.length) + 1; //рандомное число из cards[] от 1 до length                   
         this.dealercards.push(this.cards[this.tempindex]); // 1 карта для дилера
         this.dealercount += this.cards[this.tempindex].value; //очки    
@@ -49779,6 +49795,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         this.addusercard();
         this.addusercard();
+        this.visible1 = false;
 
         if (this.usercards[0].value == 11 && this.usercards[1].value == 11) {
           //если 2 туза
@@ -50201,7 +50218,9 @@ var render = function() {
               attrs: { type: "button", name: "hit", value: "Hit" },
               on: {
                 click: function($event) {
-                  ;(_vm.visible2 = !_vm.visible2), _vm.addusercard()
+                  ;(_vm.visible2 = !_vm.visible2),
+                    _vm.getcardforuser(),
+                    _vm.addusercard()
                 }
               }
             }),
@@ -50212,7 +50231,9 @@ var render = function() {
               attrs: { type: "button", name: "double", value: "Double" },
               on: {
                 click: function($event) {
-                  ;(_vm.visible2 = !_vm.visible2), _vm.double()
+                  ;(_vm.visible2 = !_vm.visible2),
+                    _vm.getcardforuser(),
+                    _vm.double()
                 }
               }
             }),
@@ -50253,7 +50274,7 @@ var render = function() {
               attrs: { type: "button", name: "hit", value: "Hit" },
               on: {
                 click: function($event) {
-                  return _vm.addusercard()
+                  _vm.getcardforuser1(), _vm.addusercard()
                 }
               }
             }),
