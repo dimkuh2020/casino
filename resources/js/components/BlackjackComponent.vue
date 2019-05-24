@@ -1,9 +1,9 @@
 <template>
-    <div class="container">        
+    <div class="container" id="main_table" style="background: url(img/bjtable.jpg) no-repeat; background-size: cover; height: 700px">        
         <div class="container" v-show="!visible1">
             <div class="container">
                 <div class="row justify-content-center">                    
-                    <input type="image" name="dface" src="img/dface.jpg" style="width: 100px; height: 100px; border-radius: 45px;">
+                    <input type="image" name="dface" src="img/dface.jpg" style="width: 100px; height: 100px; border-radius: 45px; margin-top:10px;">
                     <input type="image" name="shirt" id="shirt" src="img/cards/shirt.png"/> <!--для анимации-->                                      
                 </div>  
                 <div class="row justify-content-center">                    
@@ -34,7 +34,7 @@
                 </div> 
             </div>                       
         </div>      
-        <div class="container" v-show="visible1" style="margin-top:18%">
+        <div class="container" v-show="visible1" style="padding-top:20%;">
             <div class="row justify-content-center">
                 <div>
                     <p>Make your bet:</p>
@@ -48,11 +48,11 @@
             <div class="container" style="text-align: center;" v-show="visible2">
                 <input type="button" @click="visible2=!visible2, getcardforuser(), addusercard()" class="btn btn-success" name="hit" value="Hit" style="width: 100px;">
                 <input type="button" @click="visible2=!visible2, getcardforuser(), double()" class="btn btn-success" name="double" value="Double" style="width: 100px; margin-left:5%">
-                <input type="button" @click="visible2=!visible2, popshirt(), adddealercard()" class="btn btn-danger" name="stand" value="Stand" style="width: 100px; margin-left:5%">
+                <input type="button" @click="visible2=!visible2, popshirt(), adddealercard(), getcardfordealer()" class="btn btn-danger" name="stand" value="Stand" style="width: 100px; margin-left:5%">
             </div> 
             <div class="container" style="text-align: center;" v-show="!visible2">
                 <input type="button" @click="getcardforuser1(), addusercard()" class="btn btn-success" name="hit" value="Hit" style="width: 100px;">
-                <input type="button" @click="popshirt(), adddealercard()" class="btn btn-danger" name="stand" value="Stand" style="width: 100px; margin-left:5%">
+                <input type="button" @click="popshirt(), adddealercard(), getcardfordealer()" class="btn btn-danger" name="stand" value="Stand" style="width: 100px; margin-left:5%">
             </div>
         </div>
             <br>
@@ -78,6 +78,10 @@
         position: absolute;                
         transition: transform .2s;
         display: none; 
+    }
+
+    #main_table{
+
     }
    
 </style>
@@ -149,11 +153,14 @@
             getcardfordealer(){
                 document.getElementById('shirt').style.display="block";                                   //лёгкая анимация при получении карты дилера
                 setTimeout( function(){                    
-                    document.getElementById('shirt').style.transform="translate3d(0px, 130px, 0px)";
+                    document.getElementById('shirt').style.transform="translate3d(66px, 130px, 0px)";
                 }, 1);
                 setTimeout( function(){                    
                     document.getElementById('shirt').style.display="none";
-                }, 200);             
+                }, 200);
+                setTimeout( function(){                    
+                    document.getElementById('shirt').style.transform="translate3d(0px, 0px, 0px)"; //возврат назад
+                }, 221);             
             },
 
            

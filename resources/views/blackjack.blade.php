@@ -1,10 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container" style="margin-top:3%; margin-bottom:3%" >
+<div class="container" >
     <div class="panel panel-default">
-        <h2 class="panel-heading" style="text-align: center; padding-bottom:3%">BLACK JACK</h2>
-        <hr>
+        <div class="panel-heading" style="text-align: center; height: 150px; background: url(img/bjfooter.jpg); background-size: cover;">BLACK JACK</div>        
         <div id="app">
         <blackjack-component :cards="{{json_encode($cards)}}" :user="{{json_encode($user)}}" :cash="{{json_encode($cash)}}" :id="{{json_encode($id)}}">              </blackjack-component>
     </div>
