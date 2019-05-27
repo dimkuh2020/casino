@@ -9,6 +9,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="{{ asset('favicon.png') }}"/>
 
         <!-- Styles -->
         <style>
@@ -19,6 +20,9 @@
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
+                background: url(img/welcome.jpg) 0px 0px no-repeat;
+                background-size: cover; 
+               
 
             }
 
@@ -63,6 +67,7 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            
         </style>
     </head>
     <body>
@@ -70,18 +75,18 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a style="color: orangered; font-size: 100%" href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                        <a style="color: orangered; font-size: 100%" href="{{ route('login') }}">Login</a>
+                        <a style="color: orangered; font-size: 100%" href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
             @endif
 
-            <div class="content">
+            <div class="content" style="color: orangered;">
                 <div class="title m-b-md">
                     Welcome to online casino!
-                    <div style="font-size: 50%">Please log in to start playing</div> 
+                    <div style="font-size: 60%">Please log in to start playing</div> 
                 </div>
 
                 

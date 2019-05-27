@@ -49273,7 +49273,7 @@ exports = module.exports = __webpack_require__(47)(false);
 
 
 // module
-exports.push([module.i, "\n#shirt{                             \n    height: 80px;\n    width:66px;\n    z-index:1;\n    position: absolute;                \n    -webkit-transition: -webkit-transform .2s;                \n    transition: -webkit-transform .2s;                \n    transition: transform .2s;                \n    transition: transform .2s, -webkit-transform .2s;\n    display: none;\n}\n#main_table{\n}\n\n", ""]);
+exports.push([module.i, "\n#shirt{                                    \n    height: 80px;\n    width:66px;\n    z-index:1;\n    position: absolute;                \n    -webkit-transition: -webkit-transform .2s;                \n    transition: -webkit-transform .2s;                \n    transition: transform .2s;                \n    transition: transform .2s, -webkit-transform .2s;\n    display: none;\n}\n.card{\n  height: 80px;\n  width:66px;\n  margin-left: 5px;\n  border-radius: 5px;\n}\n.circle {\n    background: -webkit-gradient(linear, left top, left bottom, from(orange), to(red));\n    background: linear-gradient(orange, red);\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border-radius: 50%;\n    text-align: center;  \n    font-size: 22px;  \n    display: -webkit-box;  \n    display: -ms-flexbox;  \n    display: flex;\n    height: 35px;\n    width: 35px;\n    margin-left: 2px;\n    color: #fff;\n}\n.dark{\n  color: #1b1f3d;\n}\n", ""]);
 
 // exports
 
@@ -49715,6 +49715,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -49727,7 +49737,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       bet: null, //ставка null     
       usercards: [], //пустые карты игрока
       dealercards: [] //пустые карты диллера
-
     };
   },
 
@@ -49735,12 +49744,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: ['cards', 'user', 'cash', 'id'],
 
   methods: {
-    test: function test() {
-      //для тестов
-
-
-      this.getcardforuser();
-    },
     getcardforuser: function getcardforuser() {
       document.getElementById('shirt').style.display = "block"; //лёгкая анимация при получении карты игрока 
       setTimeout(function () {
@@ -49792,7 +49795,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           confirmButtonColor: '#3490dc'
         });
       } else {
-        //прячем GO и идём дальше по сценарию                     
+        //прячем GO и идём дальше по сценарию                             
         this.tempindex = Math.floor(Math.random() * this.cards.length) + 1; //рандомное число из cards[] от 1 до length                   
         this.dealercards.push(this.cards[this.tempindex]); // 1 карта для дилера
         this.dealercount += this.cards[this.tempindex].value; //очки    
@@ -50032,294 +50035,278 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "container",
-      staticStyle: {
-        background: "url(img/bjtable.jpg) no-repeat",
-        "background-size": "cover",
-        height: "700px"
+  return _c("div", { staticClass: "container", attrs: { id: "main_table" } }, [
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: !_vm.visible1,
+            expression: "!visible1"
+          }
+        ],
+        staticClass: "container"
       },
-      attrs: { id: "main_table" }
-    },
-    [
-      _c(
-        "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: !_vm.visible1,
-              expression: "!visible1"
-            }
-          ],
-          staticClass: "container"
-        },
-        [
-          _c("div", { staticClass: "container" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "row justify-content-center" }, [
-              _c("h4", [_vm._v("dealer (" + _vm._s(_vm.dealercount) + ")")])
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "row justify-content-center" },
-              _vm._l(_vm.dealercards, function(dealercard) {
-                return _c("div", [
-                  _c("img", {
-                    staticStyle: {
-                      height: "80px",
-                      width: "66px",
-                      "margin-left": "5px"
-                    },
-                    attrs: { src: dealercard.url },
-                    model: {
-                      value: _vm.dealercards,
-                      callback: function($$v) {
-                        _vm.dealercards = $$v
-                      },
-                      expression: "dealercards"
-                    }
-                  })
-                ])
-              }),
-              0
-            ),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "row justify-content-center" },
-              _vm._l(_vm.usercards, function(usercard) {
-                return _c("div", [
-                  _c("img", {
-                    staticStyle: {
-                      height: "80px",
-                      width: "66px",
-                      "margin-left": "5px"
-                    },
-                    attrs: { src: usercard.url },
-                    model: {
-                      value: _vm.usercards,
-                      callback: function($$v) {
-                        _vm.usercards = $$v
-                      },
-                      expression: "usercards"
-                    }
-                  })
-                ])
-              }),
-              0
-            ),
-            _vm._v(" "),
+      [
+        _c("div", { staticClass: "container" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "row justify-content-center" }, [
             _vm._m(1),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "row justify-content-center",
-                staticStyle: { "padding-top": "10px" }
-              },
-              [
-                _c("h4", [
-                  _vm._v(_vm._s(_vm.user) + " (" + _vm._s(_vm.usercount) + ")")
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "row justify-content-center" }, [
-              _c("h5", [_vm._v("Your bet is: " + _vm._s(_vm.bet) + " $")])
+            _c("span", { staticClass: "circle" }, [
+              _vm._v(_vm._s(_vm.dealercount))
             ])
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.visible1,
-              expression: "visible1"
-            }
-          ],
-          staticClass: "container",
-          staticStyle: { "padding-top": "20%" }
-        },
-        [
-          _c("div", { staticClass: "row justify-content-center" }, [
-            _c("div", [
-              _c("p", [_vm._v("Make your bet:")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.bet,
-                    expression: "bet"
-                  }
-                ],
-                staticStyle: { width: "100px" },
-                attrs: { type: "number", name: "bet" },
-                domProps: { value: _vm.bet },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.bet = $event.target.value
-                  }
-                }
-              }),
-              _c("br"),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "btn btn-success",
-                staticStyle: { width: "100px", "margin-top": "10px" },
-                attrs: { type: "button", name: "go", value: "GO" },
-                on: {
-                  click: function($event) {
-                    return _vm.getbet()
-                  }
-                }
-              })
-            ])
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: !_vm.visible1,
-              expression: "!visible1"
-            }
-          ]
-        },
-        [
+          ]),
+          _vm._v(" "),
           _c(
             "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.visible2,
-                  expression: "visible2"
-                }
-              ],
-              staticClass: "container",
-              staticStyle: { "text-align": "center" }
-            },
-            [
-              _c("input", {
-                staticClass: "btn btn-success",
-                staticStyle: { width: "100px" },
-                attrs: { type: "button", name: "hit", value: "Hit" },
-                on: {
-                  click: function($event) {
-                    ;(_vm.visible2 = !_vm.visible2),
-                      _vm.getcardforuser(),
-                      _vm.addusercard()
+            { staticClass: "row justify-content-center" },
+            _vm._l(_vm.dealercards, function(dealercard) {
+              return _c("div", [
+                _c("img", {
+                  staticClass: "card",
+                  attrs: { src: dealercard.url },
+                  model: {
+                    value: _vm.dealercards,
+                    callback: function($$v) {
+                      _vm.dealercards = $$v
+                    },
+                    expression: "dealercards"
                   }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "btn btn-success",
-                staticStyle: { width: "100px", "margin-left": "5%" },
-                attrs: { type: "button", name: "double", value: "Double" },
-                on: {
-                  click: function($event) {
-                    ;(_vm.visible2 = !_vm.visible2),
-                      _vm.getcardforuser(),
-                      _vm.double()
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "btn btn-danger",
-                staticStyle: { width: "100px", "margin-left": "5%" },
-                attrs: { type: "button", name: "stand", value: "Stand" },
-                on: {
-                  click: function($event) {
-                    ;(_vm.visible2 = !_vm.visible2),
-                      _vm.popshirt(),
-                      _vm.adddealercard(),
-                      _vm.getcardfordealer()
-                  }
-                }
-              })
-            ]
+                })
+              ])
+            }),
+            0
           ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row justify-content-center" },
+            _vm._l(_vm.usercards, function(usercard) {
+              return _c("div", [
+                _c("img", {
+                  staticClass: "card",
+                  attrs: { src: usercard.url },
+                  model: {
+                    value: _vm.usercards,
+                    callback: function($$v) {
+                      _vm.usercards = $$v
+                    },
+                    expression: "usercards"
+                  }
+                })
+              ])
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _vm._m(2),
           _vm._v(" "),
           _c(
             "div",
             {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: !_vm.visible2,
-                  expression: "!visible2"
-                }
-              ],
-              staticClass: "container",
-              staticStyle: { "text-align": "center" }
+              staticClass: "row justify-content-center",
+              staticStyle: { "padding-top": "10px" }
             },
             [
-              _c("input", {
-                staticClass: "btn btn-success",
-                staticStyle: { width: "100px" },
-                attrs: { type: "button", name: "hit", value: "Hit" },
-                on: {
-                  click: function($event) {
-                    _vm.getcardforuser1(), _vm.addusercard()
-                  }
-                }
-              }),
+              _c("span", { staticClass: "dark" }, [
+                _c("h3", [_vm._v(_vm._s(_vm.user))])
+              ]),
               _vm._v(" "),
-              _c("input", {
-                staticClass: "btn btn-danger",
-                staticStyle: { width: "100px", "margin-left": "5%" },
-                attrs: { type: "button", name: "stand", value: "Stand" },
-                on: {
-                  click: function($event) {
-                    _vm.popshirt(), _vm.adddealercard(), _vm.getcardfordealer()
-                  }
-                }
-              })
+              _c("span", { staticClass: "circle" }, [
+                _vm._v(_vm._s(_vm.usercount))
+              ])
             ]
-          )
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "row justify-content-center" }, [
+            _c("h4", { staticClass: "dark" }, [
+              _vm._v("Your bet is: " + _vm._s(_vm.bet) + " $")
+            ])
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.visible1,
+            expression: "visible1"
+          }
+        ],
+        staticClass: "container",
+        staticStyle: { "padding-top": "20%" }
+      },
+      [
+        _c("div", { staticClass: "row justify-content-center" }, [
+          _c("div", [
+            _c("h4", { staticClass: "dark" }, [_vm._v("Make your bet:")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.bet,
+                  expression: "bet"
+                }
+              ],
+              staticStyle: { width: "140px" },
+              attrs: { type: "number", name: "bet" },
+              domProps: { value: _vm.bet },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.bet = $event.target.value
+                }
+              }
+            }),
+            _c("br"),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "btn btn-success",
+              staticStyle: { width: "140px", "margin-top": "10px" },
+              attrs: { type: "button", name: "go", value: "GO" },
+              on: {
+                click: function($event) {
+                  return _vm.getbet()
+                }
+              }
+            })
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: !_vm.visible1,
+            expression: "!visible1"
+          }
         ]
-      ),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("button", { on: { click: _vm.test } }, [_vm._v("TEST")])
-    ]
-  )
+      },
+      [
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.visible2,
+                expression: "visible2"
+              }
+            ],
+            staticClass: "container",
+            staticStyle: { "text-align": "center" }
+          },
+          [
+            _c("input", {
+              staticClass: "btn btn-success",
+              staticStyle: { width: "100px" },
+              attrs: { type: "button", name: "hit", value: "Hit" },
+              on: {
+                click: function($event) {
+                  ;(_vm.visible2 = !_vm.visible2),
+                    _vm.getcardforuser(),
+                    _vm.addusercard()
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "btn btn-success",
+              staticStyle: { width: "100px", "margin-left": "5%" },
+              attrs: { type: "button", name: "double", value: "Double" },
+              on: {
+                click: function($event) {
+                  ;(_vm.visible2 = !_vm.visible2),
+                    _vm.getcardforuser(),
+                    _vm.double()
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "btn btn-danger",
+              staticStyle: { width: "100px", "margin-left": "5%" },
+              attrs: { type: "button", name: "stand", value: "Stand" },
+              on: {
+                click: function($event) {
+                  ;(_vm.visible2 = !_vm.visible2),
+                    _vm.popshirt(),
+                    _vm.adddealercard(),
+                    _vm.getcardfordealer()
+                }
+              }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: !_vm.visible2,
+                expression: "!visible2"
+              }
+            ],
+            staticClass: "container",
+            staticStyle: { "text-align": "center" }
+          },
+          [
+            _c("input", {
+              staticClass: "btn btn-success",
+              staticStyle: { width: "100px" },
+              attrs: { type: "button", name: "hit", value: "Hit" },
+              on: {
+                click: function($event) {
+                  _vm.getcardforuser1(), _vm.addusercard()
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "btn btn-danger",
+              staticStyle: { width: "100px", "margin-left": "5%" },
+              attrs: { type: "button", name: "stand", value: "Stand" },
+              on: {
+                click: function($event) {
+                  _vm.popshirt(), _vm.adddealercard(), _vm.getcardfordealer()
+                }
+              }
+            })
+          ]
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -50346,6 +50333,12 @@ var staticRenderFns = [
         }
       })
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "dark" }, [_c("h3", [_vm._v("dealer")])])
   },
   function() {
     var _vm = this
