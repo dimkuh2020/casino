@@ -1,5 +1,5 @@
 <template>
-    <div class="container" id="main_table" style="background: url(img/bjtable.jpg) no-repeat; background-size: cover; height: 700px">        
+    <div class="container" id="main_table">        
         <div class="container" v-show="!visible1">
             <div class="container">
                 <div class="row justify-content-center">                    
@@ -7,11 +7,12 @@
                     <input type="image" name="shirt" id="shirt" src="img/cards/shirt.png"/> <!--для анимации-->                                      
                 </div>  
                 <div class="row justify-content-center">                    
-                    <h4>dealer ({{dealercount}})</h4>                      
+                    <span class="dark"><h3>dealer</h3></span>
+                    <span class="circle">{{dealercount}}</span>                        
                 </div>  
                 <div class="row justify-content-center">                    
                     <div v-for="dealercard in dealercards">
-                        <img style="height: 80px; width:66px; margin-left: 5px;" v-bind:src="dealercard.url" v-model="dealercards">
+                        <img class="card" v-bind:src="dealercard.url" v-model="dealercards">
                     </div>
                 </div>
                 <br>
@@ -20,26 +21,27 @@
                 <br> 
                 <div class="row justify-content-center">
                     <div v-for="usercard in usercards">
-                        <img style="height: 80px; width:66px; margin-left: 5px;" v-bind:src="usercard.url" v-model="usercards">
+                        <img class="card" v-bind:src="usercard.url" v-model="usercards">
                     </div>
                 </div>
-                <div <div class="row justify-content-center" style="padding-top: 10px;">
+                <div class="row justify-content-center" style="padding-top: 10px;">
                      <input type="image" name="uface" src="img/uface.png" style="width: 100px; height: 100px; border-radius: 45px;">
                 </div>
-                <div <div class="row justify-content-center" style="padding-top: 10px;">
-                    <h4>{{user}} ({{usercount}})</h4>                                                       
+                <div class="row justify-content-center" style="padding-top: 10px;">
+                    <span class="dark"><h3>{{user}}</h3></span>
+                    <span class="circle">{{usercount}}</span>                                                      
                 </div>
                 <div <div class="row justify-content-center">
-                    <h5>Your bet is: {{bet}} $</h5>                                                                           
+                    <h4 class="dark">Your bet is: {{bet}} $</h4>                                                                           
                 </div> 
             </div>                       
         </div>      
         <div class="container" v-show="visible1" style="padding-top:20%;">
             <div class="row justify-content-center">
                 <div>
-                    <p>Make your bet:</p>
-                    <input type="number" name="bet" v-model="bet" style="width:100px;"><br>
-                    <input type="button" @click="getbet()" class="btn btn-success" name="go" value="GO" style="width: 100px; margin-top: 10px;">
+                    <h4 class="dark">Make your bet:</h4>
+                    <input type="number" name="bet" v-model="bet" style="width:140px;"><br>
+                    <input type="button" @click="getbet()" class="btn btn-success" name="go" value="GO" style="width: 140px; margin-top: 10px;">
                 </div>
             </div>
         </div>             
@@ -55,23 +57,11 @@
                 <input type="button" @click="popshirt(), adddealercard(), getcardfordealer()" class="btn btn-danger" name="stand" value="Stand" style="width: 100px; margin-left:5%">
             </div>
         </div>
-            <br>
-            <br>
-            <button @click="test">TEST</button>                
-        <!--<table class="table">
-            <tbody>
-                <tr v-for="card in cards">                            
-                    <td>{{card.title}}</td>
-                    <td><img style="height: 80px; width:66px" v-bind:src="card.url"></td>
-                    <td>{{card.value}}</td>
-                </tr>
-            </tbody>
-        </table>-->
     </div>
 </template>
 
 <style type="text/css">
-    #shirt{                             
+    #shirt{                                    
         height: 80px;
         width:66px;
         z-index:1;
@@ -80,15 +70,34 @@
         display: none; 
     }
 
-    #main_table{
-
+    .card{
+      height: 80px;
+      width:66px;
+      margin-left: 5px;
+      border-radius: 5px;
     }
-   
+
+    .circle {
+        background: linear-gradient(orange, red);
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        text-align: center;  
+        font-size: 22px;  
+        display: flex;
+        height: 35px;
+        width: 35px;
+        margin-left: 2px;
+        color: #fff;
+    }
+
+    .dark{
+      color: #1b1f3d;
+    }
 </style>
 
 <script>
-    export default {
-        
+    export default {        
         data() {
             return {
                 visible1: true,
@@ -99,7 +108,6 @@
                 bet: null,          //ставка null     
                 usercards: [],      //пустые карты игрока
                 dealercards: [],     //пустые карты диллера
-                 
             }
         }, 
 
@@ -111,15 +119,6 @@
         ],
 
         methods: {
-            test() {    //для тестов
-
-             
-              this.getcardforuser();
-                 
-
-                
-            },
-
             getcardforuser(){
                 document.getElementById('shirt').style.display="block";                                    //лёгкая анимация при получении карты игрока 
                 setTimeout( function(){                    
@@ -131,8 +130,6 @@
                  setTimeout( function(){                    
                     document.getElementById('shirt').style.transform="translate3d(0px, 0px, 0px)"; //возврат назад
                 }, 221);
-                             
-
             },
 
             getcardforuser1(){
@@ -146,8 +143,6 @@
                  setTimeout( function(){                    
                     document.getElementById('shirt').style.transform="translate3d(0px, 0px, 0px)"; //возврат назад
                 }, 221);
-                             
-
             },
 
             getcardfordealer(){
@@ -163,7 +158,6 @@
                 }, 221);             
             },
 
-           
             getbet(){                                 //задать ставку
                 if(this.bet <= 0){
                     Swal.fire({
@@ -177,8 +171,7 @@
                           confirmButtonColor: '#3490dc' 
                     })
                 }
-                else {                  
-                                                                //прячем GO и идём дальше по сценарию                     
+                else {                                                                //прячем GO и идём дальше по сценарию                             
                    this.tempindex = Math.floor(Math.random()*this.cards.length)+1;    //рандомное число из cards[] от 1 до length                   
                    this.dealercards.push(this.cards[this.tempindex]);                 // 1 карта для дилера
                    this.dealercount += this.cards[this.tempindex].value;              //очки    
@@ -234,8 +227,7 @@
                 this.dealercards.pop();                                              //удалить рубаху       
             },
 
-            addusercard() { 
-
+            addusercard() {
                 this.tempindex = Math.floor(Math.random()*this.cards.length+1);     // рандомное число из cards[] от 0 до length
                 this.usercards.push(this.cards[this.tempindex]);                    // добавление в карты к игроку
                 this.usercount += this.cards[this.tempindex].value;                 // очки игрока после добавления карты
@@ -399,10 +391,7 @@
                     this.adddealercard();
                    }                
             },
-            
         },
-
-        
 
         mounted() {
             console.log('Component mounted.')

@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Casino') }}</title>
+    <title>Casino</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -21,17 +21,17 @@
 
     <!--Sweetalert-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}"/>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     
 
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background: url(img/fon3.png)">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+                <a class="navbar-brand" style="color: orangered; font-size: 150%" href="{{ url('/') }}">Casino</a>
+                <a class="navbar-brand" style="color: orangered; font-size: 150%; margin-left: 13px;" href="{{ url('/home') }}">Home</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -57,14 +57,14 @@
                         @else
                         
                         
-                            <li class="nav-item dropdown">
+                            <li  class="nav-item dropdown">
                                 
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a style="color: orangered; font-size: 150%;" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a style="color: orangered; font-size: 150%" class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -76,10 +76,10 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <div class="nav-link" >cash: {{Auth::user()->cash}} $</div>
+                                <div style="color: orangered; font-size: 150%" class="nav-link">cash: {{Auth::user()->cash}} $</div>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('balance.edit', Auth::user()->id)}}" class="btn btn-primary btn-sm" style="width: 160px; font-size: 12pt;">Top up balance</a>
+                                <a href="{{route('balance.edit', Auth::user()->id)}}" class="btn btn-primary btn-sm" style="width: 160px; height: 44px; font-size: 13pt;">Top up balance</a>
                             </li>
                         @endguest
                     </ul>
@@ -87,7 +87,7 @@
             </div>
         </nav>
 
-        <main class="py-0">
+        <main class="py-0" style="background: url(img/fon2.png); height: 890px;">
             @yield('content')
         </main>
     </div>
