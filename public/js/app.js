@@ -49795,7 +49795,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           confirmButtonColor: '#3490dc'
         });
       } else {
-        //прячем GO и идём дальше по сценарию                             
+        this.visible1 = false; //прячем GO и идём дальше по сценарию                             
         this.tempindex = Math.floor(Math.random() * this.cards.length) + 1; //рандомное число из cards[] от 1 до length                   
         this.dealercards.push(this.cards[this.tempindex]); // 1 карта для дилера
         this.dealercount += this.cards[this.tempindex].value; //очки    
@@ -49805,48 +49805,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         this.addusercard();
         this.addusercard();
-        this.visible1 = false;
+      }
 
-        if (this.usercards[0].value == 11 && this.usercards[1].value == 11) {
-          //если 2 туза
-          this.usercount = 12;
-        }
+      if (this.usercards[0].value == 11 && this.usercards[1].value == 11) {
+        //если 2 туза
+        this.usercount = 12;
+      }
 
-        if (this.usercount == 21) {
-          //если 21 сразу то победа                        
-          this.bet *= 2.5; // ставка 2.5
-          this.cash += this.bet; // баланс + ставка
+      if (this.usercount == 21) {
+        //если 21 сразу то победа                        
+        this.bet *= 2.5; // ставка 2.5
+        this.cash += this.bet; // баланс + ставка
 
-          Swal.fire({
-            title: 'BLACKJACK!!!',
-            position: 'top',
-            text: "Your count is: " + this.usercount,
-            confirmButtonColor: '#3490dc',
-            allowOutsideClick: false
-          }).then(function (result) {
-            if (result.value) {
-              var data = { cash: _this.cash };
-              axios.put('/public/updatecash', data).then(function (response) {
-                //2 простенький axios для изменения баланса после ставки на 2.5
-                console.log(response.data);
-              }).catch(function (error) {
-                console.log(error);
-              });
-              Swal.fire({
-                title: "You won: " + _this.bet + "$",
-                animation: false,
-                allowOutsideClick: false,
-                customClass: {
-                  popup: 'animated tada'
-                }
-              }).then(function (result) {
-                if (result.value) {
-                  location.reload();
-                }
-              });
-            }
-          });
-        }
+        Swal.fire({
+          title: 'BLACKJACK!!!',
+          position: 'top',
+          text: "Your count is: " + this.usercount,
+          confirmButtonColor: '#3490dc',
+          allowOutsideClick: false
+        }).then(function (result) {
+          if (result.value) {
+            var data = { cash: _this.cash };
+            axios.put('/public/updatecash', data).then(function (response) {
+              //2 простенький axios для изменения баланса после ставки на 2.5
+              console.log(response.data);
+            }).catch(function (error) {
+              console.log(error);
+            });
+            Swal.fire({
+              title: "You won: " + _this.bet + "$",
+              animation: false,
+              allowOutsideClick: false,
+              customClass: {
+                popup: 'animated tada'
+              }
+            }).then(function (result) {
+              if (result.value) {
+                location.reload();
+              }
+            });
+          }
+        });
       }
     },
     popshirt: function popshirt() {
@@ -49982,42 +49981,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     double: function double() {
       var _this4 = this;
 
-      this.bet *= 2;
-      this.addusercard();
-
-      if (this.usercount > 21) {
+      if (this.cash < this.bet * 2) {
         Swal.fire({
-          title: 'You loose!',
-          position: 'top',
-          text: "Your count is: " + this.usercount,
+          title: "Not enough cash to double!",
           confirmButtonColor: '#3490dc',
           allowOutsideClick: false
-        }).then(function (result) {
-          if (result.value) {
-            _this4.cash -= _this4.bet;
-            var data = { cash: _this4.cash };
-            axios.put('/public/updatecash', data).then(function (response) {
-              console.log(response.data);
-            }).catch(function (error) {
-              console.log(error);
-            });
-            Swal.fire({
-              title: "You lost: " + _this4.bet + "$",
-              animation: false,
-              allowOutsideClick: false,
-              customClass: {
-                popup: 'animated tada'
-              }
-            }).then(function (result) {
-              if (result.value) {
-                location.reload();
-              }
-            });
-          }
         });
       } else {
-        this.popshirt();
-        this.adddealercard();
+        this.bet *= 2;
+        this.addusercard();
+
+        if (this.usercount > 21) {
+          Swal.fire({
+            title: 'You loose!',
+            position: 'top',
+            text: "Your count is: " + this.usercount,
+            confirmButtonColor: '#3490dc',
+            allowOutsideClick: false
+          }).then(function (result) {
+            if (result.value) {
+              _this4.cash -= _this4.bet;
+              var data = { cash: _this4.cash };
+              axios.put('/public/updatecash', data).then(function (response) {
+                console.log(response.data);
+              }).catch(function (error) {
+                console.log(error);
+              });
+              Swal.fire({
+                title: "You lost: " + _this4.bet + "$",
+                animation: false,
+                allowOutsideClick: false,
+                customClass: {
+                  popup: 'animated tada'
+                }
+              }).then(function (result) {
+                if (result.value) {
+                  location.reload();
+                }
+              });
+            }
+          });
+        } else {
+          this.popshirt();
+          this.adddealercard();
+        }
       }
     }
   },
