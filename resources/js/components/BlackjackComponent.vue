@@ -141,7 +141,7 @@
                     document.getElementById('shirt').style.display="none";
                 }, 220);
                  setTimeout( function(){                    
-                    document.getElementById('shirt').style.transform="translate3d(0px, 0px, 0px)"; //возврат назад
+                    document.getElementById('shirt').style.transform="translate3d(0px, 0px, 0px)";          //возврат назад
                 }, 221);
             },
 
@@ -171,17 +171,18 @@
                           confirmButtonColor: '#3490dc' 
                     })
                 }
-                else {                                                                //прячем GO и идём дальше по сценарию                             
+                else {
+                   this.visible1 = false;                                             //прячем GO и идём дальше по сценарию                             
                    this.tempindex = Math.floor(Math.random()*this.cards.length)+1;    //рандомное число из cards[] от 1 до length                   
                    this.dealercards.push(this.cards[this.tempindex]);                 // 1 карта для дилера
                    this.dealercount += this.cards[this.tempindex].value;              //очки    
                    this.dealercards.push(this.cards[0]);                              //рубашка для дилера
                    this.cards.splice(this.tempindex, 1);                              //удаление 1й карты из колоды
                    this.cards.splice(0, 1);                                           //удаление рубашки из коллоды 
-
+                   
                    this.addusercard();
                    this.addusercard();
-                   this.visible1 = false;
+                 }                   
 
                    if ((this.usercards[0].value == 11) && (this.usercards[1].value == 11)){ //если 2 туза
                     this.usercount = 12;
@@ -220,7 +221,7 @@
                                 }
                             })
                    }
-                } 
+                 
             },
 
             popshirt(){
@@ -353,43 +354,52 @@
                 },
 
             double() {
-                this.bet*=2;
-                this.addusercard();
+            if(this.cash < (this.bet*2)){
+              Swal.fire({
+                title: "Not enough cash to double!",
+                confirmButtonColor: '#3490dc',                 
+                allowOutsideClick: false,                  
+              })  
+            }
+             else{
+              this.bet*=2;
+              this.addusercard();
 
-                if(this.usercount > 21){                                            
-                        Swal.fire({
-                          title: 'You loose!',
-                          position: 'top',
-                          text: "Your count is: " + this.usercount,                                                  
-                          confirmButtonColor: '#3490dc',
-                          allowOutsideClick: false 
-                        }).then((result) => {
-                              if (result.value) {
-                              this.cash -= this.bet;                               
-                                var data = {cash: this.cash};
-                                axios.put('/public/updatecash',data).then((response)=>{   
-                                   console.log(response.data);
-                                }).catch((error)=>{
-                                   console.log(error);
-                                }); 
-                                Swal.fire({
-                                  title: "You lost: " + this.bet + "$",
-                                  animation: false,
-                                  allowOutsideClick: false,
-                                  customClass: {
-                                    popup: 'animated tada'
-                                  }
-                                }).then((result) => {
-                                      if (result.value) {                                        
-                                        location.reload();                                        
-                                      }
-                                    })
+              if(this.usercount > 21){                                            
+                      Swal.fire({
+                        title: 'You loose!',
+                        position: 'top',
+                        text: "Your count is: " + this.usercount,                                                  
+                        confirmButtonColor: '#3490dc',
+                        allowOutsideClick: false 
+                      }).then((result) => {
+                            if (result.value) {
+                            this.cash -= this.bet;                               
+                              var data = {cash: this.cash};
+                              axios.put('/public/updatecash',data).then((response)=>{   
+                                 console.log(response.data);
+                              }).catch((error)=>{
+                                 console.log(error);
+                              }); 
+                              Swal.fire({
+                                title: "You lost: " + this.bet + "$",
+                                animation: false,
+                                allowOutsideClick: false,
+                                customClass: {
+                                  popup: 'animated tada'
                                 }
-                            })
+                              }).then((result) => {
+                                    if (result.value) {                                        
+                                      location.reload();                                        
+                                    }
+                                  })
+                              }
+                          })
                    }else{
                     this.popshirt();
                     this.adddealercard();
-                   }                
+                   } 
+                }               
             },
         },
 
