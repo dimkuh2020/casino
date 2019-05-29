@@ -16,7 +16,7 @@
                             <h1>Black Jack</h1>
                         </div>
                             <div class="col-md-4">
-                            <a href="">
+                            <a href="{{route('slots')}}">
                                 <img src="{{ asset('img/slots.png')}}" width="80%">
                             </a>
                             <h1>Slots</h1>
