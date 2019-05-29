@@ -87,9 +87,7 @@
                 <div class="title m-b-md">
                     Welcome to online casino!
                     <div style="font-size: 60%">Please log in to start playing</div> 
-                </div>
-
-                
+                </div>                
             </div>
         </div>
     </body>

@@ -16,10 +16,15 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+Route::resource('balance', 'BalanceController');
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/blackjack','BlackjackController@index')->name('blackjack');
 Route::put('/updatecash','BlackjackController@updatecash');
 
+Route::get('/slots','SlotsController@index')->name('slots');
 
-Route::resource('balance', 'BalanceController');
+
+
+
+

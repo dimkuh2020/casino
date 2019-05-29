@@ -19,6 +19,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('blackjack-component', require('./components/BlackjackComponent.vue'));
+Vue.component('slots-component', require('./components/SlotsComponent.vue'));
 
 const app = new Vue({
     el: '#app'
