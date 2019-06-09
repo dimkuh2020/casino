@@ -77,9 +77,6 @@ class Blackjack extends Model
 		array('title'=>'Кп','url'=>'img/cards/Кп.jpeg','value'=>10),//51
 		array('title'=>'Тп','url'=>'img/cards/Тп.jpeg','value'=>11)//52
 	];
-
-    public $message = "Fuuuu";
-
-    
+  
     
 }
