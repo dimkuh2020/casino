@@ -24,6 +24,25 @@
                     </tbody>                
                 </table>
             </div>
+            <div>
+                <table>
+                    <tr>
+                        <td v-for="sm in slotmachine[0]"> 
+                            <img class="slots" v-bind:src="sm.url" v-model="slotmachine[0]">
+                        </td>
+                    </tr>
+                     <tr>
+                        <td v-for="sm in slotmachine[1]"> 
+                            <img class="slots" v-bind:src="sm.url" v-model="slotmachine[1]">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td v-for="sm in slotmachine[2]"> 
+                            <img class="slots" v-bind:src="sm.url" v-model="slotmachine[2]">
+                        </td>
+                      </tr>                    
+                </table>
+            </div>
         </div>
     </div>
 </template>
@@ -51,16 +70,54 @@
 
 <script>
     export default {
+         data() {
+            return { 
+                bet: null,          //ставка null 
+                tempindex: null,    
+                slotmachine: [[],[],[]]      //пустой 2мерный массив для машины
+                
+            }
+        }, 
+
+        props: [
+            'slots',
+            'user',
+            'cash',
+            'id',
+        ],
+
+
         methods:{
             test(){
-                alert('test');
-            }
+                for(var i=0; i<3; i++) {
+                    this.tempindex = Math.floor(Math.random()*this.slots.length+1); 
+                    this.slotmachine[0].push(this.slots[this.tempindex]);
+                
 
+                
+                    this.tempindex = Math.floor(Math.random()*this.slots.length+1); 
+                    this.slotmachine[1].push(this.slots[this.tempindex]);
+                
+
+                
+                    this.tempindex = Math.floor(Math.random()*this.slots.length+1); 
+                    this.slotmachine[2].push(this.slots[this.tempindex]);
+                }
+                
+                console.log(this.slotmachine);
+                
+            },
 
         },
 
+
+
         mounted() {
-            console.log('Component mounted.')
+            console.log('Component mounted.');
+               // рандомное число из slots[] от 0 до length
+            
+                
+
         }
     }
 </script>
