@@ -1,29 +1,7 @@
 <template>
     <div class="container">
         <button @click="test()">TEST</button>
-        <div class="row justify-content-center">
-            
-            <div>
-                <table>
-                    <tbody>
-                      <tr>
-                        <td>1.1</td>
-                        <td>1.2</td>
-                        <td>1.3</td>
-                      </tr>
-                      <tr>
-                        <td>2.1</td>
-                        <td>2.2</td>
-                        <td>2.3</td>
-                      </tr>
-                      <tr>
-                        <td>3.1</td>
-                        <td>3.2</td>
-                        <td>3.3</td>
-                      </tr>
-                    </tbody>                
-                </table>
-            </div>
+        <div class="row justify-content-center"> 
             <div>
                 <table>
                     <tr>
@@ -90,17 +68,13 @@
         methods:{
             test(){
                 for(var i=0; i<3; i++) {
-                    this.tempindex = Math.floor(Math.random()*this.slots.length+1); 
-                    this.slotmachine[0].push(this.slots[this.tempindex]);
+                    this.tempindex = Math.floor(Math.random()*this.slots.length); 
+                    this.slotmachine[0].push(this.slots[this.tempindex]);  
                 
-
-                
-                    this.tempindex = Math.floor(Math.random()*this.slots.length+1); 
+                    this.tempindex = Math.floor(Math.random()*this.slots.length); 
                     this.slotmachine[1].push(this.slots[this.tempindex]);
                 
-
-                
-                    this.tempindex = Math.floor(Math.random()*this.slots.length+1); 
+                    this.tempindex = Math.floor(Math.random()*this.slots.length); 
                     this.slotmachine[2].push(this.slots[this.tempindex]);
                 }
                 
@@ -110,13 +84,20 @@
 
         },
 
-
-
         mounted() {
             console.log('Component mounted.');
-               // рандомное число из slots[] от 0 до length
-            
+            for(var i=0; i<3; i++) {
+                    this.tempindex = Math.floor(Math.random()*this.slots.length); 
+                    this.slotmachine[0].push(this.slots[this.tempindex]);  
                 
+                    this.tempindex = Math.floor(Math.random()*this.slots.length); 
+                    this.slotmachine[1].push(this.slots[this.tempindex]);
+                
+                    this.tempindex = Math.floor(Math.random()*this.slots.length); 
+                    this.slotmachine[2].push(this.slots[this.tempindex]);
+                }
+                
+            console.log(this.slotmachine); 
 
         }
     }

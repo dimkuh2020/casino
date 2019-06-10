@@ -49855,7 +49855,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     addusercard: function addusercard() {
       var _this2 = this;
 
-      this.tempindex = Math.floor(Math.random() * this.cards.length + 1); // рандомное число из cards[] от 0 до length
+      this.tempindex = Math.floor(Math.random() * this.cards.length); // рандомное число из cards[] от 0 до length
       this.usercards.push(this.cards[this.tempindex]); // добавление в карты к игроку
       this.usercount += this.cards[this.tempindex].value; // очки игрока после добавления карты
       this.cards.splice(this.tempindex, 1); // удаление из общей колоды
@@ -49897,7 +49897,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this3 = this;
 
       do {
-        this.tempindex = Math.floor(Math.random() * this.cards.length + 1); // рандомное число из cards[] от 0 до length
+        this.tempindex = Math.floor(Math.random() * this.cards.length); // рандомное число из cards[] от 0 до length
         this.dealercards.push(this.cards[this.tempindex]); // добавление в карты к игроку
         this.dealercount += this.cards[this.tempindex].value; // очки игрока после добавления карты
         this.cards.splice(this.tempindex, 1);
@@ -50525,28 +50525,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -50564,13 +50542,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         test: function test() {
             for (var i = 0; i < 3; i++) {
-                this.tempindex = Math.floor(Math.random() * this.slots.length + 1);
+                this.tempindex = Math.floor(Math.random() * this.slots.length);
                 this.slotmachine[0].push(this.slots[this.tempindex]);
 
-                this.tempindex = Math.floor(Math.random() * this.slots.length + 1);
+                this.tempindex = Math.floor(Math.random() * this.slots.length);
                 this.slotmachine[1].push(this.slots[this.tempindex]);
 
-                this.tempindex = Math.floor(Math.random() * this.slots.length + 1);
+                this.tempindex = Math.floor(Math.random() * this.slots.length);
                 this.slotmachine[2].push(this.slots[this.tempindex]);
             }
 
@@ -50580,8 +50558,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     mounted: function mounted() {
         console.log('Component mounted.');
-        // рандомное число из slots[] от 0 до length
+        for (var i = 0; i < 3; i++) {
+            this.tempindex = Math.floor(Math.random() * this.slots.length);
+            this.slotmachine[0].push(this.slots[this.tempindex]);
 
+            this.tempindex = Math.floor(Math.random() * this.slots.length);
+            this.slotmachine[1].push(this.slots[this.tempindex]);
+
+            this.tempindex = Math.floor(Math.random() * this.slots.length);
+            this.slotmachine[2].push(this.slots[this.tempindex]);
+        }
+
+        console.log(this.slotmachine);
     }
 });
 
@@ -50607,8 +50595,6 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "row justify-content-center" }, [
-      _vm._m(0),
-      _vm._v(" "),
       _c("div", [
         _c("table", [
           _c(
@@ -50675,42 +50661,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("table", [
-        _c("tbody", [
-          _c("tr", [
-            _c("td", [_vm._v("1.1")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("1.2")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("1.3")])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", [_vm._v("2.1")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("2.2")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("2.3")])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", [_vm._v("3.1")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("3.2")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("3.3")])
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
