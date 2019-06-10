@@ -229,7 +229,7 @@
             },
 
             addusercard() {
-                this.tempindex = Math.floor(Math.random()*this.cards.length+1);     // рандомное число из cards[] от 0 до length
+                this.tempindex = Math.floor(Math.random()*this.cards.length);     // рандомное число из cards[] от 0 до length
                 this.usercards.push(this.cards[this.tempindex]);                    // добавление в карты к игроку
                 this.usercount += this.cards[this.tempindex].value;                 // очки игрока после добавления карты
                 this.cards.splice(this.tempindex, 1);                               // удаление из общей колоды
@@ -269,7 +269,7 @@
 
             adddealercard() {
                 do{                
-                    this.tempindex = Math.floor(Math.random()*this.cards.length+1);  // рандомное число из cards[] от 0 до length
+                    this.tempindex = Math.floor(Math.random()*this.cards.length);  // рандомное число из cards[] от 0 до length
                     this.dealercards.push(this.cards[this.tempindex]);               // добавление в карты к игроку
                     this.dealercount += this.cards[this.tempindex].value;            // очки игрока после добавления карты
                     this.cards.splice(this.tempindex, 1);
