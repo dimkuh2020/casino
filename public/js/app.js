@@ -50466,7 +50466,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\ntable {\n    width: 330px;\n    height: 330px;\n    border: solid 3px blue;\n}\ntd {        \n    width: 100px;\n    border: solid 2px blue;\n    border-bottom:0;\n    border-top: 0;\n}\ntr{\n    height: 100px;\n}\n", ""]);
+exports.push([module.i, "\ntable {\n    width: 330px;\n    height: 330px;\n    border: solid 3px blue;\n}\ntd {        \n    width: 100px;\n    border: solid 2px blue;\n    border-bottom:0;\n    border-top: 0;\n}\ntr{\n    height: 100px;\n}\n.underbox{\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border: 4px groove orangered; \n    border-radius: 30%;\n    text-align: center;  \n    font-size: 22px;         \n    height: 50px;\n    width: 120px;        \n    color: #1b1f3d;\n}    \n", ""]);
 
 // exports
 
@@ -50533,6 +50533,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -50540,9 +50557,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            message: 'Make your bet!', //изначальное сообщение о ставке
-            char: null, //для бакса          
-            bet: null, //ставка null 
+            wins: 0,
+            bet: 0, //ставка null 
             tempindex: null,
             slotmachine: [[], [], []] //пустой 2мерный массив для машины
 
@@ -50675,15 +50691,28 @@ var render = function() {
         "div",
         {
           staticClass: "container",
-          staticStyle: {
-            "text-align": "center",
-            "padding-top": "2%",
-            color: "#1b1f3d"
-          }
+          staticStyle: { "text-align": "center", "padding-top": "2%" }
         },
         [
-          _c("h3", [
-            _vm._v(_vm._s(_vm.message) + _vm._s(_vm.bet) + _vm._s(_vm.char))
+          _c("output", [
+            _c("h4", [_vm._v("Bet:")]),
+            _c("p", { staticClass: "underbox" }, [
+              _vm._v(_vm._s(_vm.bet) + " $")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("output", { staticStyle: { "margin-left": "5%" } }, [
+            _c("h4", [_vm._v("Cash:")]),
+            _c("p", { staticClass: "underbox" }, [
+              _vm._v(_vm._s(_vm.cash) + " $")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("output", { staticStyle: { "margin-left": "5%" } }, [
+            _c("h4", [_vm._v("Wins:")]),
+            _c("p", { staticClass: "underbox" }, [
+              _vm._v(_vm._s(_vm.wins) + " $")
+            ])
           ])
         ]
       ),
@@ -50697,7 +50726,7 @@ var render = function() {
         [
           _c("input", {
             staticClass: "btn btn-info",
-            staticStyle: { width: "100px" },
+            staticStyle: { width: "120px" },
             attrs: { type: "button", name: "bet10", value: "10" },
             on: {
               click: function($event) {
@@ -50708,7 +50737,7 @@ var render = function() {
           _vm._v(" "),
           _c("input", {
             staticClass: "btn btn-warning",
-            staticStyle: { width: "100px", "margin-left": "5%" },
+            staticStyle: { width: "120px", "margin-left": "5%" },
             attrs: { type: "button", name: "bet50", value: "50" },
             on: {
               click: function($event) {
@@ -50719,7 +50748,7 @@ var render = function() {
           _vm._v(" "),
           _c("input", {
             staticClass: "btn btn-danger",
-            staticStyle: { width: "100px", "margin-left": "5%" },
+            staticStyle: { width: "120px", "margin-left": "5%" },
             attrs: { type: "button", name: "bet100", value: "100" },
             on: {
               click: function($event) {

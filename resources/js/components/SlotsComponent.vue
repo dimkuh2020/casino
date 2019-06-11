@@ -21,13 +21,18 @@
                       </tr>                    
                 </table>
             </div>
-            <div  class="container" style="text-align: center; padding-top: 2%; color: #1b1f3d;">
+            <!--<div  class="container" style="text-align: center; padding-top: 2%; color: #1b1f3d;">
                     <h3>{{message}}{{bet}}{{char}}</h3>                                                                           
+            </div>--> 
+            <div class="container" style="text-align: center; padding-top: 2%">                
+                <output><h4>Bet:</h4><p class="underbox">{{bet}} $</p></output>
+                <output style="margin-left:5%"><h4>Cash:</h4><p class="underbox">{{cash}} $</p></output>
+                <output style="margin-left:5%"><h4>Wins:</h4><p class="underbox">{{wins}} $</p></output>                
             </div> 
             <div class="container" style="text-align: center; padding-top: 2%">                
-                <input type="button" @click="spin10()" class="btn btn-info" name="bet10" value="10" style="width: 100px;">
-                <input type="button" @click="spin50()" class="btn btn-warning" name="bet50" value="50" style="width: 100px; margin-left:5%">
-                <input type="button" @click="spin100()" class="btn btn-danger" name="bet100" value="100" style="width: 100px; margin-left:5%">
+                <input type="button" @click="spin10()" class="btn btn-info" name="bet10" value="10" style="width: 120px;">
+                <input type="button" @click="spin50()" class="btn btn-warning" name="bet50" value="50" style="width: 120px; margin-left:5%">
+                <input type="button" @click="spin100()" class="btn btn-danger" name="bet100" value="100" style="width: 120px; margin-left:5%">
             </div> 
         </div>
     </div>
@@ -52,6 +57,18 @@
         height: 100px; 
 
     }
+
+    .underbox{
+        justify-content: center;
+        align-items: center;
+        border: 4px groove orangered; 
+        border-radius: 30%;
+        text-align: center;  
+        font-size: 22px;         
+        height: 50px;
+        width: 120px;        
+        color: #1b1f3d;
+    }    
 </style>
 
 <script>
@@ -65,10 +82,9 @@
         ],
 
          data() {
-            return {                
-                message: 'Make your bet!',      //изначальное сообщение о ставке
-                char: null,                    //для бакса          
-                bet: null,                    //ставка null 
+            return {               
+                wins: 0,       
+                bet: 0,                    //ставка null 
                 tempindex: null,    
                 slotmachine: [[],[],[]]      //пустой 2мерный массив для машины
                 
