@@ -50525,10 +50525,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: ['slots', 'user', 'cash', 'id'],
+
     data: function data() {
         return {
+            message: 'Make your bet!', //изначальное сообщение о ставке
+            char: null, //для бакса          
             bet: null, //ставка null 
             tempindex: null,
             slotmachine: [[], [], []] //пустой 2мерный массив для машины
@@ -50537,22 +50550,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
-    props: ['slots', 'user', 'cash', 'id'],
-
     methods: {
-        test: function test() {
-            for (var i = 0; i < 3; i++) {
-                this.tempindex = Math.floor(Math.random() * this.slots.length);
-                this.slotmachine[0].push(this.slots[this.tempindex]);
+        test: function test() {},
+        spin10: function spin10() {
 
-                this.tempindex = Math.floor(Math.random() * this.slots.length);
-                this.slotmachine[1].push(this.slots[this.tempindex]);
-
-                this.tempindex = Math.floor(Math.random() * this.slots.length);
-                this.slotmachine[2].push(this.slots[this.tempindex]);
+            this.bet = 10;
+            this.message = 'Your bet is: ';
+            this.char = ' $';
+            if (this.bet > this.cash) {
+                Swal.fire({
+                    title: 'Not enough cash!',
+                    confirmButtonColor: '#3490dc'
+                });
+            } else {
+                alert(this.bet);
             }
-
-            console.log(this.slotmachine);
         }
     },
 
@@ -50657,7 +50669,66 @@ var render = function() {
             0
           )
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "container",
+          staticStyle: {
+            "text-align": "center",
+            "padding-top": "2%",
+            color: "#1b1f3d"
+          }
+        },
+        [
+          _c("h3", [
+            _vm._v(_vm._s(_vm.message) + _vm._s(_vm.bet) + _vm._s(_vm.char))
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "container",
+          staticStyle: { "text-align": "center", "padding-top": "2%" }
+        },
+        [
+          _c("input", {
+            staticClass: "btn btn-info",
+            staticStyle: { width: "100px" },
+            attrs: { type: "button", name: "bet10", value: "10" },
+            on: {
+              click: function($event) {
+                return _vm.spin10()
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "btn btn-warning",
+            staticStyle: { width: "100px", "margin-left": "5%" },
+            attrs: { type: "button", name: "bet50", value: "50" },
+            on: {
+              click: function($event) {
+                return _vm.spin50()
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "btn btn-danger",
+            staticStyle: { width: "100px", "margin-left": "5%" },
+            attrs: { type: "button", name: "bet100", value: "100" },
+            on: {
+              click: function($event) {
+                return _vm.spin100()
+              }
+            }
+          })
+        ]
+      )
     ])
   ])
 }
