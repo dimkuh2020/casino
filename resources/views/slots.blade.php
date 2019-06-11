@@ -8,9 +8,7 @@
         </div>
         <div id="app">
         	 <slots-component :slots="{{json_encode($slots)}}" :user="{{json_encode($user)}}" :cash="{{json_encode($cash)}}" :id="{{json_encode($id)}}"></slots-component>
-        </div> 
-
-              
+        </div>               
         
 </div>
 @endsection

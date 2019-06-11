@@ -21,6 +21,14 @@
                       </tr>                    
                 </table>
             </div>
+            <div  class="container" style="text-align: center; padding-top: 2%; color: #1b1f3d;">
+                    <h3>{{message}}{{bet}}{{char}}</h3>                                                                           
+            </div> 
+            <div class="container" style="text-align: center; padding-top: 2%">                
+                <input type="button" @click="spin10()" class="btn btn-info" name="bet10" value="10" style="width: 100px;">
+                <input type="button" @click="spin50()" class="btn btn-warning" name="bet50" value="50" style="width: 100px; margin-left:5%">
+                <input type="button" @click="spin100()" class="btn btn-danger" name="bet100" value="100" style="width: 100px; margin-left:5%">
+            </div> 
         </div>
     </div>
 </template>
@@ -48,14 +56,6 @@
 
 <script>
     export default {
-         data() {
-            return { 
-                bet: null,          //ставка null 
-                tempindex: null,    
-                slotmachine: [[],[],[]]      //пустой 2мерный массив для машины
-                
-            }
-        }, 
 
         props: [
             'slots',
@@ -64,23 +64,39 @@
             'id',
         ],
 
+         data() {
+            return {                
+                message: 'Make your bet!',      //изначальное сообщение о ставке
+                char: null,                    //для бакса          
+                bet: null,                    //ставка null 
+                tempindex: null,    
+                slotmachine: [[],[],[]]      //пустой 2мерный массив для машины
+                
+            }
+        },  
 
         methods:{
             test(){
-                for(var i=0; i<3; i++) {
-                    this.tempindex = Math.floor(Math.random()*this.slots.length); 
-                    this.slotmachine[0].push(this.slots[this.tempindex]);  
-                
-                    this.tempindex = Math.floor(Math.random()*this.slots.length); 
-                    this.slotmachine[1].push(this.slots[this.tempindex]);
-                
-                    this.tempindex = Math.floor(Math.random()*this.slots.length); 
-                    this.slotmachine[2].push(this.slots[this.tempindex]);
-                }
-                
-                console.log(this.slotmachine);
-                
+                              
             },
+
+            spin10(){
+                
+                this.bet = 10;
+                this.message = 'Your bet is: ';
+                this.char = ' $';
+                if(this.bet > this.cash){
+                    Swal.fire({
+                          title: 'Not enough cash!',                        
+                          confirmButtonColor: '#3490dc' 
+                    })
+                }
+                else{
+                    alert(this.bet);
+                }
+            }
+
+
 
         },
 
