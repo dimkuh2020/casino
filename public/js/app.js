@@ -50557,11 +50557,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            wins: 0,
-            bet: 0, //ставка null 
+            bet: 0, //ставка 0 
             tempindex: null,
-            slotmachine: [[], [], []] //пустой 2мерный массив для машины
-
+            line1: 0, //для суммиования выигрыша
+            line2: 0,
+            line3: 0,
+            line4: 0,
+            line5: 0,
+            wins: 0,
+            slotmachine: [[], [], []] //пустой 2мерный массив для машины                
         };
     },
 
@@ -50569,35 +50573,79 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         test: function test() {},
         spin10: function spin10() {
-
             this.bet = 10;
-            this.message = 'Your bet is: ';
-            this.char = ' $';
             if (this.bet > this.cash) {
                 Swal.fire({
                     title: 'Not enough cash!',
                     confirmButtonColor: '#3490dc'
                 });
             } else {
-                alert(this.bet);
+                this.wins = this.line1 = this.line2 = this.line3 = this.line4 = this.line5 = 0;
+                this.slotmachine = [[], [], []];
+                this.getslots();
+
+                if (this.slotmachine[0][0].title == 'cherry' && this.slotmachine[0][1].title == 'cherry') {
+                    this.line1 = this.bet * 2;
+                }
+                if (this.slotmachine[0][0].title == 'cherry' && this.slotmachine[0][1].title == 'cherry' && this.slotmachine[0][2].title == 'cherry') {
+                    this.line1 = this.bet * 14;
+                }
+
+                if (this.slotmachine[1][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry') {
+                    this.line2 = this.bet * 2;
+                }
+                if (this.slotmachine[1][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry' && this.slotmachine[1][2].title == 'cherry') {
+                    this.line2 = this.bet * 14;
+                }
+
+                if (this.slotmachine[2][0].title == 'cherry' && this.slotmachine[2][1].title == 'cherry') {
+                    this.line3 = this.bet * 2;
+                }
+                if (this.slotmachine[2][0].title == 'cherry' && this.slotmachine[2][1].title == 'cherry' && this.slotmachine[2][2].title == 'cherry') {
+                    this.line3 = this.bet * 14;
+                }
+
+                if (this.slotmachine[0][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry') {
+                    this.line4 = this.bet * 2;
+                }
+                if (this.slotmachine[0][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry' && this.slotmachine[2][2].title == 'cherry') {
+                    this.line4 = this.bet * 14;
+                }
+
+                if (this.slotmachine[2][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry') {
+                    this.line5 = this.bet * 2;
+                }
+                if (this.slotmachine[2][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry' && this.slotmachine[0][2].title == 'cherry') {
+                    this.line5 = this.bet * 14;
+                }
+
+                this.wins = this.line1 + this.line2 + this.line3 + this.line4 + this.line5;
+
+                console.log('1 - ' + this.line1); //для проверки
+                console.log('2 - ' + this.line2);
+                console.log('3 - ' + this.line3);
+                console.log('4 - ' + this.line4);
+                console.log('5 - ' + this.line5);
+                console.log('w - ' + this.wins);
+            }
+        },
+        getslots: function getslots() {
+            for (var i = 0; i < 3; i++) {
+                this.tempindex = Math.floor(Math.random() * this.slots.length);
+                this.slotmachine[0].push(this.slots[this.tempindex]);
+
+                this.tempindex = Math.floor(Math.random() * this.slots.length);
+                this.slotmachine[1].push(this.slots[this.tempindex]);
+
+                this.tempindex = Math.floor(Math.random() * this.slots.length);
+                this.slotmachine[2].push(this.slots[this.tempindex]);
             }
         }
     },
 
     mounted: function mounted() {
         console.log('Component mounted.');
-        for (var i = 0; i < 3; i++) {
-            this.tempindex = Math.floor(Math.random() * this.slots.length);
-            this.slotmachine[0].push(this.slots[this.tempindex]);
-
-            this.tempindex = Math.floor(Math.random() * this.slots.length);
-            this.slotmachine[1].push(this.slots[this.tempindex]);
-
-            this.tempindex = Math.floor(Math.random() * this.slots.length);
-            this.slotmachine[2].push(this.slots[this.tempindex]);
-        }
-
-        console.log(this.slotmachine);
+        this.getslots();
     }
 });
 
