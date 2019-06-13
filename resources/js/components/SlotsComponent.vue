@@ -30,9 +30,9 @@
                 <output style="margin-left:5%"><h4>Wins:</h4><p class="underbox">{{wins}} $</p></output>                
             </div> 
             <div class="container" style="text-align: center; padding-top: 2%">                
-                <input type="button" @click="spin10()" class="btn btn-info" name="bet10" value="10" style="width: 120px;">
-                <input type="button" @click="spin50()" class="btn btn-warning" name="bet50" value="50" style="width: 120px; margin-left:5%">
-                <input type="button" @click="spin100()" class="btn btn-danger" name="bet100" value="100" style="width: 120px; margin-left:5%">
+                <input type="button" @click="spin(10)" class="btn btn-info" name="bet10" value="10" style="width: 120px;">
+                <input type="button" @click="spin(50)" class="btn btn-warning" name="bet50" value="50" style="width: 120px; margin-left:5%">
+                <input type="button" @click="spin(100)" class="btn btn-danger" name="bet100" value="100" style="width: 120px; margin-left:5%">
             </div> 
         </div>
     </div>
@@ -101,8 +101,8 @@
                               
             },
 
-            spin10(){                
-                this.bet = 10;                
+            spin(bet){                
+                this.bet = bet;                
                 if(this.bet > this.cash){
                     Swal.fire({
                           title: 'Not enough cash!',                        
@@ -110,6 +110,17 @@
                     })
                 }
                 else{
+
+                    this.cash -= this.bet;                               
+                    var data = {cash: this.cash};
+                    axios.put('/public/updatecash',data).then((response)=>{   
+                        console.log('minus - ' + response.data);
+                    }).catch((error)=>{
+                        console.log(error);
+                    }); 
+
+
+
                     this.wins = this.line1 = this.line2 = this.line3 = this.line4 = this.line5 = 0;
                     this.slotmachine = [[],[],[]];
                     this.getslots(); 
@@ -148,8 +159,131 @@
                     if((this.slotmachine[2][0].title == 'cherry')&&(this.slotmachine[1][1].title == 'cherry')&&(this.slotmachine[0][2].title == 'cherry')){
                         this.line5 = this.bet*14;
                     }
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    if((this.slotmachine[0][0].title == 'orange')&&(this.slotmachine[0][1].title == 'orange')){
+                        this.line1 = this.bet*3;
+                    }
+                    if((this.slotmachine[0][0].title == 'orange')&&(this.slotmachine[0][1].title == 'orange')&&(this.slotmachine[0][2].title == 'orange')){
+                        this.line1 = this.bet*24;
+                    }                
+
+                    if((this.slotmachine[1][0].title == 'orange')&&(this.slotmachine[1][1].title == 'orange')){
+                        this.line2 = this.bet*3;
+                    }
+                    if((this.slotmachine[1][0].title == 'cherry')&&(this.slotmachine[1][1].title == 'orange')&&(this.slotmachine[1][2].title == 'orange')){
+                        this.line2 = this.bet*24;
+                    }
+
+                    if((this.slotmachine[2][0].title == 'orange')&&(this.slotmachine[2][1].title == 'orange')){
+                        this.line3 = this.bet*3;
+                    }
+                    if((this.slotmachine[2][0].title == 'orange')&&(this.slotmachine[2][1].title == 'orange')&&(this.slotmachine[2][2].title == 'orange')){
+                        this.line3 = this.bet*24;
+                    }
+
+                    if((this.slotmachine[0][0].title == 'orange')&&(this.slotmachine[1][1].title == 'orange')){
+                        this.line4 = this.bet*3;
+                    }
+                    if((this.slotmachine[0][0].title == 'orange')&&(this.slotmachine[1][1].title == 'orange')&&(this.slotmachine[2][2].title == 'orange')){
+                        this.line4 = this.bet*24;
+                    }
+
+                    if((this.slotmachine[2][0].title == 'orange')&&(this.slotmachine[1][1].title == 'orange')){
+                        this.line5 = this.bet*3;
+                    }
+                    if((this.slotmachine[2][0].title == 'orange')&&(this.slotmachine[1][1].title == 'orange')&&(this.slotmachine[0][2].title == 'orange')){
+                        this.line5 = this.bet*24;
+                    }
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    if((this.slotmachine[0][0].title == 'plum')&&(this.slotmachine[0][1].title == 'plum')&&(this.slotmachine[0][2].title == 'plum')){
+                        this.line1 = this.bet*32;
+                    }  
+                    
+                    if((this.slotmachine[1][0].title == 'plum')&&(this.slotmachine[1][1].title == 'plum')&&(this.slotmachine[1][2].title == 'plum')){
+                        this.line2 = this.bet*32;
+                    }
+                    
+                    if((this.slotmachine[2][0].title == 'plum')&&(this.slotmachine[2][1].title == 'plum')&&(this.slotmachine[2][2].title == 'plum')){
+                        this.line3 = this.bet*32;
+                    }
+                    
+                    if((this.slotmachine[0][0].title == 'plum')&&(this.slotmachine[1][1].title == 'plum')&&(this.slotmachine[2][2].title == 'plum')){
+                        this.line4 = this.bet*32;
+                    }
+                    
+                    if((this.slotmachine[2][0].title == 'plum')&&(this.slotmachine[1][1].title == 'plum')&&(this.slotmachine[0][2].title == 'plum')){
+                        this.line5 = this.bet*32;
+                    }
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    if((this.slotmachine[0][0].title == 'bell')&&(this.slotmachine[0][1].title == 'bell')&&(this.slotmachine[0][2].title == 'bell')){
+                        this.line1 = this.bet*40;
+                    }  
+                    
+                    if((this.slotmachine[1][0].title == 'bell')&&(this.slotmachine[1][1].title == 'bell')&&(this.slotmachine[1][2].title == 'bell')){
+                        this.line2 = this.bet*40;
+                    }
+                    
+                    if((this.slotmachine[2][0].title == 'bell')&&(this.slotmachine[2][1].title == 'bell')&&(this.slotmachine[2][2].title == 'bell')){
+                        this.line3 = this.bet*40;
+                    }
+                    
+                    if((this.slotmachine[0][0].title == 'bell')&&(this.slotmachine[1][1].title == 'bell')&&(this.slotmachine[2][2].title == 'bell')){
+                        this.line4 = this.bet*40;
+                    }
+                    
+                    if((this.slotmachine[2][0].title == 'bell')&&(this.slotmachine[1][1].title == 'bell')&&(this.slotmachine[0][2].title == 'bell')){
+                        this.line5 = this.bet*40;
+                    }
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    if((this.slotmachine[0][0].title == 'bar')&&(this.slotmachine[0][1].title == 'bar')&&(this.slotmachine[0][2].title == 'bar')){
+                        this.line1 = this.bet*50;
+                    }  
+                    
+                    if((this.slotmachine[1][0].title == 'bar')&&(this.slotmachine[1][1].title == 'bar')&&(this.slotmachine[1][2].title == 'bar')){
+                        this.line2 = this.bet*50;
+                    }
+                    
+                    if((this.slotmachine[2][0].title == 'bar')&&(this.slotmachine[2][1].title == 'bar')&&(this.slotmachine[2][2].title == 'bar')){
+                        this.line3 = this.bet*50;
+                    }
+                    
+                    if((this.slotmachine[0][0].title == 'bar')&&(this.slotmachine[1][1].title == 'bar')&&(this.slotmachine[2][2].title == 'bar')){
+                        this.line4 = this.bet*50;
+                    }
+                    
+                    if((this.slotmachine[2][0].title == 'bar')&&(this.slotmachine[1][1].title == 'bar')&&(this.slotmachine[0][2].title == 'bar')){
+                        this.line5 = this.bet*50;
+                    }
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    if((this.slotmachine[0][0].title == 'seven')&&(this.slotmachine[0][1].title == 'seven')&&(this.slotmachine[0][2].title == 'seven')){
+                        this.line1 = this.bet*100;
+                    }  
+                    
+                    if((this.slotmachine[1][0].title == 'seven')&&(this.slotmachine[1][1].title == 'seven')&&(this.slotmachine[1][2].title == 'seven')){
+                        this.line2 = this.bet*100;
+                    }
+                    
+                    if((this.slotmachine[2][0].title == 'seven')&&(this.slotmachine[2][1].title == 'seven')&&(this.slotmachine[2][2].title == 'seven')){
+                        this.line3 = this.bet*100;
+                    }
+                    
+                    if((this.slotmachine[0][0].title == 'seven')&&(this.slotmachine[1][1].title == 'seven')&&(this.slotmachine[2][2].title == 'seven')){
+                        this.line4 = this.bet*100;
+                    }
+                    
+                    if((this.slotmachine[2][0].title == 'seven')&&(this.slotmachine[1][1].title == 'seven')&&(this.slotmachine[0][2].title == 'seven')){
+                        this.line5 = this.bet*100;
+                    }
 
                     this.wins = this.line1+this.line2+this.line3+this.line4+this.line5;
+
+                    this.cash += this.wins;                               
+                    var data1 = {cash: this.cash};
+                    axios.put('/public/updatecash',data1).then((response)=>{   
+                       console.log('plus - ' + response.data1);
+                    }).catch((error)=>{
+                       console.log(error);
+                    }); 
 
                     console.log('1 - '+ this.line1);  //для проверки
                     console.log('2 - '+ this.line2); 
