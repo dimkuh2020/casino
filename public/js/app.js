@@ -50574,24 +50574,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         test: function test() {},
         spin: function spin(bet) {
             this.bet = bet;
+            this.wins = this.line1 = this.line2 = this.line3 = this.line4 = this.line5 = 0;
+
             if (this.bet > this.cash) {
                 Swal.fire({
                     title: 'Not enough cash!',
                     confirmButtonColor: '#3490dc'
                 });
             } else {
-
-                this.cash -= this.bet;
-                var data = { cash: this.cash };
-                axios.put('/public/updatecash', data).then(function (response) {
-                    console.log('minus - ' + response.data);
-                }).catch(function (error) {
-                    console.log(error);
-                });
-
-                this.wins = this.line1 = this.line2 = this.line3 = this.line4 = this.line5 = 0;
                 this.slotmachine = [[], [], []];
                 this.getslots();
+                this.cash -= this.bet;
 
                 if (this.slotmachine[0][0].title == 'cherry' && this.slotmachine[0][1].title == 'cherry') {
                     this.line1 = this.bet * 2;
@@ -50744,11 +50737,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
 
                 this.wins = this.line1 + this.line2 + this.line3 + this.line4 + this.line5;
-
                 this.cash += this.wins;
-                var data1 = { cash: this.cash };
-                axios.put('/public/updatecash', data1).then(function (response) {
-                    console.log('plus - ' + response.data1);
+                var data = { cash: this.cash };
+                axios.put('/public/updatecash', data).then(function (response) {
+                    console.log(response.data);
                 }).catch(function (error) {
                     console.log(error);
                 });
