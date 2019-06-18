@@ -107,7 +107,9 @@
             },
 
             spin(bet){                
-                this.bet = bet;                
+                this.bet = bet;  
+                this.wins = this.line1 = this.line2 = this.line3 = this.line4 = this.line5 = 0; 
+
                 if(this.bet > this.cash){
                     Swal.fire({
                           title: 'Not enough cash!',                        
@@ -115,20 +117,9 @@
                     })
                 }
                 else{
-
-                    this.cash -= this.bet;                               
-                    var data = {cash: this.cash};
-                    axios.put('/public/updatecash',data).then((response)=>{   
-                        console.log('minus - ' + response.data);
-                    }).catch((error)=>{
-                        console.log(error);
-                    }); 
-
-
-
-                    this.wins = this.line1 = this.line2 = this.line3 = this.line4 = this.line5 = 0;
                     this.slotmachine = [[],[],[]];
                     this.getslots(); 
+                    this.cash -= this.bet;                                                           
 
                     if((this.slotmachine[0][0].title == 'cherry')&&(this.slotmachine[0][1].title == 'cherry')){
                         this.line1 = this.bet*2;
@@ -281,11 +272,10 @@
                     }
 
                     this.wins = this.line1+this.line2+this.line3+this.line4+this.line5;
-
                     this.cash += this.wins;                               
-                    var data1 = {cash: this.cash};
-                    axios.put('/public/updatecash',data1).then((response)=>{   
-                       console.log('plus - ' + response.data1);
+                    var data = {cash: this.cash};
+                    axios.put('/public/updatecash',data).then((response)=>{   
+                       console.log(response.data);
                     }).catch((error)=>{
                        console.log(error);
                     }); 
@@ -313,7 +303,6 @@
                     }
             }
         },
-
        
         mounted() {
             console.log('Component mounted.');
