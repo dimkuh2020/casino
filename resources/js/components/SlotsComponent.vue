@@ -1,6 +1,9 @@
 <template>
     <div class="container">
         <button @click="test()">TEST</button>
+        <div id="divtest">
+            <img id="imgtest" src="img/slots/slot1.png">
+        </div>
         <div class="row justify-content-center"> 
             <div>
                 <table>
@@ -39,9 +42,14 @@
 </template>
 
 <style type="text/css">
-    .slots{
-        background-image: url(/img/slot1.png);
-        background-blend-mode: multiply;
+    #imgtest:hover {
+    transform: translate(0,99px);
+    transition: transform .110s;
+        
+    }
+    #divtest{
+        position: absolute;
+        clip: rect(auto, auto, auto, auto);
     }
 
     table {
