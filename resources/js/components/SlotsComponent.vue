@@ -1,22 +1,25 @@
 <template>
     <div class="container">
         <button @click="test()">TEST</button>
+        <div id="divtest">
+            <img id="imgtest" src="img/slots/slot1.png">
+        </div>
         <div class="row justify-content-center"> 
             <div>
                 <table>
                     <tr>
                         <td v-for="sm in slotmachine[0]"> 
-                            <img class="slots" v-bind:src="sm.url" v-model="slotmachine[0]">
+                            <img class="slots" id="l1" v-bind:src="sm.url" v-model="slotmachine[0]">
                         </td>
                     </tr>
                      <tr>
                         <td v-for="sm in slotmachine[1]"> 
-                            <img class="slots" v-bind:src="sm.url" v-model="slotmachine[1]">
+                            <img class="slots" id="l2" v-bind:src="sm.url" v-model="slotmachine[1]">
                         </td>
                     </tr>
                     <tr>
                         <td v-for="sm in slotmachine[2]"> 
-                            <img class="slots" v-bind:src="sm.url" v-model="slotmachine[2]">
+                            <img class="slots" id="l3" v-bind:src="sm.url" v-model="slotmachine[2]">
                         </td>
                       </tr>                    
                 </table>
@@ -39,6 +42,16 @@
 </template>
 
 <style type="text/css">
+    #imgtest:hover {
+    transform: translate(0,99px);
+    transition: transform .110s;
+        
+    }
+    #divtest{
+        position: absolute;
+        clip: rect(auto, auto, auto, auto);
+    }
+
     table {
         width: 330px;
         height: 330px;

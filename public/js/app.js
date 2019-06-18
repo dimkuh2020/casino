@@ -50466,7 +50466,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\ntable {\n    width: 330px;\n    height: 330px;\n    border: solid 3px blue;\n}\ntd {        \n    width: 100px;\n    border: solid 2px blue;\n    border-bottom:0;\n    border-top: 0;\n}\ntr{\n    height: 100px;\n}\n.underbox{\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border: 4px groove orangered; \n    border-radius: 30%;\n    text-align: center;  \n    font-size: 22px;         \n    height: 50px;\n    width: 120px;        \n    color: #1b1f3d;\n}    \n", ""]);
+exports.push([module.i, "\n#imgtest:hover {\n-webkit-transform: translate(0,99px);\n        transform: translate(0,99px);\n-webkit-transition: -webkit-transform .110s;\ntransition: -webkit-transform .110s;\ntransition: transform .110s;\ntransition: transform .110s, -webkit-transform .110s;\n}\n#divtest{\n    position: absolute;\n    clip: rect(auto, auto, auto, auto);\n}\ntable {\n    width: 330px;\n    height: 330px;\n    border: solid 3px blue;\n}\ntd {        \n    width: 100px;\n    border: solid 2px blue;\n    border-bottom:0;\n    border-top: 0;\n}\ntr{\n    height: 100px;\n}\n.underbox{\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border: 4px groove orangered; \n    border-radius: 30%;\n    text-align: center;  \n    font-size: 22px;         \n    height: 50px;\n    width: 120px;        \n    color: #1b1f3d;\n}    \n", ""]);
 
 // exports
 
@@ -50477,6 +50477,19 @@ exports.push([module.i, "\ntable {\n    width: 330px;\n    height: 330px;\n    b
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -50794,6 +50807,8 @@ var render = function() {
       [_vm._v("TEST")]
     ),
     _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", [
         _c("table", [
@@ -50803,7 +50818,7 @@ var render = function() {
               return _c("td", [
                 _c("img", {
                   staticClass: "slots",
-                  attrs: { src: sm.url },
+                  attrs: { id: "l1", src: sm.url },
                   model: {
                     value: _vm.slotmachine[0],
                     callback: function($$v) {
@@ -50823,7 +50838,7 @@ var render = function() {
               return _c("td", [
                 _c("img", {
                   staticClass: "slots",
-                  attrs: { src: sm.url },
+                  attrs: { id: "l2", src: sm.url },
                   model: {
                     value: _vm.slotmachine[1],
                     callback: function($$v) {
@@ -50843,7 +50858,7 @@ var render = function() {
               return _c("td", [
                 _c("img", {
                   staticClass: "slots",
-                  attrs: { src: sm.url },
+                  attrs: { id: "l3", src: sm.url },
                   model: {
                     value: _vm.slotmachine[2],
                     callback: function($$v) {
@@ -50933,7 +50948,16 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "divtest" } }, [
+      _c("img", { attrs: { id: "imgtest", src: "img/slots/slot1.png" } })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
