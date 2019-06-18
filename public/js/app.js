@@ -50466,7 +50466,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\ntable {\n    width: 330px;\n    height: 330px;\n    border: solid 3px blue;\n}\ntd {        \n    width: 100px;\n    border: solid 2px blue;\n    border-bottom:0;\n    border-top: 0;\n}\ntr{\n    height: 100px;\n}\n.underbox{\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border: 4px groove orangered; \n    border-radius: 30%;\n    text-align: center;  \n    font-size: 22px;         \n    height: 50px;\n    width: 120px;        \n    color: #1b1f3d;\n}    \n", ""]);
+exports.push([module.i, "\n.slots{\n    background-image: url(/img/slot1.png);\n    background-blend-mode: multiply;\n}\ntable {\n    width: 330px;\n    height: 330px;\n    border: solid 3px blue;\n}\ntd {        \n    width: 100px;\n    border: solid 2px blue;\n    border-bottom:0;\n    border-top: 0;\n}\ntr{\n    height: 100px;\n}\n.underbox{\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border: 4px groove orangered; \n    border-radius: 30%;\n    text-align: center;  \n    font-size: 22px;         \n    height: 50px;\n    width: 120px;        \n    color: #1b1f3d;\n}    \n", ""]);
 
 // exports
 
@@ -50477,6 +50477,11 @@ exports.push([module.i, "\ntable {\n    width: 330px;\n    height: 330px;\n    b
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -50811,7 +50816,7 @@ var render = function() {
               return _c("td", [
                 _c("img", {
                   staticClass: "slots",
-                  attrs: { src: sm.url },
+                  attrs: { id: "l1", src: sm.url },
                   model: {
                     value: _vm.slotmachine[0],
                     callback: function($$v) {
@@ -50831,7 +50836,7 @@ var render = function() {
               return _c("td", [
                 _c("img", {
                   staticClass: "slots",
-                  attrs: { src: sm.url },
+                  attrs: { id: "l2", src: sm.url },
                   model: {
                     value: _vm.slotmachine[1],
                     callback: function($$v) {
@@ -50851,7 +50856,7 @@ var render = function() {
               return _c("td", [
                 _c("img", {
                   staticClass: "slots",
-                  attrs: { src: sm.url },
+                  attrs: { id: "l3", src: sm.url },
                   model: {
                     value: _vm.slotmachine[2],
                     callback: function($$v) {

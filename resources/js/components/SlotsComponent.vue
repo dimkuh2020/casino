@@ -6,17 +6,17 @@
                 <table>
                     <tr>
                         <td v-for="sm in slotmachine[0]"> 
-                            <img class="slots" v-bind:src="sm.url" v-model="slotmachine[0]">
+                            <img class="slots" id="l1" v-bind:src="sm.url" v-model="slotmachine[0]">
                         </td>
                     </tr>
                      <tr>
                         <td v-for="sm in slotmachine[1]"> 
-                            <img class="slots" v-bind:src="sm.url" v-model="slotmachine[1]">
+                            <img class="slots" id="l2" v-bind:src="sm.url" v-model="slotmachine[1]">
                         </td>
                     </tr>
                     <tr>
                         <td v-for="sm in slotmachine[2]"> 
-                            <img class="slots" v-bind:src="sm.url" v-model="slotmachine[2]">
+                            <img class="slots" id="l3" v-bind:src="sm.url" v-model="slotmachine[2]">
                         </td>
                       </tr>                    
                 </table>
@@ -39,6 +39,11 @@
 </template>
 
 <style type="text/css">
+    .slots{
+        background-image: url(/img/slot1.png);
+        background-blend-mode: multiply;
+    }
+
     table {
         width: 330px;
         height: 330px;
