@@ -2,7 +2,8 @@
     <div class="container">
         <button @click="test()">TEST</button>
         <div id="divtest">
-            <img id="imgtest" src="img/slots/slot1.png">
+            <img id="imgtest" src="img/slots/reel3.png">
+            
         </div>
         <div class="row justify-content-center"> 
             <div>
@@ -42,19 +43,30 @@
 </template>
 
 <style type="text/css">
+
+    #imgtest {    
+    position:absolute; /*установить колесо внизу div*/
+    bottom:0;         
+    }
+
     #imgtest:hover {
-    transform: translate(0,99px);
-    transition: transform .110s;
+    transform: translate(0,1750px);
+    /*transition: transform .200s;*/
+    transition-duration: 2s;  
+    transition-delay: 1s;
+
         
     }
     #divtest{
+        width: 100px;
+        height: 100px;
         position: absolute;
         clip: rect(auto, auto, auto, auto);
     }
 
     table {
-        width: 330px;
-        height: 330px;
+        width: 300px;
+        height: 300px;
         border: solid 3px blue;
 
     }
@@ -67,7 +79,7 @@
     }
 
     tr{
-        height: 100px; 
+        height: 100px;
 
     }
 
