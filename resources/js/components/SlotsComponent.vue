@@ -11,60 +11,61 @@
                     <tr>
                         <td>
                             <div id="divtest">
-                                <img v-bind:src="slotmachine[0][0].url" v-show="visible1">
-                                <img id="imgtest1" src="img/slots/reel3.png" v-show="!visible1">            
+                                <img id="slot1" v-bind:src="slotmachine[0][0].url" v-show="visible">
+                                <img id="reel1" src="img/slots/reel3.png" v-show="!visible">
                             </div>
                         </td>
                         <td>
                             <div id="divtest">
-                                <img v-bind:src="slotmachine[0][1].url" v-show="visible1">
-                                <img id="imgtest11" src="img/slots/reel3.png" v-show="!visible1">            
+                                <img id="slot11" v-bind:src="slotmachine[0][1].url" v-show="visible">
+                                <img id="reel11" src="img/slots/reel3.png" v-show="!visible">            
                             </div>
                         </td>
                         <td>
                             <div id="divtest">
-                                <img v-bind:src="slotmachine[0][2].url" v-show="visible1">
-                                <img id="imgtest111" src="img/slots/reel3.png" v-show="!visible1">            
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div id="divtest">
-                                <img v-bind:src="slotmachine[1][0].url" v-show="visible1">
-                                <img id="imgtest2" src="img/slots/reel3.png" v-show="!visible1">            
-                            </div>
-                        </td>
-                        <td>
-                            <div id="divtest">
-                                <img v-bind:src="slotmachine[1][1].url" v-show="visible1">
-                                <img id="imgtest22" src="img/slots/reel3.png" v-show="!visible1">            
-                            </div>
-                        </td>
-                        <td>
-                            <div id="divtest">
-                                <img v-bind:src="slotmachine[1][2].url" v-show="visible1">
-                                <img id="imgtest222" src="img/slots/reel3.png" v-show="!visible1">            
+                                <img id="slot111" v-bind:src="slotmachine[0][2].url" v-show="visible">
+                                <img id="reel111" src="img/slots/reel3.png" v-show="!visible">            
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <div id="divtest">
-                                <img v-bind:src="slotmachine[2][0].url" v-show="visible1">
-                                <img id="imgtest3" src="img/slots/reel3.png" v-show="!visible1">            
+                                <img id="slot2" v-bind:src="slotmachine[1][0].url" v-show="visible">
+                                <img id="reel2" src="img/slots/reel3.png" v-show="!visible">            
                             </div>
                         </td>
                         <td>
                             <div id="divtest">
-                                <img v-bind:src="slotmachine[2][1].url" v-show="visible1">
-                                <img id="imgtest33" src="img/slots/reel3.png" v-show="!visible1">            
+                                <img id="slot22" v-bind:src="slotmachine[1][1].url" v-show="visible">
+                                <img id="reel22" src="img/slots/reel3.png" v-show="!visible">            
                             </div>
                         </td>
                         <td>
                             <div id="divtest">
-                                <img v-bind:src="slotmachine[2][2].url" v-show="visible1">
-                                <img id="imgtest333" src="img/slots/reel3.png" v-show="!visible1">            
+                                <img id="slot222" v-bind:src="slotmachine[1][2].url" v-show="visible">
+                                <img id="reel222" src="img/slots/reel3.png" v-show="!visible">            
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="divtest">
+                                <img id="slot3"v-bind:src="slotmachine[2][0].url" v-show="visible">
+                                <img id="reel3" src="img/slots/reel3.png" v-show="!visible">            
+                            </div>
+                        </td>
+                        <td>
+                            <div id="divtest">
+                                <img id="slot33" v-bind:src="slotmachine[2][1].url" v-show="visible">
+                                <img id="reel33" src="img/slots/reel3.png" v-show="!visible">            
+                            </div>
+                        </td>
+                        <td>
+                            <div id="divtest">
+                                <img id="slot333" v-bind:src="slotmachine[2][2].url" v-show="visible">
+                                <img id="reel333" src="img/slots/reel3.png" v-show="!visible">
+
                             </div>
                         </td>
                     </tr>               
@@ -110,9 +111,9 @@
 
 <style type="text/css">
 
-    #imgtest1, #imgtest11, #imgtest111,
-    #imgtest2, #imgtest22, #imgtest222,
-    #imgtest3, #imgtest33, #imgtest333 {    
+    #reel1, #reel11, #reel111,
+    #reel2, #reel22, #reel222,
+    #reel3, #reel33, #reel333 {    
     position: relative; /*установить колесо внизу div*/
     bottom: 1700px;         
     
@@ -151,10 +152,10 @@
         border-top: 0;        
     }
 
-    td:nth-child(1){
+    /*td:nth-child(1){
         color: red;
 
-    }
+    }*/
 
     
 
@@ -183,6 +184,7 @@
 
          data() {
             return {
+                visible: true,
                 visible1: true,
                 visible2: true, 
                 visible3: true,
@@ -201,50 +203,89 @@
         methods:{
 
             test2(){
-                this.visible1 = false;
+                document.getElementById('reel1').style.display="none";
+                document.getElementById('slot1').style.display="block";
+
+                //this.visible1 = true;
             },
 
             test(){
-
-                this.visible1 = false;
-
-                setTimeout( function(){                    
-                    document.getElementById('imgtest1').style.transform="translate(0px, 1700px)";                    
-                }, 1);
+                
+                this.visible = false;
 
                 setTimeout( function(){
-                    document.getElementById('imgtest2').style.transform="translate(0px, 1700px)";
+                    document.getElementById('reel1').style.transform="translate(0px, 1700px)";
+                    setTimeout( function(){
+                        document.getElementById('reel1').style.display="none";
+                        document.getElementById('slot1').style.display="block";
+                    }, 1000);
                 }, 10);
 
                 setTimeout( function(){
-                    document.getElementById('imgtest3').style.transform="translate(0px, 1700px)";
-                }, 20); 
+                    document.getElementById('reel2').style.transform="translate(0px, 1700px)";
+                    setTimeout( function(){
+                        document.getElementById('reel2').style.display="none";
+                        document.getElementById('slot2').style.display="block";
+                    }, 1000);
+                }, 20);
 
                 setTimeout( function(){
-                    document.getElementById('imgtest11').style.transform="translate(0px, 1700px)";
-                }, 30);
+                    document.getElementById('reel3').style.transform="translate(0px, 1700px)";
+                    setTimeout( function(){
+                        document.getElementById('reel3').style.display="none";
+                        document.getElementById('slot3').style.display="block";
+                    }, 1000);
+                }, 30); 
 
                 setTimeout( function(){
-                    document.getElementById('imgtest22').style.transform="translate(0px, 1700px)";
+                    document.getElementById('reel11').style.transform="translate(0px, 1700px)";
+                    setTimeout( function(){
+                        document.getElementById('reel11').style.display="none";
+                        document.getElementById('slot11').style.display="block";
+                    }, 1000);
                 }, 40);
 
                 setTimeout( function(){
-                    document.getElementById('imgtest33').style.transform="translate(0px, 1700px)";
-                }, 50); 
+                    document.getElementById('reel22').style.transform="translate(0px, 1700px)";
+                    setTimeout( function(){
+                        document.getElementById('reel22').style.display="none";
+                        document.getElementById('slot22').style.display="block";
+                    }, 1000);
+                }, 50);
 
                 setTimeout( function(){
-                    document.getElementById('imgtest111').style.transform="translate(0px, 1700px)";
-                }, 60);
+                    document.getElementById('reel33').style.transform="translate(0px, 1700px)";
+                    setTimeout( function(){
+                        document.getElementById('reel33').style.display="none";
+                        document.getElementById('slot33').style.display="block";
+                    }, 1000);
+                }, 60); 
 
                 setTimeout( function(){
-                    document.getElementById('imgtest222').style.transform="translate(0px, 1700px)";
+                    document.getElementById('reel111').style.transform="translate(0px, 1700px)";
+                    setTimeout( function(){
+                        document.getElementById('reel111').style.display="none";
+                        document.getElementById('slot111').style.display="block";
+                    }, 1000);
                 }, 70);
 
                 setTimeout( function(){
-                    document.getElementById('imgtest333').style.transform="translate(0px, 1700px)";
-                }, 80); 
+                    document.getElementById('reel222').style.transform="translate(0px, 1700px)";
+                    setTimeout( function(){
+                        document.getElementById('reel222').style.display="none";
+                        document.getElementById('slot222').style.display="block";
+                    }, 1000);
+                }, 80);
 
+                setTimeout( function(){
+                    document.getElementById('reel333').style.transform="translate(0px, 1700px)";
+                    setTimeout( function(){
+                        document.getElementById('reel333').style.display="none";
+                        document.getElementById('slot333').style.display="block";
+                    }, 1000);
+                }, 90); 
 
+                //this.visible2 = false;
                               
             },
 
