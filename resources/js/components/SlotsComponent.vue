@@ -1,11 +1,77 @@
 <template>
     <div class="container">
         <button @click="test()">TEST</button>
+        <button @click="test2()">TEST2</button>
         <div id="divtest">
-            <img id="imgtest" src="img/slots/reel3.png">
-            
+            <img id="imgtest" src="img/slots/reel3.png">            
         </div>
-        <div class="row justify-content-center"> 
+        <div class="row justify-content-center">
+            <div>
+                <table>
+                    <tr>
+                        <td>
+                            <div id="divtest">
+                                <img v-bind:src="slotmachine[0][0].url" v-show="visible1">
+                                <img id="imgtest1" src="img/slots/reel3.png" v-show="!visible1">            
+                            </div>
+                        </td>
+                        <td>
+                            <div id="divtest">
+                                <img v-bind:src="slotmachine[0][1].url" v-show="visible1">
+                                <img id="imgtest11" src="img/slots/reel3.png" v-show="!visible1">            
+                            </div>
+                        </td>
+                        <td>
+                            <div id="divtest">
+                                <img v-bind:src="slotmachine[0][2].url" v-show="visible1">
+                                <img id="imgtest111" src="img/slots/reel3.png" v-show="!visible1">            
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="divtest">
+                                <img v-bind:src="slotmachine[1][0].url" v-show="visible1">
+                                <img id="imgtest2" src="img/slots/reel3.png" v-show="!visible1">            
+                            </div>
+                        </td>
+                        <td>
+                            <div id="divtest">
+                                <img v-bind:src="slotmachine[1][1].url" v-show="visible1">
+                                <img id="imgtest22" src="img/slots/reel3.png" v-show="!visible1">            
+                            </div>
+                        </td>
+                        <td>
+                            <div id="divtest">
+                                <img v-bind:src="slotmachine[1][2].url" v-show="visible1">
+                                <img id="imgtest222" src="img/slots/reel3.png" v-show="!visible1">            
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="divtest">
+                                <img v-bind:src="slotmachine[2][0].url" v-show="visible1">
+                                <img id="imgtest3" src="img/slots/reel3.png" v-show="!visible1">            
+                            </div>
+                        </td>
+                        <td>
+                            <div id="divtest">
+                                <img v-bind:src="slotmachine[2][1].url" v-show="visible1">
+                                <img id="imgtest33" src="img/slots/reel3.png" v-show="!visible1">            
+                            </div>
+                        </td>
+                        <td>
+                            <div id="divtest">
+                                <img v-bind:src="slotmachine[2][2].url" v-show="visible1">
+                                <img id="imgtest333" src="img/slots/reel3.png" v-show="!visible1">            
+                            </div>
+                        </td>
+                    </tr>               
+                </table>
+            </div> 
+
+            
             <div>
                 <table>
                     <tr>
@@ -24,7 +90,7 @@
                         </td>
                       </tr>                    
                 </table>
-            </div>
+            </div>            
             <!--<div  class="container" style="text-align: center; padding-top: 2%; color: #1b1f3d;">
                     <h3>{{message}}{{bet}}{{char}}</h3>                                                                           
             </div>--> 
@@ -44,30 +110,37 @@
 
 <style type="text/css">
 
-    #imgtest {    
-    position:absolute; /*установить колесо внизу div*/
-    bottom:0;         
-    }
-
-    #imgtest:hover {
-    transform: translate(0,1750px);
-    /*transition: transform .200s;*/
-    transition-duration: 2s;  
-    transition-delay: 1s;
+    #imgtest1, #imgtest11, #imgtest111,
+    #imgtest2, #imgtest22, #imgtest222,
+    #imgtest3, #imgtest33, #imgtest333 {    
+    position: relative; /*установить колесо внизу div*/
+    bottom: 1700px;         
+    
+    
+    /*transform: translate(0,1700px);*/
+    
+    transition-duration: 1s;  
+    
+    transition-timing-function: cubic-bezier(0,0,1,1);
 
         
     }
     #divtest{
         width: 100px;
         height: 100px;
-        position: absolute;
-        clip: rect(auto, auto, auto, auto);
+        overflow: hidden; 
+        
     }
 
     table {
         width: 300px;
         height: 300px;
         border: solid 3px blue;
+
+    }
+
+    tr {
+            height: 100px;
 
     }
 
@@ -78,10 +151,12 @@
         border-top: 0;        
     }
 
-    tr{
-        height: 100px;
+    td:nth-child(1){
+        color: red;
 
     }
+
+    
 
     .underbox{
         justify-content: center;
@@ -107,7 +182,10 @@
         ],
 
          data() {
-            return { 
+            return {
+                visible1: true,
+                visible2: true, 
+                visible3: true,
                 bet: 0,                    //ставка 0 
                 tempindex: null,
                 line1: 0,                  //для суммиования выигрыша
@@ -120,8 +198,52 @@
             }
         },  
 
-        methods:{            
-            test(){               
+        methods:{
+
+            test2(){
+                this.visible1 = false;
+            },
+
+            test(){
+
+                this.visible1 = false;
+
+                setTimeout( function(){                    
+                    document.getElementById('imgtest1').style.transform="translate(0px, 1700px)";                    
+                }, 1);
+
+                setTimeout( function(){
+                    document.getElementById('imgtest2').style.transform="translate(0px, 1700px)";
+                }, 10);
+
+                setTimeout( function(){
+                    document.getElementById('imgtest3').style.transform="translate(0px, 1700px)";
+                }, 20); 
+
+                setTimeout( function(){
+                    document.getElementById('imgtest11').style.transform="translate(0px, 1700px)";
+                }, 30);
+
+                setTimeout( function(){
+                    document.getElementById('imgtest22').style.transform="translate(0px, 1700px)";
+                }, 40);
+
+                setTimeout( function(){
+                    document.getElementById('imgtest33').style.transform="translate(0px, 1700px)";
+                }, 50); 
+
+                setTimeout( function(){
+                    document.getElementById('imgtest111').style.transform="translate(0px, 1700px)";
+                }, 60);
+
+                setTimeout( function(){
+                    document.getElementById('imgtest222').style.transform="translate(0px, 1700px)";
+                }, 70);
+
+                setTimeout( function(){
+                    document.getElementById('imgtest333').style.transform="translate(0px, 1700px)";
+                }, 80); 
+
 
                               
             },

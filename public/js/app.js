@@ -50466,7 +50466,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\n#imgtest {    \nposition:absolute; /*установить колесо внизу div*/\nbottom:0;\n}\n#imgtest:hover {\n-webkit-transform: translate(0,1750px);\n        transform: translate(0,1750px);\n/*transition: transform .200s;*/\n-webkit-transition-duration: 2s;\n        transition-duration: 2s;  \n-webkit-transition-delay: 1s;  \n        transition-delay: 1s;\n}\n#divtest{\n    width: 100px;\n    height: 100px;\n    position: absolute;\n    clip: rect(auto, auto, auto, auto);\n}\ntable {\n    width: 300px;\n    height: 300px;\n    border: solid 3px blue;\n}\ntd {        \n    width: 100px;\n    border: solid 2px blue;\n    border-bottom:0;\n    border-top: 0;\n}\ntr{\n    height: 100px;\n}\n.underbox{\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border: 4px groove orangered; \n    border-radius: 30%;\n    text-align: center;  \n    font-size: 22px;         \n    height: 50px;\n    width: 120px;        \n    color: #1b1f3d;\n}    \n", ""]);
+exports.push([module.i, "\n#imgtest1, #imgtest11, #imgtest111,\n#imgtest2, #imgtest22, #imgtest222,\n#imgtest3, #imgtest33, #imgtest333 {    \nposition: relative; /*установить колесо внизу div*/\nbottom: 1700px;         \n\n\n/*transform: translate(0,1700px);*/\n\n-webkit-transition-duration: 1s;\n\n        transition-duration: 1s;  \n\n-webkit-transition-timing-function: cubic-bezier(0,0,1,1);  \n\n        transition-timing-function: cubic-bezier(0,0,1,1);\n}\n#divtest{\n    width: 100px;\n    height: 100px;\n    overflow: hidden;\n}\ntable {\n    width: 300px;\n    height: 300px;\n    border: solid 3px blue;\n}\ntr {\n        height: 100px;\n}\ntd {        \n    width: 100px;\n    border: solid 2px blue;\n    border-bottom:0;\n    border-top: 0;\n}\ntd:nth-child(1){\n    color: red;\n}\n.underbox{\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border: 4px groove orangered; \n    border-radius: 30%;\n    text-align: center;  \n    font-size: 22px;         \n    height: 50px;\n    width: 120px;        \n    color: #1b1f3d;\n}    \n", ""]);
 
 // exports
 
@@ -50575,6 +50575,81 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -50582,6 +50657,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
+            visible1: true,
+            visible2: true,
+            visible3: true,
             bet: 0, //ставка 0 
             tempindex: null,
             line1: 0, //для суммиования выигрыша
@@ -50596,7 +50674,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        test: function test() {},
+        test2: function test2() {
+            this.visible1 = false;
+        },
+        test: function test() {
+
+            this.visible1 = false;
+
+            setTimeout(function () {
+                document.getElementById('imgtest1').style.transform = "translate(0px, 1700px)";
+            }, 1);
+
+            setTimeout(function () {
+                document.getElementById('imgtest2').style.transform = "translate(0px, 1700px)";
+            }, 10);
+
+            setTimeout(function () {
+                document.getElementById('imgtest3').style.transform = "translate(0px, 1700px)";
+            }, 20);
+
+            setTimeout(function () {
+                document.getElementById('imgtest11').style.transform = "translate(0px, 1700px)";
+            }, 30);
+
+            setTimeout(function () {
+                document.getElementById('imgtest22').style.transform = "translate(0px, 1700px)";
+            }, 40);
+
+            setTimeout(function () {
+                document.getElementById('imgtest33').style.transform = "translate(0px, 1700px)";
+            }, 50);
+
+            setTimeout(function () {
+                document.getElementById('imgtest111').style.transform = "translate(0px, 1700px)";
+            }, 60);
+
+            setTimeout(function () {
+                document.getElementById('imgtest222').style.transform = "translate(0px, 1700px)";
+            }, 70);
+
+            setTimeout(function () {
+                document.getElementById('imgtest333').style.transform = "translate(0px, 1700px)";
+            }, 80);
+        },
         spin: function spin(bet) {
             this.bet = bet;
             this.wins = this.line1 = this.line2 = this.line3 = this.line4 = this.line5 = 0;
@@ -50819,9 +50939,283 @@ var render = function() {
       [_vm._v("TEST")]
     ),
     _vm._v(" "),
+    _c(
+      "button",
+      {
+        on: {
+          click: function($event) {
+            return _vm.test2()
+          }
+        }
+      },
+      [_vm._v("TEST2")]
+    ),
+    _vm._v(" "),
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", [
+        _c("table", [
+          _c("tr", [
+            _c("td", [
+              _c("div", { attrs: { id: "divtest" } }, [
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.visible1,
+                      expression: "visible1"
+                    }
+                  ],
+                  attrs: { src: _vm.slotmachine[0][0].url }
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.visible1,
+                      expression: "!visible1"
+                    }
+                  ],
+                  attrs: { id: "imgtest1", src: "img/slots/reel3.png" }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _c("div", { attrs: { id: "divtest" } }, [
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.visible1,
+                      expression: "visible1"
+                    }
+                  ],
+                  attrs: { src: _vm.slotmachine[0][1].url }
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.visible1,
+                      expression: "!visible1"
+                    }
+                  ],
+                  attrs: { id: "imgtest11", src: "img/slots/reel3.png" }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _c("div", { attrs: { id: "divtest" } }, [
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.visible1,
+                      expression: "visible1"
+                    }
+                  ],
+                  attrs: { src: _vm.slotmachine[0][2].url }
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.visible1,
+                      expression: "!visible1"
+                    }
+                  ],
+                  attrs: { id: "imgtest111", src: "img/slots/reel3.png" }
+                })
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [
+              _c("div", { attrs: { id: "divtest" } }, [
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.visible1,
+                      expression: "visible1"
+                    }
+                  ],
+                  attrs: { src: _vm.slotmachine[1][0].url }
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.visible1,
+                      expression: "!visible1"
+                    }
+                  ],
+                  attrs: { id: "imgtest2", src: "img/slots/reel3.png" }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _c("div", { attrs: { id: "divtest" } }, [
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.visible1,
+                      expression: "visible1"
+                    }
+                  ],
+                  attrs: { src: _vm.slotmachine[1][1].url }
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.visible1,
+                      expression: "!visible1"
+                    }
+                  ],
+                  attrs: { id: "imgtest22", src: "img/slots/reel3.png" }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _c("div", { attrs: { id: "divtest" } }, [
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.visible1,
+                      expression: "visible1"
+                    }
+                  ],
+                  attrs: { src: _vm.slotmachine[1][2].url }
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.visible1,
+                      expression: "!visible1"
+                    }
+                  ],
+                  attrs: { id: "imgtest222", src: "img/slots/reel3.png" }
+                })
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("tr", [
+            _c("td", [
+              _c("div", { attrs: { id: "divtest" } }, [
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.visible1,
+                      expression: "visible1"
+                    }
+                  ],
+                  attrs: { src: _vm.slotmachine[2][0].url }
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.visible1,
+                      expression: "!visible1"
+                    }
+                  ],
+                  attrs: { id: "imgtest3", src: "img/slots/reel3.png" }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _c("div", { attrs: { id: "divtest" } }, [
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.visible1,
+                      expression: "visible1"
+                    }
+                  ],
+                  attrs: { src: _vm.slotmachine[2][1].url }
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.visible1,
+                      expression: "!visible1"
+                    }
+                  ],
+                  attrs: { id: "imgtest33", src: "img/slots/reel3.png" }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _c("div", { attrs: { id: "divtest" } }, [
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.visible1,
+                      expression: "visible1"
+                    }
+                  ],
+                  attrs: { src: _vm.slotmachine[2][2].url }
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.visible1,
+                      expression: "!visible1"
+                    }
+                  ],
+                  attrs: { id: "imgtest333", src: "img/slots/reel3.png" }
+                })
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
       _c("div", [
         _c("table", [
           _c(
