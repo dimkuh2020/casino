@@ -1,13 +1,14 @@
 <template>
     <div class="container">
         <button @click="test()">TEST</button>
+        <button @click="test1()">TEST1</button>
         <button @click="test2()">TEST2</button>
         <div id="divtest">
             <img id="imgtest" src="img/slots/reel3.png">            
         </div>
         <div class="row justify-content-center">
-            <div>
-                <table>
+            <div >
+                <table id="reset">
                     <tr>
                         <td>
                             <div id="divtest">
@@ -114,17 +115,18 @@
     #reel1, #reel11, #reel111,
     #reel2, #reel22, #reel222,
     #reel3, #reel33, #reel333 {    
-    position: relative; /*установить колесо внизу div*/
-    bottom: 1700px;         
-    
-    
-    /*transform: translate(0,1700px);*/
-    
-    transition-duration: 1s;  
-    
-    transition-timing-function: cubic-bezier(0,0,1,1);
+        position: relative; /*установить колесо внизу div*/
+        bottom: 1700px;
+        /*transform: translate(0,1700px);*/
+        
+        transition-duration: 1s;
+        transition-timing-function: cubic-bezier(0,0,1,1);
 
         
+    }
+
+    #slot1{
+        /*display: block;*/
     }
     #divtest{
         width: 100px;
@@ -203,10 +205,60 @@
         methods:{
 
             test2(){
-                document.getElementById('reel1').style.display="none";
-                document.getElementById('slot1').style.display="block";
+                this.visible = false;
+                setTimeout( function(){
+                    document.getElementById('reel1').style.transform="translate(0px, -1700px)";                                        
+                    
+                }, 10);
 
-                //this.visible1 = true;
+                setTimeout( function(){
+                    document.getElementById('reel2').style.transform="translate(0px, -1700px)";
+                    
+                }, 20);
+
+                setTimeout( function(){
+                    document.getElementById('reel3').style.transform="translate(0px, -1700px)";
+                    
+                }, 30); 
+
+                setTimeout( function(){
+                    document.getElementById('reel11').style.transform="translate(0px, -1700px)";
+                    
+                }, 40);
+
+                setTimeout( function(){
+                    document.getElementById('reel22').style.transform="translate(0px, -1700px)";
+                    
+                }, 50);
+
+                setTimeout( function(){
+                    document.getElementById('reel33').style.transform="translate(0px, -1700px)";
+                    
+                }, 60); 
+
+                setTimeout( function(){
+                    document.getElementById('reel111').style.transform="translate(0px, -1700px)";
+                    
+                }, 70);
+
+                setTimeout( function(){
+                    document.getElementById('reel222').style.transform="translate(0px, -1700px)";
+                    
+                }, 80);
+
+                setTimeout( function(){
+                    document.getElementById('reel333').style.transform="translate(0px, -1700px)";
+                    
+                }, 90);   
+                
+
+            },
+
+            test1(){
+                this.visible = true;
+
+                //document.getElementById('reel1').style.display="block";
+               //document.getElementById('slot1').style.display="none"; 
             },
 
             test(){
@@ -216,80 +268,81 @@
                 setTimeout( function(){
                     document.getElementById('reel1').style.transform="translate(0px, 1700px)";
                     setTimeout( function(){
-                        document.getElementById('reel1').style.display="none";
+                        //document.getElementById('reel1').style.display="none";
                         document.getElementById('slot1').style.display="block";
-                    }, 1000);
+                    }, 500);
                 }, 10);
 
                 setTimeout( function(){
                     document.getElementById('reel2').style.transform="translate(0px, 1700px)";
                     setTimeout( function(){
-                        document.getElementById('reel2').style.display="none";
+                        //document.getElementById('reel2').style.display="none";
                         document.getElementById('slot2').style.display="block";
-                    }, 1000);
+                    }, 500);
                 }, 20);
 
                 setTimeout( function(){
                     document.getElementById('reel3').style.transform="translate(0px, 1700px)";
                     setTimeout( function(){
-                        document.getElementById('reel3').style.display="none";
+                        //document.getElementById('reel3').style.display="none";
                         document.getElementById('slot3').style.display="block";
-                    }, 1000);
+                    }, 500);
                 }, 30); 
 
                 setTimeout( function(){
                     document.getElementById('reel11').style.transform="translate(0px, 1700px)";
                     setTimeout( function(){
-                        document.getElementById('reel11').style.display="none";
+                        //document.getElementById('reel11').style.display="none";
                         document.getElementById('slot11').style.display="block";
-                    }, 1000);
+                    }, 500);
                 }, 40);
 
                 setTimeout( function(){
                     document.getElementById('reel22').style.transform="translate(0px, 1700px)";
                     setTimeout( function(){
-                        document.getElementById('reel22').style.display="none";
+                       //document.getElementById('reel22').style.display="none";
                         document.getElementById('slot22').style.display="block";
-                    }, 1000);
+                    }, 500);
                 }, 50);
 
                 setTimeout( function(){
                     document.getElementById('reel33').style.transform="translate(0px, 1700px)";
                     setTimeout( function(){
-                        document.getElementById('reel33').style.display="none";
+                        //document.getElementById('reel33').style.display="none";
                         document.getElementById('slot33').style.display="block";
-                    }, 1000);
+                    }, 500);
                 }, 60); 
 
                 setTimeout( function(){
                     document.getElementById('reel111').style.transform="translate(0px, 1700px)";
                     setTimeout( function(){
-                        document.getElementById('reel111').style.display="none";
+                        //document.getElementById('reel111').style.display="none";
                         document.getElementById('slot111').style.display="block";
-                    }, 1000);
+                    }, 500);
                 }, 70);
 
                 setTimeout( function(){
                     document.getElementById('reel222').style.transform="translate(0px, 1700px)";
                     setTimeout( function(){
-                        document.getElementById('reel222').style.display="none";
+                        //document.getElementById('reel222').style.display="none";
                         document.getElementById('slot222').style.display="block";
-                    }, 1000);
+                    }, 500);
                 }, 80);
 
                 setTimeout( function(){
                     document.getElementById('reel333').style.transform="translate(0px, 1700px)";
                     setTimeout( function(){
-                        document.getElementById('reel333').style.display="none";
+                        //document.getElementById('reel333').style.display="none";
                         document.getElementById('slot333').style.display="block";
-                    }, 1000);
+                    }, 500);
                 }, 90); 
 
-                //this.visible2 = false;
+                //setTimeout(this.test1(), 3000);
                               
             },
 
-            spin(bet){                
+            spin(bet){
+
                 this.bet = bet;  
                 this.wins = this.line1 = this.line2 = this.line3 = this.line4 = this.line5 = 0; 
 
@@ -300,9 +353,17 @@
                     })
                 }
                 else{
+                    
                     this.slotmachine = [[],[],[]];
                     this.getslots(); 
-                    this.cash -= this.bet;                                                           
+                    this.cash -= this.bet;
+
+
+                    //this.test();    //поменять название ф-ции
+
+
+                    //this.test2();   //нужен callback
+
 
                     if((this.slotmachine[0][0].title == 'cherry')&&(this.slotmachine[0][1].title == 'cherry')){
                         this.line1 = this.bet*2;
@@ -453,7 +514,7 @@
                     if((this.slotmachine[2][0].title == 'seven')&&(this.slotmachine[1][1].title == 'seven')&&(this.slotmachine[0][2].title == 'seven')){
                         this.line5 = this.bet*100;
                     }
-
+                    
                     this.wins = this.line1+this.line2+this.line3+this.line4+this.line5;
                     this.cash += this.wins;                               
                     var data = {cash: this.cash};
@@ -462,7 +523,7 @@
                     }).catch((error)=>{
                        console.log(error);
                     }); 
-
+                    
                     console.log('1 - '+ this.line1);  //для проверки
                     console.log('2 - '+ this.line2); 
                     console.log('3 - '+ this.line3); 
