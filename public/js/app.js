@@ -50466,7 +50466,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\n#reel1, #reel11, #reel111,\n#reel2, #reel22, #reel222,\n#reel3, #reel33, #reel333 {    \n    position: relative; /*установить колесо внизу div*/\n    bottom: 1700px;\n    /*transform: translate(0,1700px);*/\n    \n    -webkit-transition-duration: 1s;\n    \n            transition-duration: 1s;\n    -webkit-transition-timing-function: cubic-bezier(0,0,1,1);\n            transition-timing-function: cubic-bezier(0,0,1,1);\n}\n#slot1{\n    /*display: block;*/\n}\n#divtest{\n    width: 100px;\n    height: 100px;\n    overflow: hidden;\n}\ntable {\n    width: 300px;\n    height: 300px;\n    border: solid 3px blue;\n}\ntr {\n        height: 100px;\n}\ntd {        \n    width: 100px;\n    border: solid 2px blue;\n    border-bottom:0;\n    border-top: 0;\n}\n\n/*td:nth-child(1){\n    color: red;\n\n}*/\n.underbox{\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border: 4px groove orangered; \n    border-radius: 30%;\n    text-align: center;  \n    font-size: 22px;         \n    height: 50px;\n    width: 120px;        \n    color: #1b1f3d;\n}    \n", ""]);
+exports.push([module.i, "\n#reel1, #reel11, #reel111,\n#reel2, #reel22, #reel222,\n#reel3, #reel33, #reel333 {    \n    position: relative; /*установить колесо внизу div*/\n    bottom: 1700px;  \n    -webkit-transition-duration: 1s;  \n            transition-duration: 1s;\n    -webkit-transition-timing-function: cubic-bezier(0,0,1,1);\n            transition-timing-function: cubic-bezier(0,0,1,1); /*равномерная анимация*/\n    display: none;\n}\n#slot1, #slot2, #slot3,\n#slot11, #slot22, #slot33,\n#slot111, #slot222, #slot333 {\n    display: block;\n}\n#do{\n    width: 100px;\n    height: 100px;\n    overflow: hidden;\n}\ntable {\n    width: 300px;\n    height: 300px;\n    border: solid 3px blue;\n}\ntr {\n        height: 100px;\n}\ntd {        \n    width: 100px;\n    border: solid 2px blue;\n    border-bottom:0;\n    border-top: 0;\n}\n.underbox{\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border: 4px groove orangered; \n    border-radius: 30%;\n    text-align: center;  \n    font-size: 22px;         \n    height: 50px;\n    width: 120px;        \n    color: #1b1f3d;\n}    \n", ""]);
 
 // exports
 
@@ -50615,55 +50615,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-
     props: ['slots', 'user', 'cash', 'id'],
 
     data: function data() {
         return {
-            visible: true,
-            visible1: true,
-            visible2: true,
-            visible3: true,
             bet: 0, //ставка 0 
             tempindex: null,
             line1: 0, //для суммиования выигрыша
@@ -50678,318 +50635,99 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        test2: function test2() {
-            this.visible = false;
-            setTimeout(function () {
-                document.getElementById('reel1').style.transform = "translate(0px, -1700px)";
-            }, 10);
-
-            setTimeout(function () {
-                document.getElementById('reel2').style.transform = "translate(0px, -1700px)";
-            }, 20);
-
-            setTimeout(function () {
-                document.getElementById('reel3').style.transform = "translate(0px, -1700px)";
-            }, 30);
-
-            setTimeout(function () {
-                document.getElementById('reel11').style.transform = "translate(0px, -1700px)";
-            }, 40);
-
-            setTimeout(function () {
-                document.getElementById('reel22').style.transform = "translate(0px, -1700px)";
-            }, 50);
-
-            setTimeout(function () {
-                document.getElementById('reel33').style.transform = "translate(0px, -1700px)";
-            }, 60);
-
-            setTimeout(function () {
-                document.getElementById('reel111').style.transform = "translate(0px, -1700px)";
-            }, 70);
-
-            setTimeout(function () {
-                document.getElementById('reel222').style.transform = "translate(0px, -1700px)";
-            }, 80);
-
-            setTimeout(function () {
-                document.getElementById('reel333').style.transform = "translate(0px, -1700px)";
-            }, 90);
-        },
-        test1: function test1() {
-            this.visible = true;
-
-            //document.getElementById('reel1').style.display="block";
-            //document.getElementById('slot1').style.display="none"; 
-        },
-        test: function test() {
-
-            this.visible = false;
+        test: function test() {},
+        animation: function animation() {
+            //анимация прокрутки
+            this.cash -= this.bet; //сразу отнимаем ставку от баланса     
+            document.getElementById('reel1').style.display = "block";
+            document.getElementById('reel2').style.display = "block";
+            document.getElementById('reel3').style.display = "block";
+            document.getElementById('reel11').style.display = "block";
+            document.getElementById('reel22').style.display = "block";
+            document.getElementById('reel33').style.display = "block";
+            document.getElementById('reel111').style.display = "block";
+            document.getElementById('reel222').style.display = "block";
+            document.getElementById('reel333').style.display = "block";
 
             setTimeout(function () {
                 document.getElementById('reel1').style.transform = "translate(0px, 1700px)";
-                setTimeout(function () {
-                    //document.getElementById('reel1').style.display="none";
-                    document.getElementById('slot1').style.display = "block";
-                }, 500);
-            }, 10);
-
-            setTimeout(function () {
-                document.getElementById('reel2').style.transform = "translate(0px, 1700px)";
-                setTimeout(function () {
-                    //document.getElementById('reel2').style.display="none";
-                    document.getElementById('slot2').style.display = "block";
-                }, 500);
             }, 20);
 
             setTimeout(function () {
-                document.getElementById('reel3').style.transform = "translate(0px, 1700px)";
-                setTimeout(function () {
-                    //document.getElementById('reel3').style.display="none";
-                    document.getElementById('slot3').style.display = "block";
-                }, 500);
+                document.getElementById('reel2').style.transform = "translate(0px, 1700px)";
             }, 30);
 
             setTimeout(function () {
-                document.getElementById('reel11').style.transform = "translate(0px, 1700px)";
-                setTimeout(function () {
-                    //document.getElementById('reel11').style.display="none";
-                    document.getElementById('slot11').style.display = "block";
-                }, 500);
+                document.getElementById('reel3').style.transform = "translate(0px, 1700px)";
             }, 40);
 
             setTimeout(function () {
-                document.getElementById('reel22').style.transform = "translate(0px, 1700px)";
-                setTimeout(function () {
-                    //document.getElementById('reel22').style.display="none";
-                    document.getElementById('slot22').style.display = "block";
-                }, 500);
+                document.getElementById('reel11').style.transform = "translate(0px, 1700px)";
             }, 50);
 
             setTimeout(function () {
-                document.getElementById('reel33').style.transform = "translate(0px, 1700px)";
-                setTimeout(function () {
-                    //document.getElementById('reel33').style.display="none";
-                    document.getElementById('slot33').style.display = "block";
-                }, 500);
+                document.getElementById('reel22').style.transform = "translate(0px, 1700px)";
             }, 60);
 
             setTimeout(function () {
-                document.getElementById('reel111').style.transform = "translate(0px, 1700px)";
-                setTimeout(function () {
-                    //document.getElementById('reel111').style.display="none";
-                    document.getElementById('slot111').style.display = "block";
-                }, 500);
+                document.getElementById('reel33').style.transform = "translate(0px, 1700px)";
             }, 70);
 
             setTimeout(function () {
-                document.getElementById('reel222').style.transform = "translate(0px, 1700px)";
-                setTimeout(function () {
-                    //document.getElementById('reel222').style.display="none";
-                    document.getElementById('slot222').style.display = "block";
-                }, 500);
+                document.getElementById('reel111').style.transform = "translate(0px, 1700px)";
             }, 80);
 
             setTimeout(function () {
-                document.getElementById('reel333').style.transform = "translate(0px, 1700px)";
-                setTimeout(function () {
-                    //document.getElementById('reel333').style.display="none";
-                    document.getElementById('slot333').style.display = "block";
-                }, 500);
+                document.getElementById('reel222').style.transform = "translate(0px, 1700px)";
             }, 90);
 
-            //setTimeout(this.test1(), 3000);
+            setTimeout(function () {
+                document.getElementById('reel333').style.transform = "translate(0px, 1700px)";
+            }, 100);
+
+            setTimeout(function () {
+                document.getElementById('reel1').style.transform = "translate(0px, -1700px)";
+                document.getElementById('reel2').style.transform = "translate(0px, -1700px)";
+                document.getElementById('reel3').style.transform = "translate(0px, -1700px)";
+                document.getElementById('reel11').style.transform = "translate(0px, -1700px)";
+                document.getElementById('reel22').style.transform = "translate(0px, -1700px)";
+                document.getElementById('reel33').style.transform = "translate(0px, -1700px)";
+                document.getElementById('reel111').style.transform = "translate(0px, -1700px)";
+                document.getElementById('reel222').style.transform = "translate(0px, -1700px)";
+                document.getElementById('reel333').style.transform = "translate(0px, -1700px)";
+
+                document.getElementById('reel1').style.display = "none";
+                document.getElementById('reel2').style.display = "none";
+                document.getElementById('reel3').style.display = "none";
+                document.getElementById('reel11').style.display = "none";
+                document.getElementById('reel22').style.display = "none";
+                document.getElementById('reel33').style.display = "none";
+                document.getElementById('reel111').style.display = "none";
+                document.getElementById('reel222').style.display = "none";
+                document.getElementById('reel333').style.display = "none";
+            }, 1000);
         },
         spin: function spin(bet) {
+            var _this = this;
 
+            // прокрутка + резкльтат
             this.bet = bet;
-            this.wins = this.line1 = this.line2 = this.line3 = this.line4 = this.line5 = 0;
-
             if (this.bet > this.cash) {
                 Swal.fire({
                     title: 'Not enough cash!',
                     confirmButtonColor: '#3490dc'
                 });
             } else {
-
-                this.slotmachine = [[], [], []];
-                this.getslots();
-                this.cash -= this.bet;
-
-                //this.test();    //поменять название ф-ции
-
-
-                //this.test2();   //нужен callback
-
-
-                if (this.slotmachine[0][0].title == 'cherry' && this.slotmachine[0][1].title == 'cherry') {
-                    this.line1 = this.bet * 2;
-                }
-                if (this.slotmachine[0][0].title == 'cherry' && this.slotmachine[0][1].title == 'cherry' && this.slotmachine[0][2].title == 'cherry') {
-                    this.line1 = this.bet * 14;
-                }
-
-                if (this.slotmachine[1][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry') {
-                    this.line2 = this.bet * 2;
-                }
-                if (this.slotmachine[1][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry' && this.slotmachine[1][2].title == 'cherry') {
-                    this.line2 = this.bet * 14;
-                }
-
-                if (this.slotmachine[2][0].title == 'cherry' && this.slotmachine[2][1].title == 'cherry') {
-                    this.line3 = this.bet * 2;
-                }
-                if (this.slotmachine[2][0].title == 'cherry' && this.slotmachine[2][1].title == 'cherry' && this.slotmachine[2][2].title == 'cherry') {
-                    this.line3 = this.bet * 14;
-                }
-
-                if (this.slotmachine[0][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry') {
-                    this.line4 = this.bet * 2;
-                }
-                if (this.slotmachine[0][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry' && this.slotmachine[2][2].title == 'cherry') {
-                    this.line4 = this.bet * 14;
-                }
-
-                if (this.slotmachine[2][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry') {
-                    this.line5 = this.bet * 2;
-                }
-                if (this.slotmachine[2][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry' && this.slotmachine[0][2].title == 'cherry') {
-                    this.line5 = this.bet * 14;
-                }
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                if (this.slotmachine[0][0].title == 'orange' && this.slotmachine[0][1].title == 'orange') {
-                    this.line1 = this.bet * 3;
-                }
-                if (this.slotmachine[0][0].title == 'orange' && this.slotmachine[0][1].title == 'orange' && this.slotmachine[0][2].title == 'orange') {
-                    this.line1 = this.bet * 24;
-                }
-
-                if (this.slotmachine[1][0].title == 'orange' && this.slotmachine[1][1].title == 'orange') {
-                    this.line2 = this.bet * 3;
-                }
-                if (this.slotmachine[1][0].title == 'cherry' && this.slotmachine[1][1].title == 'orange' && this.slotmachine[1][2].title == 'orange') {
-                    this.line2 = this.bet * 24;
-                }
-
-                if (this.slotmachine[2][0].title == 'orange' && this.slotmachine[2][1].title == 'orange') {
-                    this.line3 = this.bet * 3;
-                }
-                if (this.slotmachine[2][0].title == 'orange' && this.slotmachine[2][1].title == 'orange' && this.slotmachine[2][2].title == 'orange') {
-                    this.line3 = this.bet * 24;
-                }
-
-                if (this.slotmachine[0][0].title == 'orange' && this.slotmachine[1][1].title == 'orange') {
-                    this.line4 = this.bet * 3;
-                }
-                if (this.slotmachine[0][0].title == 'orange' && this.slotmachine[1][1].title == 'orange' && this.slotmachine[2][2].title == 'orange') {
-                    this.line4 = this.bet * 24;
-                }
-
-                if (this.slotmachine[2][0].title == 'orange' && this.slotmachine[1][1].title == 'orange') {
-                    this.line5 = this.bet * 3;
-                }
-                if (this.slotmachine[2][0].title == 'orange' && this.slotmachine[1][1].title == 'orange' && this.slotmachine[0][2].title == 'orange') {
-                    this.line5 = this.bet * 24;
-                }
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                if (this.slotmachine[0][0].title == 'plum' && this.slotmachine[0][1].title == 'plum' && this.slotmachine[0][2].title == 'plum') {
-                    this.line1 = this.bet * 32;
-                }
-
-                if (this.slotmachine[1][0].title == 'plum' && this.slotmachine[1][1].title == 'plum' && this.slotmachine[1][2].title == 'plum') {
-                    this.line2 = this.bet * 32;
-                }
-
-                if (this.slotmachine[2][0].title == 'plum' && this.slotmachine[2][1].title == 'plum' && this.slotmachine[2][2].title == 'plum') {
-                    this.line3 = this.bet * 32;
-                }
-
-                if (this.slotmachine[0][0].title == 'plum' && this.slotmachine[1][1].title == 'plum' && this.slotmachine[2][2].title == 'plum') {
-                    this.line4 = this.bet * 32;
-                }
-
-                if (this.slotmachine[2][0].title == 'plum' && this.slotmachine[1][1].title == 'plum' && this.slotmachine[0][2].title == 'plum') {
-                    this.line5 = this.bet * 32;
-                }
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                if (this.slotmachine[0][0].title == 'bell' && this.slotmachine[0][1].title == 'bell' && this.slotmachine[0][2].title == 'bell') {
-                    this.line1 = this.bet * 40;
-                }
-
-                if (this.slotmachine[1][0].title == 'bell' && this.slotmachine[1][1].title == 'bell' && this.slotmachine[1][2].title == 'bell') {
-                    this.line2 = this.bet * 40;
-                }
-
-                if (this.slotmachine[2][0].title == 'bell' && this.slotmachine[2][1].title == 'bell' && this.slotmachine[2][2].title == 'bell') {
-                    this.line3 = this.bet * 40;
-                }
-
-                if (this.slotmachine[0][0].title == 'bell' && this.slotmachine[1][1].title == 'bell' && this.slotmachine[2][2].title == 'bell') {
-                    this.line4 = this.bet * 40;
-                }
-
-                if (this.slotmachine[2][0].title == 'bell' && this.slotmachine[1][1].title == 'bell' && this.slotmachine[0][2].title == 'bell') {
-                    this.line5 = this.bet * 40;
-                }
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                if (this.slotmachine[0][0].title == 'bar' && this.slotmachine[0][1].title == 'bar' && this.slotmachine[0][2].title == 'bar') {
-                    this.line1 = this.bet * 50;
-                }
-
-                if (this.slotmachine[1][0].title == 'bar' && this.slotmachine[1][1].title == 'bar' && this.slotmachine[1][2].title == 'bar') {
-                    this.line2 = this.bet * 50;
-                }
-
-                if (this.slotmachine[2][0].title == 'bar' && this.slotmachine[2][1].title == 'bar' && this.slotmachine[2][2].title == 'bar') {
-                    this.line3 = this.bet * 50;
-                }
-
-                if (this.slotmachine[0][0].title == 'bar' && this.slotmachine[1][1].title == 'bar' && this.slotmachine[2][2].title == 'bar') {
-                    this.line4 = this.bet * 50;
-                }
-
-                if (this.slotmachine[2][0].title == 'bar' && this.slotmachine[1][1].title == 'bar' && this.slotmachine[0][2].title == 'bar') {
-                    this.line5 = this.bet * 50;
-                }
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                if (this.slotmachine[0][0].title == 'seven' && this.slotmachine[0][1].title == 'seven' && this.slotmachine[0][2].title == 'seven') {
-                    this.line1 = this.bet * 100;
-                }
-
-                if (this.slotmachine[1][0].title == 'seven' && this.slotmachine[1][1].title == 'seven' && this.slotmachine[1][2].title == 'seven') {
-                    this.line2 = this.bet * 100;
-                }
-
-                if (this.slotmachine[2][0].title == 'seven' && this.slotmachine[2][1].title == 'seven' && this.slotmachine[2][2].title == 'seven') {
-                    this.line3 = this.bet * 100;
-                }
-
-                if (this.slotmachine[0][0].title == 'seven' && this.slotmachine[1][1].title == 'seven' && this.slotmachine[2][2].title == 'seven') {
-                    this.line4 = this.bet * 100;
-                }
-
-                if (this.slotmachine[2][0].title == 'seven' && this.slotmachine[1][1].title == 'seven' && this.slotmachine[0][2].title == 'seven') {
-                    this.line5 = this.bet * 100;
-                }
-
-                this.wins = this.line1 + this.line2 + this.line3 + this.line4 + this.line5;
-                this.cash += this.wins;
-                var data = { cash: this.cash };
-                axios.put('/public/updatecash', data).then(function (response) {
-                    console.log(response.data);
-                }).catch(function (error) {
-                    console.log(error);
-                });
-
-                console.log('1 - ' + this.line1); //для проверки
-                console.log('2 - ' + this.line2);
-                console.log('3 - ' + this.line3);
-                console.log('4 - ' + this.line4);
-                console.log('5 - ' + this.line5);
-                console.log('w - ' + this.wins);
+                setTimeout(function () {
+                    return _this.animation();
+                }, 10);
+                setTimeout(function () {
+                    return _this.getslots();
+                }, 1000);
             }
         },
-        getslots: function getslots() {
+        getfirstslots: function getfirstslots() {
+            //получить рандомные слоты вначале
             for (var i = 0; i < 3; i++) {
                 this.tempindex = Math.floor(Math.random() * this.slots.length);
                 this.slotmachine[0].push(this.slots[this.tempindex]);
@@ -51000,12 +50738,194 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.tempindex = Math.floor(Math.random() * this.slots.length);
                 this.slotmachine[2].push(this.slots[this.tempindex]);
             }
+        },
+        getslots: function getslots() {
+            // ф-ция для запуска
+            this.slotmachine = [[], [], []];
+            this.wins = this.line1 = this.line2 = this.line3 = this.line4 = this.line5 = 0;
+
+            for (var i = 0; i < 3; i++) {
+                this.tempindex = Math.floor(Math.random() * this.slots.length);
+                this.slotmachine[0].push(this.slots[this.tempindex]);
+
+                this.tempindex = Math.floor(Math.random() * this.slots.length);
+                this.slotmachine[1].push(this.slots[this.tempindex]);
+
+                this.tempindex = Math.floor(Math.random() * this.slots.length);
+                this.slotmachine[2].push(this.slots[this.tempindex]);
+            }
+            //логика:
+            if (this.slotmachine[0][0].title == 'cherry' && this.slotmachine[0][1].title == 'cherry') {
+                this.line1 = this.bet * 2;
+            }
+            if (this.slotmachine[0][0].title == 'cherry' && this.slotmachine[0][1].title == 'cherry' && this.slotmachine[0][2].title == 'cherry') {
+                this.line1 = this.bet * 14;
+            }
+
+            if (this.slotmachine[1][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry') {
+                this.line2 = this.bet * 2;
+            }
+            if (this.slotmachine[1][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry' && this.slotmachine[1][2].title == 'cherry') {
+                this.line2 = this.bet * 14;
+            }
+
+            if (this.slotmachine[2][0].title == 'cherry' && this.slotmachine[2][1].title == 'cherry') {
+                this.line3 = this.bet * 2;
+            }
+            if (this.slotmachine[2][0].title == 'cherry' && this.slotmachine[2][1].title == 'cherry' && this.slotmachine[2][2].title == 'cherry') {
+                this.line3 = this.bet * 14;
+            }
+
+            if (this.slotmachine[0][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry') {
+                this.line4 = this.bet * 2;
+            }
+            if (this.slotmachine[0][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry' && this.slotmachine[2][2].title == 'cherry') {
+                this.line4 = this.bet * 14;
+            }
+
+            if (this.slotmachine[2][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry') {
+                this.line5 = this.bet * 2;
+            }
+            if (this.slotmachine[2][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry' && this.slotmachine[0][2].title == 'cherry') {
+                this.line5 = this.bet * 14;
+            }
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            if (this.slotmachine[0][0].title == 'orange' && this.slotmachine[0][1].title == 'orange') {
+                this.line1 = this.bet * 3;
+            }
+            if (this.slotmachine[0][0].title == 'orange' && this.slotmachine[0][1].title == 'orange' && this.slotmachine[0][2].title == 'orange') {
+                this.line1 = this.bet * 24;
+            }
+
+            if (this.slotmachine[1][0].title == 'orange' && this.slotmachine[1][1].title == 'orange') {
+                this.line2 = this.bet * 3;
+            }
+            if (this.slotmachine[1][0].title == 'cherry' && this.slotmachine[1][1].title == 'orange' && this.slotmachine[1][2].title == 'orange') {
+                this.line2 = this.bet * 24;
+            }
+
+            if (this.slotmachine[2][0].title == 'orange' && this.slotmachine[2][1].title == 'orange') {
+                this.line3 = this.bet * 3;
+            }
+            if (this.slotmachine[2][0].title == 'orange' && this.slotmachine[2][1].title == 'orange' && this.slotmachine[2][2].title == 'orange') {
+                this.line3 = this.bet * 24;
+            }
+
+            if (this.slotmachine[0][0].title == 'orange' && this.slotmachine[1][1].title == 'orange') {
+                this.line4 = this.bet * 3;
+            }
+            if (this.slotmachine[0][0].title == 'orange' && this.slotmachine[1][1].title == 'orange' && this.slotmachine[2][2].title == 'orange') {
+                this.line4 = this.bet * 24;
+            }
+
+            if (this.slotmachine[2][0].title == 'orange' && this.slotmachine[1][1].title == 'orange') {
+                this.line5 = this.bet * 3;
+            }
+            if (this.slotmachine[2][0].title == 'orange' && this.slotmachine[1][1].title == 'orange' && this.slotmachine[0][2].title == 'orange') {
+                this.line5 = this.bet * 24;
+            }
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            if (this.slotmachine[0][0].title == 'plum' && this.slotmachine[0][1].title == 'plum' && this.slotmachine[0][2].title == 'plum') {
+                this.line1 = this.bet * 32;
+            }
+
+            if (this.slotmachine[1][0].title == 'plum' && this.slotmachine[1][1].title == 'plum' && this.slotmachine[1][2].title == 'plum') {
+                this.line2 = this.bet * 32;
+            }
+
+            if (this.slotmachine[2][0].title == 'plum' && this.slotmachine[2][1].title == 'plum' && this.slotmachine[2][2].title == 'plum') {
+                this.line3 = this.bet * 32;
+            }
+
+            if (this.slotmachine[0][0].title == 'plum' && this.slotmachine[1][1].title == 'plum' && this.slotmachine[2][2].title == 'plum') {
+                this.line4 = this.bet * 32;
+            }
+
+            if (this.slotmachine[2][0].title == 'plum' && this.slotmachine[1][1].title == 'plum' && this.slotmachine[0][2].title == 'plum') {
+                this.line5 = this.bet * 32;
+            }
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            if (this.slotmachine[0][0].title == 'bell' && this.slotmachine[0][1].title == 'bell' && this.slotmachine[0][2].title == 'bell') {
+                this.line1 = this.bet * 40;
+            }
+
+            if (this.slotmachine[1][0].title == 'bell' && this.slotmachine[1][1].title == 'bell' && this.slotmachine[1][2].title == 'bell') {
+                this.line2 = this.bet * 40;
+            }
+
+            if (this.slotmachine[2][0].title == 'bell' && this.slotmachine[2][1].title == 'bell' && this.slotmachine[2][2].title == 'bell') {
+                this.line3 = this.bet * 40;
+            }
+
+            if (this.slotmachine[0][0].title == 'bell' && this.slotmachine[1][1].title == 'bell' && this.slotmachine[2][2].title == 'bell') {
+                this.line4 = this.bet * 40;
+            }
+
+            if (this.slotmachine[2][0].title == 'bell' && this.slotmachine[1][1].title == 'bell' && this.slotmachine[0][2].title == 'bell') {
+                this.line5 = this.bet * 40;
+            }
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            if (this.slotmachine[0][0].title == 'bar' && this.slotmachine[0][1].title == 'bar' && this.slotmachine[0][2].title == 'bar') {
+                this.line1 = this.bet * 50;
+            }
+
+            if (this.slotmachine[1][0].title == 'bar' && this.slotmachine[1][1].title == 'bar' && this.slotmachine[1][2].title == 'bar') {
+                this.line2 = this.bet * 50;
+            }
+
+            if (this.slotmachine[2][0].title == 'bar' && this.slotmachine[2][1].title == 'bar' && this.slotmachine[2][2].title == 'bar') {
+                this.line3 = this.bet * 50;
+            }
+
+            if (this.slotmachine[0][0].title == 'bar' && this.slotmachine[1][1].title == 'bar' && this.slotmachine[2][2].title == 'bar') {
+                this.line4 = this.bet * 50;
+            }
+
+            if (this.slotmachine[2][0].title == 'bar' && this.slotmachine[1][1].title == 'bar' && this.slotmachine[0][2].title == 'bar') {
+                this.line5 = this.bet * 50;
+            }
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            if (this.slotmachine[0][0].title == 'seven' && this.slotmachine[0][1].title == 'seven' && this.slotmachine[0][2].title == 'seven') {
+                this.line1 = this.bet * 100;
+            }
+
+            if (this.slotmachine[1][0].title == 'seven' && this.slotmachine[1][1].title == 'seven' && this.slotmachine[1][2].title == 'seven') {
+                this.line2 = this.bet * 100;
+            }
+
+            if (this.slotmachine[2][0].title == 'seven' && this.slotmachine[2][1].title == 'seven' && this.slotmachine[2][2].title == 'seven') {
+                this.line3 = this.bet * 100;
+            }
+
+            if (this.slotmachine[0][0].title == 'seven' && this.slotmachine[1][1].title == 'seven' && this.slotmachine[2][2].title == 'seven') {
+                this.line4 = this.bet * 100;
+            }
+
+            if (this.slotmachine[2][0].title == 'seven' && this.slotmachine[1][1].title == 'seven' && this.slotmachine[0][2].title == 'seven') {
+                this.line5 = this.bet * 100;
+            }
+
+            this.wins = this.line1 + this.line2 + this.line3 + this.line4 + this.line5;
+            this.cash += this.wins;
+            var data = { cash: this.cash };
+            axios.put('/public/updatecash', data).then(function (response) {
+                console.log(response.data);
+            }).catch(function (error) {
+                console.log(error);
+            });
+
+            console.log('1 - ' + this.line1); //для проверки
+            console.log('2 - ' + this.line2);
+            console.log('3 - ' + this.line3);
+            console.log('4 - ' + this.line4);
+            console.log('5 - ' + this.line5);
+            console.log('w - ' + this.wins);
         }
     },
 
     mounted: function mounted() {
         console.log('Component mounted.');
-        this.getslots();
+        this.getfirstslots(); //рандомные слоты в начале
     }
 });
 
@@ -51030,115 +50950,43 @@ var render = function() {
       [_vm._v("TEST")]
     ),
     _vm._v(" "),
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            return _vm.test1()
-          }
-        }
-      },
-      [_vm._v("TEST1")]
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            return _vm.test2()
-          }
-        }
-      },
-      [_vm._v("TEST2")]
-    ),
-    _vm._v(" "),
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", [
-        _c("table", { attrs: { id: "reset" } }, [
+        _c("table", [
           _c("tr", [
             _c("td", [
-              _c("div", { attrs: { id: "divtest" } }, [
+              _c("div", { attrs: { id: "do" } }, [
                 _c("img", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.visible,
-                      expression: "visible"
-                    }
-                  ],
                   attrs: { id: "slot1", src: _vm.slotmachine[0][0].url }
                 }),
                 _vm._v(" "),
                 _c("img", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: !_vm.visible,
-                      expression: "!visible"
-                    }
-                  ],
                   attrs: { id: "reel1", src: "img/slots/reel3.png" }
                 })
               ])
             ]),
             _vm._v(" "),
             _c("td", [
-              _c("div", { attrs: { id: "divtest" } }, [
+              _c("div", { attrs: { id: "do" } }, [
                 _c("img", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.visible,
-                      expression: "visible"
-                    }
-                  ],
                   attrs: { id: "slot11", src: _vm.slotmachine[0][1].url }
                 }),
                 _vm._v(" "),
                 _c("img", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: !_vm.visible,
-                      expression: "!visible"
-                    }
-                  ],
                   attrs: { id: "reel11", src: "img/slots/reel3.png" }
                 })
               ])
             ]),
             _vm._v(" "),
             _c("td", [
-              _c("div", { attrs: { id: "divtest" } }, [
+              _c("div", { attrs: { id: "do" } }, [
                 _c("img", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.visible,
-                      expression: "visible"
-                    }
-                  ],
                   attrs: { id: "slot111", src: _vm.slotmachine[0][2].url }
                 }),
                 _vm._v(" "),
                 _c("img", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: !_vm.visible,
-                      expression: "!visible"
-                    }
-                  ],
                   attrs: { id: "reel111", src: "img/slots/reel3.png" }
                 })
               ])
@@ -51147,84 +50995,36 @@ var render = function() {
           _vm._v(" "),
           _c("tr", [
             _c("td", [
-              _c("div", { attrs: { id: "divtest" } }, [
+              _c("div", { attrs: { id: "do" } }, [
                 _c("img", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.visible,
-                      expression: "visible"
-                    }
-                  ],
                   attrs: { id: "slot2", src: _vm.slotmachine[1][0].url }
                 }),
                 _vm._v(" "),
                 _c("img", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: !_vm.visible,
-                      expression: "!visible"
-                    }
-                  ],
                   attrs: { id: "reel2", src: "img/slots/reel3.png" }
                 })
               ])
             ]),
             _vm._v(" "),
             _c("td", [
-              _c("div", { attrs: { id: "divtest" } }, [
+              _c("div", { attrs: { id: "do" } }, [
                 _c("img", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.visible,
-                      expression: "visible"
-                    }
-                  ],
                   attrs: { id: "slot22", src: _vm.slotmachine[1][1].url }
                 }),
                 _vm._v(" "),
                 _c("img", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: !_vm.visible,
-                      expression: "!visible"
-                    }
-                  ],
                   attrs: { id: "reel22", src: "img/slots/reel3.png" }
                 })
               ])
             ]),
             _vm._v(" "),
             _c("td", [
-              _c("div", { attrs: { id: "divtest" } }, [
+              _c("div", { attrs: { id: "do" } }, [
                 _c("img", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.visible,
-                      expression: "visible"
-                    }
-                  ],
                   attrs: { id: "slot222", src: _vm.slotmachine[1][2].url }
                 }),
                 _vm._v(" "),
                 _c("img", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: !_vm.visible,
-                      expression: "!visible"
-                    }
-                  ],
                   attrs: { id: "reel222", src: "img/slots/reel3.png" }
                 })
               ])
@@ -51233,153 +51033,41 @@ var render = function() {
           _vm._v(" "),
           _c("tr", [
             _c("td", [
-              _c("div", { attrs: { id: "divtest" } }, [
+              _c("div", { attrs: { id: "do" } }, [
                 _c("img", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.visible,
-                      expression: "visible"
-                    }
-                  ],
                   attrs: { id: "slot3", src: _vm.slotmachine[2][0].url }
                 }),
                 _vm._v(" "),
                 _c("img", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: !_vm.visible,
-                      expression: "!visible"
-                    }
-                  ],
                   attrs: { id: "reel3", src: "img/slots/reel3.png" }
                 })
               ])
             ]),
             _vm._v(" "),
             _c("td", [
-              _c("div", { attrs: { id: "divtest" } }, [
+              _c("div", { attrs: { id: "do" } }, [
                 _c("img", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.visible,
-                      expression: "visible"
-                    }
-                  ],
                   attrs: { id: "slot33", src: _vm.slotmachine[2][1].url }
                 }),
                 _vm._v(" "),
                 _c("img", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: !_vm.visible,
-                      expression: "!visible"
-                    }
-                  ],
                   attrs: { id: "reel33", src: "img/slots/reel3.png" }
                 })
               ])
             ]),
             _vm._v(" "),
             _c("td", [
-              _c("div", { attrs: { id: "divtest" } }, [
+              _c("div", { attrs: { id: "do" } }, [
                 _c("img", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.visible,
-                      expression: "visible"
-                    }
-                  ],
                   attrs: { id: "slot333", src: _vm.slotmachine[2][2].url }
                 }),
                 _vm._v(" "),
                 _c("img", {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: !_vm.visible,
-                      expression: "!visible"
-                    }
-                  ],
                   attrs: { id: "reel333", src: "img/slots/reel3.png" }
                 })
               ])
             ])
           ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("table", [
-          _c(
-            "tr",
-            _vm._l(_vm.slotmachine[0], function(sm) {
-              return _c("td", [
-                _c("img", {
-                  staticClass: "slots",
-                  attrs: { id: "l1", src: sm.url },
-                  model: {
-                    value: _vm.slotmachine[0],
-                    callback: function($$v) {
-                      _vm.$set(_vm.slotmachine, 0, $$v)
-                    },
-                    expression: "slotmachine[0]"
-                  }
-                })
-              ])
-            }),
-            0
-          ),
-          _vm._v(" "),
-          _c(
-            "tr",
-            _vm._l(_vm.slotmachine[1], function(sm) {
-              return _c("td", [
-                _c("img", {
-                  staticClass: "slots",
-                  attrs: { id: "l2", src: sm.url },
-                  model: {
-                    value: _vm.slotmachine[1],
-                    callback: function($$v) {
-                      _vm.$set(_vm.slotmachine, 1, $$v)
-                    },
-                    expression: "slotmachine[1]"
-                  }
-                })
-              ])
-            }),
-            0
-          ),
-          _vm._v(" "),
-          _c(
-            "tr",
-            _vm._l(_vm.slotmachine[2], function(sm) {
-              return _c("td", [
-                _c("img", {
-                  staticClass: "slots",
-                  attrs: { id: "l3", src: sm.url },
-                  model: {
-                    value: _vm.slotmachine[2],
-                    callback: function($$v) {
-                      _vm.$set(_vm.slotmachine, 2, $$v)
-                    },
-                    expression: "slotmachine[2]"
-                  }
-                })
-              ])
-            }),
-            0
-          )
         ])
       ]),
       _vm._v(" "),
@@ -51462,7 +51150,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "divtest" } }, [
+    return _c("div", { attrs: { id: "do" } }, [
       _c("img", { attrs: { id: "imgtest", src: "img/slots/reel3.png" } })
     ])
   }
