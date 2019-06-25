@@ -50466,7 +50466,7 @@ exports = module.exports = __webpack_require__(12)(false);
 
 
 // module
-exports.push([module.i, "\n#reel1, #reel11, #reel111,\n#reel2, #reel22, #reel222,\n#reel3, #reel33, #reel333 {    \n    position: relative; /*установить колесо внизу div*/\n    bottom: 1700px;  \n    -webkit-transition-duration: 1s;  \n            transition-duration: 1s;\n    -webkit-transition-timing-function: cubic-bezier(0,0,1,1);\n            transition-timing-function: cubic-bezier(0,0,1,1); /*равномерная анимация*/\n    display: none;\n}\n#slot1, #slot2, #slot3,\n#slot11, #slot22, #slot33,\n#slot111, #slot222, #slot333 {\n    display: block;\n}\n#do{\n    width: 100px;\n    height: 100px;\n    overflow: hidden;\n}\ntable {\n    width: 300px;\n    height: 300px;\n    border: solid 3px blue;\n}\ntr {\n        height: 100px;\n}\ntd {        \n    width: 100px;\n    border: solid 2px blue;\n    border-bottom:0;\n    border-top: 0;\n}\n.underbox{\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border: 4px groove orangered; \n    border-radius: 30%;\n    text-align: center;  \n    font-size: 22px;         \n    height: 50px;\n    width: 120px;        \n    color: #1b1f3d;\n}    \n", ""]);
+exports.push([module.i, "\ntable {\n        width: 300px;\n        height: 300px;\n        border: solid 10px gold;\n}\ntr {\n    height: 100px;\n    border: solid 2px gold;\n}\ntd {        \n    width: 100px;\n    border: solid 2px gold;\n    border-bottom:0;\n    border-top: 0;\n}\n#rules{\n    margin-top: 3%;\n    border-radius: 2px;\n    border: solid blue;\n}\n#reel1, #reel11, #reel111,\n#reel2, #reel22, #reel222,\n#reel3, #reel33, #reel333 {    \n    position: relative; /*установить колесо внизу div*/\n    bottom: 1700px;  \n    -webkit-transition-duration: 1s;  \n            transition-duration: 1s;\n    -webkit-transition-timing-function: cubic-bezier(0,0,1,1);\n            transition-timing-function: cubic-bezier(0,0,1,1); /*равномерная анимация*/\n    display: none;\n}\n#slot1, #slot2, #slot3,\n#slot11, #slot22, #slot33,\n#slot111, #slot222, #slot333 {\n    display: block;\n}\n#do{\n    width: 100px;\n    height: 100px;\n    overflow: hidden;\n}\n.underbox{\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    border: 4px groove orangered; \n    border-radius: 30%;\n    text-align: center;  \n    font-size: 22px;         \n    height: 50px;\n    width: 120px;        \n    color: #1b1f3d;\n}    \n", ""]);
 
 // exports
 
@@ -50477,6 +50477,13 @@ exports.push([module.i, "\n#reel1, #reel11, #reel111,\n#reel2, #reel22, #reel222
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -50635,7 +50642,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        test: function test() {},
         animation: function animation() {
             //анимация прокрутки
             this.cash -= this.bet; //сразу отнимаем ставку от баланса     
@@ -50938,22 +50944,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            return _vm.test()
-          }
-        }
-      },
-      [_vm._v("TEST")]
-    ),
-    _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
     _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", [
+      _c("div", { attrs: { id: "t" } }, [
         _c("table", [
           _c("tr", [
             _c("td", [
@@ -51141,7 +51133,9 @@ var render = function() {
             }
           })
         ]
-      )
+      ),
+      _vm._v(" "),
+      _vm._m(0)
     ])
   ])
 }
@@ -51150,8 +51144,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "do" } }, [
-      _c("img", { attrs: { id: "imgtest", src: "img/slots/reel3.png" } })
+    return _c("div", { attrs: { id: "rules" } }, [
+      _c("img", { attrs: { src: "img/slots/rules.png" } })
     ])
   }
 ]

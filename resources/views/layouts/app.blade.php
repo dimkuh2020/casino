@@ -87,7 +87,7 @@
             </div>
         </nav>
 
-        <main class="py-0" style="background: url(img/fon2.png); height: 890px;">
+        <main class="py-0" style="background: url(img/fon2.png); height:  900px auto;">
             @yield('content')
         </main>
     </div>
