@@ -3,6 +3,7 @@
         <button @click="test()">TEST</button>
         <button @click="test1()">TEST1</button>
         <button @click="test2()">TEST2</button>
+        <button @click="test3()">TEST3</button>
         <div id="divtest">
             <img id="imgtest" src="img/slots/reel3.png">            
         </div>
@@ -204,6 +205,56 @@
 
         methods:{
 
+            test3(){
+                this.visible = false;
+                setTimeout( function(){
+                    document.getElementById('reel1').style.transform="translate(0px, 1700px)";                                        
+                    
+                }, 10);
+
+                setTimeout( function(){
+                    document.getElementById('reel2').style.transform="translate(0px, 1700px)";
+                    
+                }, 20);
+
+                setTimeout( function(){
+                    document.getElementById('reel3').style.transform="translate(0px, 1700px)";
+                    
+                }, 30); 
+
+                setTimeout( function(){
+                    document.getElementById('reel11').style.transform="translate(0px, 1700px)";
+                    
+                }, 40);
+
+                setTimeout( function(){
+                    document.getElementById('reel22').style.transform="translate(0px, 1700px)";
+                    
+                }, 50);
+
+                setTimeout( function(){
+                    document.getElementById('reel33').style.transform="translate(0px, 1700px)";
+                    
+                }, 60); 
+
+                setTimeout( function(){
+                    document.getElementById('reel111').style.transform="translate(0px, 1700px)";
+                    
+                }, 70);
+
+                setTimeout( function(){
+                    document.getElementById('reel222').style.transform="translate(0px, 1700px)";
+                    
+                }, 80);
+
+                setTimeout( function(){
+                    document.getElementById('reel333').style.transform="translate(0px, 1700px)";
+                    
+                }, 90);   
+                
+
+            },
+
             test2(){
                 this.visible = false;
                 setTimeout( function(){
@@ -268,7 +319,7 @@
                 setTimeout( function(){
                     document.getElementById('reel1').style.transform="translate(0px, 1700px)";
                     setTimeout( function(){
-                        //document.getElementById('reel1').style.display="none";
+                        //document.getElementById('reel1').style.visibility="hidden";
                         document.getElementById('slot1').style.display="block";
                     }, 500);
                 }, 10);
@@ -362,7 +413,7 @@
                     //this.test();    //поменять название ф-ции
 
 
-                    //this.test2();   //нужен callback
+                    this.test2();   //нужен callback
 
 
                     if((this.slotmachine[0][0].title == 'cherry')&&(this.slotmachine[0][1].title == 'cherry')){

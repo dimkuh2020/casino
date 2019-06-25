@@ -50653,6 +50653,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -50678,6 +50679,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
+        test3: function test3() {
+            this.visible = false;
+            setTimeout(function () {
+                document.getElementById('reel1').style.transform = "translate(0px, 1700px)";
+            }, 10);
+
+            setTimeout(function () {
+                document.getElementById('reel2').style.transform = "translate(0px, 1700px)";
+            }, 20);
+
+            setTimeout(function () {
+                document.getElementById('reel3').style.transform = "translate(0px, 1700px)";
+            }, 30);
+
+            setTimeout(function () {
+                document.getElementById('reel11').style.transform = "translate(0px, 1700px)";
+            }, 40);
+
+            setTimeout(function () {
+                document.getElementById('reel22').style.transform = "translate(0px, 1700px)";
+            }, 50);
+
+            setTimeout(function () {
+                document.getElementById('reel33').style.transform = "translate(0px, 1700px)";
+            }, 60);
+
+            setTimeout(function () {
+                document.getElementById('reel111').style.transform = "translate(0px, 1700px)";
+            }, 70);
+
+            setTimeout(function () {
+                document.getElementById('reel222').style.transform = "translate(0px, 1700px)";
+            }, 80);
+
+            setTimeout(function () {
+                document.getElementById('reel333').style.transform = "translate(0px, 1700px)";
+            }, 90);
+        },
         test2: function test2() {
             this.visible = false;
             setTimeout(function () {
@@ -50729,7 +50768,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             setTimeout(function () {
                 document.getElementById('reel1').style.transform = "translate(0px, 1700px)";
                 setTimeout(function () {
-                    //document.getElementById('reel1').style.display="none";
+                    //document.getElementById('reel1').style.visibility="hidden";
                     document.getElementById('slot1').style.display = "block";
                 }, 500);
             }, 10);
@@ -50819,7 +50858,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 //this.test();    //поменять название ф-ции
 
 
-                //this.test2();   //нужен callback
+                this.test2(); //нужен callback
 
 
                 if (this.slotmachine[0][0].title == 'cherry' && this.slotmachine[0][1].title == 'cherry') {
@@ -51052,6 +51091,18 @@ var render = function() {
         }
       },
       [_vm._v("TEST2")]
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        on: {
+          click: function($event) {
+            return _vm.test3()
+          }
+        }
+      },
+      [_vm._v("TEST3")]
     ),
     _vm._v(" "),
     _vm._m(0),
