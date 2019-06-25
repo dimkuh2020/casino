@@ -1,11 +1,7 @@
 <template>
-    <div class="container">
-        <button @click="test()">TEST</button>        
-        <div id="do">
-            <img id="imgtest" src="img/slots/reel3.png">            
-        </div>
+    <div class="container">        
         <div class="row justify-content-center">
-            <div >
+            <div id="t">
                 <table>
                     <tr>
                         <td>
@@ -78,12 +74,40 @@
                 <input type="button" @click="spin(10)" class="btn btn-info" name="bet10" value="10" style="width: 120px;">
                 <input type="button" @click="spin(50)" class="btn btn-warning" name="bet50" value="50" style="width: 120px; margin-left:5%">
                 <input type="button" @click="spin(100)" class="btn btn-danger" name="bet100" value="100" style="width: 120px; margin-left:5%">
+            </div>
+            <div id="rules">
+                <img src="img/slots/rules.png">
             </div> 
         </div>
     </div>
 </template>
 
 <style type="text/css">
+    table {
+            width: 300px;
+            height: 300px;
+            border: solid 10px gold;            
+    }
+
+    tr {
+        height: 100px;
+        border: solid 2px gold;
+    }
+
+    td {        
+        width: 100px;
+        border: solid 2px gold;
+        border-bottom:0;
+        border-top: 0;        
+    }
+
+    #rules{
+        margin-top: 3%;
+        border-radius: 2px;
+        border: solid blue;
+       
+    }
+
     #reel1, #reel11, #reel111,
     #reel2, #reel22, #reel222,
     #reel3, #reel33, #reel333 {    
@@ -105,23 +129,6 @@
         height: 100px;
         overflow: hidden;
     }
-
-    table {
-        width: 300px;
-        height: 300px;
-        border: solid 3px blue;
-    }
-
-    tr {
-            height: 100px;
-    }
-
-    td {        
-        width: 100px;
-        border: solid 2px blue;
-        border-bottom:0;
-        border-top: 0;        
-    }    
 
     .underbox{
         justify-content: center;
@@ -160,10 +167,6 @@
         },  
 
         methods:{
-            test(){
-
-            },
-
             animation(){                    //анимация прокрутки
             this.cash -= this.bet;         //сразу отнимаем ставку от баланса     
                 document.getElementById('reel1').style.display="block";
