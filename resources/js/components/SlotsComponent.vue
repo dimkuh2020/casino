@@ -7,10 +7,9 @@
         <button @click="test3()">TEST3</button>
         <div id="divtest">
             <img id="imgtest" src="img/slots/reel3.png">            
-        </div>
-=======
+        </div>уорвлофравфуолрвло
     <div class="container">        
->>>>>>> 4b9cded80c108d28afa1fd0b4270ae65fac6a3a2
+
         <div class="row justify-content-center">
             <div id="t">
                 <table>
