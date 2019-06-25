@@ -364,7 +364,7 @@
                     this.tempindex = Math.floor(Math.random()*this.slots.length); 
                     this.slotmachine[2].push(this.slots[this.tempindex]);
                 }
-            },
+            }, 
 >>>>>>> 4b9cded80c108d28afa1fd0b4270ae65fac6a3a2
 
             getslots(){                                                                                         // ф-ция для запуска
