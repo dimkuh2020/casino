@@ -50615,52 +50615,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-<<<<<<< HEAD
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-=======
->>>>>>> 4b9cded80c108d28afa1fd0b4270ae65fac6a3a2
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['slots', 'user', 'cash', 'id'],
-
     data: function data() {
         return {
             bet: 0, //ставка 0 
@@ -50675,53 +50632,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
-
     methods: {
-<<<<<<< HEAD
-        test3: function test3() {
-            this.visible = false;
-            setTimeout(function () {
-                document.getElementById('reel1').style.transform = "translate(0px, 1700px)";
-            }, 10);
-
-            setTimeout(function () {
-                document.getElementById('reel2').style.transform = "translate(0px, 1700px)";
-            }, 20);
-
-            setTimeout(function () {
-                document.getElementById('reel3').style.transform = "translate(0px, 1700px)";
-            }, 30);
-
-            setTimeout(function () {
-                document.getElementById('reel11').style.transform = "translate(0px, 1700px)";
-            }, 40);
-
-            setTimeout(function () {
-                document.getElementById('reel22').style.transform = "translate(0px, 1700px)";
-            }, 50);
-
-            setTimeout(function () {
-                document.getElementById('reel33').style.transform = "translate(0px, 1700px)";
-            }, 60);
-
-            setTimeout(function () {
-                document.getElementById('reel111').style.transform = "translate(0px, 1700px)";
-            }, 70);
-
-            setTimeout(function () {
-                document.getElementById('reel222').style.transform = "translate(0px, 1700px)";
-            }, 80);
-
-            setTimeout(function () {
-                document.getElementById('reel333').style.transform = "translate(0px, 1700px)";
-            }, 90);
-        },
-        test2: function test2() {
-            this.visible = false;
-            setTimeout(function () {
-                document.getElementById('reel1').style.transform = "translate(0px, -1700px)";
-            }, 10);
-=======
         animation: function animation() {
             //анимация прокрутки
             this.cash -= this.bet; //сразу отнимаем ставку от баланса     
@@ -50734,89 +50645,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             document.getElementById('reel111').style.display = "block";
             document.getElementById('reel222').style.display = "block";
             document.getElementById('reel333').style.display = "block";
->>>>>>> 4b9cded80c108d28afa1fd0b4270ae65fac6a3a2
-
             setTimeout(function () {
                 document.getElementById('reel1').style.transform = "translate(0px, 1700px)";
             }, 20);
-
             setTimeout(function () {
                 document.getElementById('reel2').style.transform = "translate(0px, 1700px)";
             }, 30);
-
             setTimeout(function () {
                 document.getElementById('reel3').style.transform = "translate(0px, 1700px)";
             }, 40);
-
             setTimeout(function () {
                 document.getElementById('reel11').style.transform = "translate(0px, 1700px)";
             }, 50);
-
             setTimeout(function () {
                 document.getElementById('reel22').style.transform = "translate(0px, 1700px)";
             }, 60);
-
             setTimeout(function () {
                 document.getElementById('reel33').style.transform = "translate(0px, 1700px)";
             }, 70);
-
             setTimeout(function () {
                 document.getElementById('reel111').style.transform = "translate(0px, 1700px)";
             }, 80);
-
             setTimeout(function () {
                 document.getElementById('reel222').style.transform = "translate(0px, 1700px)";
             }, 90);
-<<<<<<< HEAD
-        },
-        test1: function test1() {
-            this.visible = true;
-
-            //document.getElementById('reel1').style.display="block";
-            //document.getElementById('slot1').style.display="none"; 
-        },
-        test: function test() {
-
-            this.visible = false;
-
-            setTimeout(function () {
-                document.getElementById('reel1').style.transform = "translate(0px, 1700px)";
-                setTimeout(function () {
-                    //document.getElementById('reel1').style.visibility="hidden";
-                    document.getElementById('slot1').style.display = "block";
-                }, 500);
-            }, 10);
-
-            setTimeout(function () {
-                document.getElementById('reel2').style.transform = "translate(0px, 1700px)";
-                setTimeout(function () {
-                    //document.getElementById('reel2').style.display="none";
-                    document.getElementById('slot2').style.display = "block";
-                }, 500);
-            }, 20);
-
-            setTimeout(function () {
-                document.getElementById('reel3').style.transform = "translate(0px, 1700px)";
-                setTimeout(function () {
-                    //document.getElementById('reel3').style.display="none";
-                    document.getElementById('slot3').style.display = "block";
-                }, 500);
-            }, 30);
-
-            setTimeout(function () {
-                document.getElementById('reel11').style.transform = "translate(0px, 1700px)";
-                setTimeout(function () {
-                    //document.getElementById('reel11').style.display="none";
-                    document.getElementById('slot11').style.display = "block";
-                }, 500);
-            }, 40);
-=======
->>>>>>> 4b9cded80c108d28afa1fd0b4270ae65fac6a3a2
-
             setTimeout(function () {
                 document.getElementById('reel333').style.transform = "translate(0px, 1700px)";
             }, 100);
-
             setTimeout(function () {
                 document.getElementById('reel1').style.transform = "translate(0px, -1700px)";
                 document.getElementById('reel2').style.transform = "translate(0px, -1700px)";
@@ -50827,7 +50682,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 document.getElementById('reel111').style.transform = "translate(0px, -1700px)";
                 document.getElementById('reel222').style.transform = "translate(0px, -1700px)";
                 document.getElementById('reel333').style.transform = "translate(0px, -1700px)";
-
                 document.getElementById('reel1').style.display = "none";
                 document.getElementById('reel2').style.display = "none";
                 document.getElementById('reel3').style.display = "none";
@@ -50864,19 +50718,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.tempindex = Math.floor(Math.random() * this.slots.length);
                 this.slotmachine[0].push(this.slots[this.tempindex]);
 
-<<<<<<< HEAD
-                this.slotmachine = [[], [], []];
-                this.getslots();
-                this.cash -= this.bet;
-
-                //this.test();    //поменять название ф-ции
-
-
-                this.test2(); //нужен callback
-=======
                 this.tempindex = Math.floor(Math.random() * this.slots.length);
                 this.slotmachine[1].push(this.slots[this.tempindex]);
->>>>>>> 4b9cded80c108d28afa1fd0b4270ae65fac6a3a2
 
                 this.tempindex = Math.floor(Math.random() * this.slots.length);
                 this.slotmachine[2].push(this.slots[this.tempindex]);
@@ -50904,28 +50747,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.slotmachine[0][0].title == 'cherry' && this.slotmachine[0][1].title == 'cherry' && this.slotmachine[0][2].title == 'cherry') {
                 this.line1 = this.bet * 14;
             }
-
             if (this.slotmachine[1][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry') {
                 this.line2 = this.bet * 2;
             }
             if (this.slotmachine[1][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry' && this.slotmachine[1][2].title == 'cherry') {
                 this.line2 = this.bet * 14;
             }
-
             if (this.slotmachine[2][0].title == 'cherry' && this.slotmachine[2][1].title == 'cherry') {
                 this.line3 = this.bet * 2;
             }
             if (this.slotmachine[2][0].title == 'cherry' && this.slotmachine[2][1].title == 'cherry' && this.slotmachine[2][2].title == 'cherry') {
                 this.line3 = this.bet * 14;
             }
-
             if (this.slotmachine[0][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry') {
                 this.line4 = this.bet * 2;
             }
             if (this.slotmachine[0][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry' && this.slotmachine[2][2].title == 'cherry') {
                 this.line4 = this.bet * 14;
             }
-
             if (this.slotmachine[2][0].title == 'cherry' && this.slotmachine[1][1].title == 'cherry') {
                 this.line5 = this.bet * 2;
             }
@@ -50939,28 +50778,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.slotmachine[0][0].title == 'orange' && this.slotmachine[0][1].title == 'orange' && this.slotmachine[0][2].title == 'orange') {
                 this.line1 = this.bet * 24;
             }
-
             if (this.slotmachine[1][0].title == 'orange' && this.slotmachine[1][1].title == 'orange') {
                 this.line2 = this.bet * 3;
             }
             if (this.slotmachine[1][0].title == 'cherry' && this.slotmachine[1][1].title == 'orange' && this.slotmachine[1][2].title == 'orange') {
                 this.line2 = this.bet * 24;
             }
-
             if (this.slotmachine[2][0].title == 'orange' && this.slotmachine[2][1].title == 'orange') {
                 this.line3 = this.bet * 3;
             }
             if (this.slotmachine[2][0].title == 'orange' && this.slotmachine[2][1].title == 'orange' && this.slotmachine[2][2].title == 'orange') {
                 this.line3 = this.bet * 24;
             }
-
             if (this.slotmachine[0][0].title == 'orange' && this.slotmachine[1][1].title == 'orange') {
                 this.line4 = this.bet * 3;
             }
             if (this.slotmachine[0][0].title == 'orange' && this.slotmachine[1][1].title == 'orange' && this.slotmachine[2][2].title == 'orange') {
                 this.line4 = this.bet * 24;
             }
-
             if (this.slotmachine[2][0].title == 'orange' && this.slotmachine[1][1].title == 'orange') {
                 this.line5 = this.bet * 3;
             }
@@ -51081,59 +50916,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-<<<<<<< HEAD
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            return _vm.test()
-          }
-        }
-      },
-      [_vm._v("TEST")]
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            return _vm.test1()
-          }
-        }
-      },
-      [_vm._v("TEST1")]
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            return _vm.test2()
-          }
-        }
-      },
-      [_vm._v("TEST2")]
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            return _vm.test3()
-          }
-        }
-      },
-      [_vm._v("TEST3")]
-    ),
-    _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
-=======
->>>>>>> 4b9cded80c108d28afa1fd0b4270ae65fac6a3a2
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { attrs: { id: "t" } }, [
         _c("table", [
