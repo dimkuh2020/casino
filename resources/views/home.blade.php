@@ -9,24 +9,18 @@
                 <div class="panel-body">
                     <h3 style="margin: 0; text-align: center;">Choose game to play</h3>                    
                     <div class="row" id="nav" style="text-align: center; padding-top: 20px;">
-                        <div class="col-md-4">
+                        <div class="col-md">
                             <a href="{{ route('blackjack') }}">
                                 <img src="{{ asset('img/bj.png')}}" width="80%">
                             </a>
                             <h1>Black Jack</h1>
                         </div>
-                            <div class="col-md-4">
+                            <div class="col-md">
                             <a href="{{route('slots')}}">
                                 <img src="{{ asset('img/slots.png')}}" width="80%">
                             </a>
                             <h1>Slots</h1>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="">
-                                <img src="{{ asset('img/casino.jpg')}}" width="80%">
-                            </a><br>
-                            <h1>Что то новое</h1>
-                        </div>
+                        </div>                       
                     </div>
                 </div>
             </div>

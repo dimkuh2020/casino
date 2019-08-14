@@ -104,8 +104,7 @@
     #rules{
         margin-top: 3%;
         border-radius: 2px;
-        border: solid blue;
-       
+        border: solid blue;       
     }
 
     #reel1, #reel11, #reel111,

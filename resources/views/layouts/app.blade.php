@@ -87,12 +87,9 @@
             </div>
         </nav>
 
-        <main class="py-0" style="background: url(img/fon2.png); height: 100vh;">
+        <main class="py-0" style="background: url(img/fon2.png); min-height: 95vh;"> <!-- height: 120vmax;-->
             @yield('content')
-        </main>
-        <footer>
-            <div id="copyright text-right" style="width: 100%; height: 170px; background-image: url(img/footer.jpg); background-repeat: repeat;"></div>
-        </footer>
+        </main>                   
     </div>
 </body>
 </html>

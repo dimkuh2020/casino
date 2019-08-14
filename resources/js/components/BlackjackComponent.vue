@@ -43,7 +43,7 @@
                     <input type="number" name="bet" v-model="bet" style="width:140px;"><br>
                     <input type="button" @click="getbet()" class="btn btn-success" name="go" value="GO" style="width: 140px; margin-top: 10px;">
                 </div>
-            </div>
+            </div>            
         </div>             
     <!-- Контейнер для вывода второй партии кнопок-->       
         <div v-show="!visible1">  
